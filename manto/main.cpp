@@ -1,8 +1,11 @@
 #include <iostream>
-#include "base/Manto.h"
+#include "base/Vector.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    Manto mano = Manto();
+    Vector vector = Vector(0, 1, 0);
+    Vector vector2 = Vector(1, 0, 0);
+
+    std::cout << vector2.crossProduct(vector).toString() << std::endl;
+
     return 0;
 }

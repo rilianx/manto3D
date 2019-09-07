@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.cpp
+Manto.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.h
+
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.h
+
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.cpp
+sstream
+-
+Vector.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.h
+
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.h
+ostream
+-
+
+/Volumes/PQNIO2/Proyectos/manto3D/manto/main.cpp
+iostream
+-
+base/Vector.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.h
+
