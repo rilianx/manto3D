@@ -14,6 +14,7 @@ public:
     virtual std::string toString(){
         return "Figure";
     }
+    ~Figure();
 };
 
 

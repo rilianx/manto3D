@@ -12,11 +12,12 @@ using namespace std;
 
 class Manto {
 
-    list<Figure> lFigures; // Lista de figuras
+    list<Figure*> lFigures; // Lista de figuras
 
 public:
-    void addFigura(const Figure& figure);
+    void addFigura(Figure* figure);
     void printAllFigures();
+    ~Manto();
 };
 
 

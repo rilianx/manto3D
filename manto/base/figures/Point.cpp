@@ -3,6 +3,7 @@
 //
 
 #include <sstream>
+#include <iostream>
 #include "Point.h"
 
 float Point::getX() const {
@@ -38,6 +39,10 @@ std::string Point::toString() {
     ss << "P(" << getX() << ", " << getY() << ", " << getZ() << ")";
     std::string s(ss.str());
     return s;
+}
+
+Point::~Point() {
+    std::cout << "Eliminado " << toString() << std::endl;
 }
 
 

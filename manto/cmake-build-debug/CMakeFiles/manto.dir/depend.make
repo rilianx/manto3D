@@ -3,7 +3,9 @@
 
 CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/Manto.cpp
 CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/Manto.h
+CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/Vector.h
 CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/figures/Figure.h
+CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/figures/Point.h
 
 CMakeFiles/manto.dir/base/Vector.cpp.o: ../base/Vector.cpp
 CMakeFiles/manto.dir/base/Vector.cpp.o: ../base/Vector.h

@@ -4,7 +4,9 @@
 CMakeFiles/manto.dir/base/Manto.cpp.o
  /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.cpp
  /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.h
  /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.h
 CMakeFiles/manto.dir/base/Vector.cpp.o
  /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.cpp
  /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.h

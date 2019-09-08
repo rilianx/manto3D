@@ -4,13 +4,14 @@
 
 #include <iostream>
 #include "Manto.h"
+#include "figures/Point.h"
 
-void Manto::addFigura(const Figure& figure) {
+void Manto::addFigura(Figure* figure) {
     lFigures.push_back(figure);
 }
 
-void printFigure(Figure f){
-    std::cout<<f.toString()<<std::endl;
+void printFigure(Figure* f){
+    std::cout<<f->toString()<<std::endl;
 }
 
 void Manto::printAllFigures() {
@@ -22,6 +23,22 @@ void Manto::printAllFigures() {
         printFigure(figure);
     }
 }
+
+Manto::~Manto() {
+    std::cout << "Eliminando manto" << std::endl;
+
+    // Iterando las figuras y eliminandolas
+    for(auto figure : lFigures){
+        Point * p = dynamic_cast<Point*>(figure);
+        if(p != NULL)
+            delete p;
+        else
+            delete figure;
+    }
+
+    std::cout << "Manto eliminado" << std::endl;
+}
+
 
 
 

@@ -11,6 +11,8 @@ iostream
 -
 Manto.h
 /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.h
+figures/Point.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.h
 
 /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.h
 list
@@ -18,7 +20,17 @@ list
 figures/Figure.h
 /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.h
 
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.h
+ostream
+-
+
 /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.h
 string
 -
+
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.h
+../Vector.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.h
+Figure.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.h
 

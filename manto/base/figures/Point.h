@@ -15,6 +15,7 @@ class Point : public Figure{
 public:
     Point(float x, float y, float z);
     Point(Vector vector);
+    ~Point();
 
     float getX() const;
     float getY() const;
