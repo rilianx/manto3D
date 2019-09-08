@@ -92,6 +92,18 @@
 		<Unit filename="/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.h">
 			<Option target="manto"/>
 		</Unit>
+		<Unit filename="/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.cpp">
+			<Option target="manto"/>
+		</Unit>
+		<Unit filename="/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.h">
+			<Option target="manto"/>
+		</Unit>
+		<Unit filename="/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.cpp">
+			<Option target="manto"/>
+		</Unit>
+		<Unit filename="/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.h">
+			<Option target="manto"/>
+		</Unit>
 		<Unit filename="/Volumes/PQNIO2/Proyectos/manto3D/manto/main.cpp">
 			<Option target="manto"/>
 		</Unit>

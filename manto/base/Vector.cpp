@@ -44,4 +44,6 @@ bool Vector::equals(Vector vector) const {
             this->getZ() == vector.getZ();
 }
 
+Vector::Vector() = default;
+
 

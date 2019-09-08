@@ -9,12 +9,14 @@
 #include <ostream>
 
 class Vector {
-    float x;
-    float y;
-    float z;
+    float x{};
+    float y{};
+    float z{};
 
 public:
     Vector(float x, float y, float z);
+
+    Vector();
 
     /**
      * Calucla el producto cruz entre dos vectores (this y el vector parametro)

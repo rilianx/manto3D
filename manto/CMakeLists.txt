@@ -3,4 +3,4 @@ project(manto)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(manto main.cpp base/Manto.cpp base/Manto.h base/Vector.cpp base/Vector.h)
+add_executable(manto main.cpp base/Manto.cpp base/Manto.h base/Vector.cpp base/Vector.h base/figures/Point.cpp base/figures/Point.h base/figures/Figure.cpp base/figures/Figure.h)

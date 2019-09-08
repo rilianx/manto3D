@@ -1,11 +1,20 @@
 #include <iostream>
 #include "base/Vector.h"
+#include "base/Manto.h"
+#include "base/figures/Point.h"
 
 int main() {
-    Vector vector = Vector(0, 1, 0);
-    Vector vector2 = Vector(1, 0, 0);
+    Manto manto;
 
-    std::cout << vector2.crossProduct(vector).toString() << std::endl;
+    Point p = Point(1,1,1);
+
+    manto.addFigura(p);
+    manto.addFigura(Point(1,2,5));
+    manto.addFigura(Point(2,3,1));
+
+    manto.printAllFigures();
+
+    std::cout << p.toString() << std::endl;
 
     return 0;
 }

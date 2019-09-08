@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Volumes/PQNIO2/Proyectos/manto3D/manto
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Volumes/PQNIO2/Proyectos/manto3D/manto
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug

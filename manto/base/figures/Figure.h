@@ -2,15 +2,19 @@
 // Created by Braulio Lobo on 9/7/19.
 //
 
-#ifndef MANTO_FIGURA_H
-#define MANTO_FIGURA_H
+#ifndef MANTO_FIGURE_H
+#define MANTO_FIGURE_H
 
 
-class Figura {
+#include <string>
+
+class Figure {
 
 public:
-    Figura();
+    virtual std::string toString(){
+        return "Figure";
+    }
 };
 
 
-#endif //MANTO_FIGURA_H
+#endif //MANTO_FIGURE_H
