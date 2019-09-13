@@ -48,19 +48,31 @@ list<Figure *> Manto::processFigure(Figure *f) {
     list<Figure *> lFragments;  // Fragmentos no dominados de la figura f
     lFragments.push_back(f);    // Figura completa como fragmento no dominado
 
+    // Iterador
+    list<Figure *>::iterator itr = lFigures.begin();
+
     for(auto & figure : lFigures){
-        // TODO:
-        //  programar esto
-        //  lFragments <- Intersect (lFragments, non_dominated_fragments(f,
-        //  figure))
-        //  F’ <- non_dominated_fragments(figure,f)
-        //  eliminar figura "figure" y agregar fragmentos F’ al manto
+        // Intersectando las listas de fragmentos
         lFragments = intersect(lFragments, non_dominated_fragments(f, figure));
 
         // Actualizando fragmentos no dominados de figure
         list<Figure *> fragmentsFigure = non_dominated_fragments(figure, f);
-        // TODO: eliminar figura "figure" del manto
-        // TODO: agregar los fragmentos fragmetnsFigure al manto
+
+        // Si se generaron fragmentos se elimina la figura del manto y se
+        // agregan sus fragmentos no dominados
+        if(fragmentsFigure.size() > 1){
+
+            // Eliminando figure del manto
+            lFigures.erase(itr);
+
+            // Agregando los fragmentos de figure al manto
+            for(auto & fragment : fragmentsFigure)
+                lFigures.push_back(fragment);
+        }
+        else{ // Avanzando en el iterador
+            itr++;
+        }
+
     }
 
     return lFragments;

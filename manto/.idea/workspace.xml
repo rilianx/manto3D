@@ -12,29 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32126cf6-b316-478f-9e3a-fe6a9ca8700a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/base/space/Line.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/space/Line.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/space/Plane.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/space/Plane.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/Manto.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/base/Manto.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/Manto.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/Manto.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/Vector.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/base/space/Vector.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/Vector.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/space/Vector.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/figures/Figure.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/figures/Figure.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/figures/Point.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/figures/Point.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/manto" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/manto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/manto.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/manto.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +136,7 @@
       <workItem from="1568212502820" duration="216000" />
       <workItem from="1568216813499" duration="1191000" />
       <workItem from="1568317434428" duration="3766000" />
-      <workItem from="1568373840639" duration="285000" />
+      <workItem from="1568373840639" duration="1592000" />
     </task>
     <servers />
   </component>
