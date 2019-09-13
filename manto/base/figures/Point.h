@@ -6,7 +6,7 @@
 #define MANTO_POINT_H
 
 
-#include "../Vector.h"
+#include "../space/Vector.h"
 #include "Figure.h"
 
 class Point : public Figure{
@@ -29,6 +29,10 @@ public:
      */
     bool dominate(Point point) const;
 
+    /**
+     * Genera un string con las coordenadas del punto
+     * @return  - Retorna un string con las coordenadas del punto
+     */
     virtual std::string toString();
 };
 

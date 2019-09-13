@@ -150,33 +150,6 @@ base/Manto.cpp.s:
 	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/Manto.cpp.s
 .PHONY : base/Manto.cpp.s
 
-base/Vector.o: base/Vector.cpp.o
-
-.PHONY : base/Vector.o
-
-# target to build an object file
-base/Vector.cpp.o:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/Vector.cpp.o
-.PHONY : base/Vector.cpp.o
-
-base/Vector.i: base/Vector.cpp.i
-
-.PHONY : base/Vector.i
-
-# target to preprocess a source file
-base/Vector.cpp.i:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/Vector.cpp.i
-.PHONY : base/Vector.cpp.i
-
-base/Vector.s: base/Vector.cpp.s
-
-.PHONY : base/Vector.s
-
-# target to generate assembly for a file
-base/Vector.cpp.s:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/Vector.cpp.s
-.PHONY : base/Vector.cpp.s
-
 base/figures/Figure.o: base/figures/Figure.cpp.o
 
 .PHONY : base/figures/Figure.o
@@ -231,6 +204,87 @@ base/figures/Point.cpp.s:
 	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/Point.cpp.s
 .PHONY : base/figures/Point.cpp.s
 
+base/space/Line.o: base/space/Line.cpp.o
+
+.PHONY : base/space/Line.o
+
+# target to build an object file
+base/space/Line.cpp.o:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Line.cpp.o
+.PHONY : base/space/Line.cpp.o
+
+base/space/Line.i: base/space/Line.cpp.i
+
+.PHONY : base/space/Line.i
+
+# target to preprocess a source file
+base/space/Line.cpp.i:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Line.cpp.i
+.PHONY : base/space/Line.cpp.i
+
+base/space/Line.s: base/space/Line.cpp.s
+
+.PHONY : base/space/Line.s
+
+# target to generate assembly for a file
+base/space/Line.cpp.s:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Line.cpp.s
+.PHONY : base/space/Line.cpp.s
+
+base/space/Plane.o: base/space/Plane.cpp.o
+
+.PHONY : base/space/Plane.o
+
+# target to build an object file
+base/space/Plane.cpp.o:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Plane.cpp.o
+.PHONY : base/space/Plane.cpp.o
+
+base/space/Plane.i: base/space/Plane.cpp.i
+
+.PHONY : base/space/Plane.i
+
+# target to preprocess a source file
+base/space/Plane.cpp.i:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Plane.cpp.i
+.PHONY : base/space/Plane.cpp.i
+
+base/space/Plane.s: base/space/Plane.cpp.s
+
+.PHONY : base/space/Plane.s
+
+# target to generate assembly for a file
+base/space/Plane.cpp.s:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Plane.cpp.s
+.PHONY : base/space/Plane.cpp.s
+
+base/space/Vector.o: base/space/Vector.cpp.o
+
+.PHONY : base/space/Vector.o
+
+# target to build an object file
+base/space/Vector.cpp.o:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Vector.cpp.o
+.PHONY : base/space/Vector.cpp.o
+
+base/space/Vector.i: base/space/Vector.cpp.i
+
+.PHONY : base/space/Vector.i
+
+# target to preprocess a source file
+base/space/Vector.cpp.i:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Vector.cpp.i
+.PHONY : base/space/Vector.cpp.i
+
+base/space/Vector.s: base/space/Vector.cpp.s
+
+.PHONY : base/space/Vector.s
+
+# target to generate assembly for a file
+base/space/Vector.cpp.s:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Vector.cpp.s
+.PHONY : base/space/Vector.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -270,15 +324,21 @@ help:
 	@echo "... base/Manto.o"
 	@echo "... base/Manto.i"
 	@echo "... base/Manto.s"
-	@echo "... base/Vector.o"
-	@echo "... base/Vector.i"
-	@echo "... base/Vector.s"
 	@echo "... base/figures/Figure.o"
 	@echo "... base/figures/Figure.i"
 	@echo "... base/figures/Figure.s"
 	@echo "... base/figures/Point.o"
 	@echo "... base/figures/Point.i"
 	@echo "... base/figures/Point.s"
+	@echo "... base/space/Line.o"
+	@echo "... base/space/Line.i"
+	@echo "... base/space/Line.s"
+	@echo "... base/space/Plane.o"
+	@echo "... base/space/Plane.i"
+	@echo "... base/space/Plane.s"
+	@echo "... base/space/Vector.o"
+	@echo "... base/space/Vector.i"
+	@echo "... base/space/Vector.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

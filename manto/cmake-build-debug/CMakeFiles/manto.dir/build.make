@@ -83,18 +83,18 @@ CMakeFiles/manto.dir/base/Manto.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/manto.dir/base/Manto.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.cpp -o CMakeFiles/manto.dir/base/Manto.cpp.s
 
-CMakeFiles/manto.dir/base/Vector.cpp.o: CMakeFiles/manto.dir/flags.make
-CMakeFiles/manto.dir/base/Vector.cpp.o: ../base/Vector.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/manto.dir/base/Vector.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/manto.dir/base/Vector.cpp.o -c /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.cpp
+CMakeFiles/manto.dir/base/space/Vector.cpp.o: CMakeFiles/manto.dir/flags.make
+CMakeFiles/manto.dir/base/space/Vector.cpp.o: ../base/space/Vector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/manto.dir/base/space/Vector.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/manto.dir/base/space/Vector.cpp.o -c /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Vector.cpp
 
-CMakeFiles/manto.dir/base/Vector.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/manto.dir/base/Vector.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.cpp > CMakeFiles/manto.dir/base/Vector.cpp.i
+CMakeFiles/manto.dir/base/space/Vector.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/manto.dir/base/space/Vector.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Vector.cpp > CMakeFiles/manto.dir/base/space/Vector.cpp.i
 
-CMakeFiles/manto.dir/base/Vector.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/manto.dir/base/Vector.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Vector.cpp -o CMakeFiles/manto.dir/base/Vector.cpp.s
+CMakeFiles/manto.dir/base/space/Vector.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/manto.dir/base/space/Vector.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Vector.cpp -o CMakeFiles/manto.dir/base/space/Vector.cpp.s
 
 CMakeFiles/manto.dir/base/figures/Point.cpp.o: CMakeFiles/manto.dir/flags.make
 CMakeFiles/manto.dir/base/figures/Point.cpp.o: ../base/figures/Point.cpp
@@ -122,25 +122,55 @@ CMakeFiles/manto.dir/base/figures/Figure.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/manto.dir/base/figures/Figure.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.cpp -o CMakeFiles/manto.dir/base/figures/Figure.cpp.s
 
+CMakeFiles/manto.dir/base/space/Line.cpp.o: CMakeFiles/manto.dir/flags.make
+CMakeFiles/manto.dir/base/space/Line.cpp.o: ../base/space/Line.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/manto.dir/base/space/Line.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/manto.dir/base/space/Line.cpp.o -c /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Line.cpp
+
+CMakeFiles/manto.dir/base/space/Line.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/manto.dir/base/space/Line.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Line.cpp > CMakeFiles/manto.dir/base/space/Line.cpp.i
+
+CMakeFiles/manto.dir/base/space/Line.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/manto.dir/base/space/Line.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Line.cpp -o CMakeFiles/manto.dir/base/space/Line.cpp.s
+
+CMakeFiles/manto.dir/base/space/Plane.cpp.o: CMakeFiles/manto.dir/flags.make
+CMakeFiles/manto.dir/base/space/Plane.cpp.o: ../base/space/Plane.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/manto.dir/base/space/Plane.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/manto.dir/base/space/Plane.cpp.o -c /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Plane.cpp
+
+CMakeFiles/manto.dir/base/space/Plane.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/manto.dir/base/space/Plane.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Plane.cpp > CMakeFiles/manto.dir/base/space/Plane.cpp.i
+
+CMakeFiles/manto.dir/base/space/Plane.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/manto.dir/base/space/Plane.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Plane.cpp -o CMakeFiles/manto.dir/base/space/Plane.cpp.s
+
 # Object files for target manto
 manto_OBJECTS = \
 "CMakeFiles/manto.dir/main.cpp.o" \
 "CMakeFiles/manto.dir/base/Manto.cpp.o" \
-"CMakeFiles/manto.dir/base/Vector.cpp.o" \
+"CMakeFiles/manto.dir/base/space/Vector.cpp.o" \
 "CMakeFiles/manto.dir/base/figures/Point.cpp.o" \
-"CMakeFiles/manto.dir/base/figures/Figure.cpp.o"
+"CMakeFiles/manto.dir/base/figures/Figure.cpp.o" \
+"CMakeFiles/manto.dir/base/space/Line.cpp.o" \
+"CMakeFiles/manto.dir/base/space/Plane.cpp.o"
 
 # External object files for target manto
 manto_EXTERNAL_OBJECTS =
 
 manto: CMakeFiles/manto.dir/main.cpp.o
 manto: CMakeFiles/manto.dir/base/Manto.cpp.o
-manto: CMakeFiles/manto.dir/base/Vector.cpp.o
+manto: CMakeFiles/manto.dir/base/space/Vector.cpp.o
 manto: CMakeFiles/manto.dir/base/figures/Point.cpp.o
 manto: CMakeFiles/manto.dir/base/figures/Figure.cpp.o
+manto: CMakeFiles/manto.dir/base/space/Line.cpp.o
+manto: CMakeFiles/manto.dir/base/space/Plane.cpp.o
 manto: CMakeFiles/manto.dir/build.make
 manto: CMakeFiles/manto.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable manto"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable manto"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/manto.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

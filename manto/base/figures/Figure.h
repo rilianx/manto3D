@@ -7,14 +7,20 @@
 
 
 #include <string>
+#include <list>
 
 class Figure {
 
 public:
+    ~Figure();
+
+    /**
+     * Genera un string caracteristico de la figura
+     * @return  - Retorna el string generado
+     */
     virtual std::string toString(){
         return "Figure";
     }
-    ~Figure();
 };
 
 
