@@ -61,6 +61,12 @@ list<Figure *> Manto::processFigure(Figure *f) {
         // Si se generaron fragmentos se elimina la figura del manto y se
         // agregan sus fragmentos no dominados
         if(fragmentsFigure.size() > 1){
+            // FIXME:
+            //   - sacarlo y ponerlo
+            //   - Colocar los fragmentos y figuras en una lista temporal e ir
+            //   borrando esta, luego eliminar esta lista y agregar los
+            //   elementos de la nueva (La temporal.
+
 
             // Eliminando figure del manto
             lFigures.erase(itr);

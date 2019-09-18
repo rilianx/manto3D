@@ -14,6 +14,11 @@
     <list default="true" id="32126cf6-b316-478f-9e3a-fe6a9ca8700a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/Manto.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/base/Manto.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/Manto.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/Manto.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/manto" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,6 +142,11 @@
       <workItem from="1568216813499" duration="1191000" />
       <workItem from="1568317434428" duration="3766000" />
       <workItem from="1568373840639" duration="1592000" />
+      <workItem from="1568399194516" duration="2641000" />
+      <workItem from="1568668670121" duration="19000" />
+      <workItem from="1568753003394" duration="54000" />
+      <workItem from="1568780388072" duration="98000" />
+      <workItem from="1568780542020" duration="103000" />
     </task>
     <servers />
   </component>

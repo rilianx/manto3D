@@ -28,17 +28,16 @@ private:
     list<Figure*> processFigure(Figure* f);
 
     /**
-     * Comprueba el contenido de ambas listas y retorna una lista con los
-     * elementos que se encuentran en las dos listas.
+     * Intersecta el espacio total de ambas listas y retorna el resultado
      * @param list1     - Primera lista que se quiere comparar
-     * @param list2     - Segunda list aque se quiere comparar
+     * @param list2     - Segunda lista que se quiere comparar
      * @return          - Retorna una lista intersección de ambas entregadas
      */
     list<Figure*> intersect(list<Figure*> list1, list<Figure*> list2);
 
     /**
-     * Intersecta la figura 1 y la figura 2 (en caso de que se pueda). Ambas
-     * se fragmentan dependiendo de la intersección y se comprueban los
+     * Intersecta la figura 1 y la figura 2 (en caso de que se pueda). Se
+     * fragmenta la figura 1 dependiendo de la intersección y se comprueban los
      * fragmentos que serán dominados y los que no.
      * El tratamiento de los fragmentos generados es el siguiente:
      * - Se genera una lista con los fragmentos de la figura 1 que no son
@@ -46,7 +45,7 @@ private:
      *
      * @param figure1   - Figura que se quiere fragmentar. Se retornarán los
      *                    fragmetnos de esta figura que no son dominados
-     * @param figure2   - Figura que se quiere fragmentar.
+     * @param figure2   - Figura con la que se intersectara la figura 1.
      * @return          - Retorna los fragmentos de la figura 1 que no son
      *                    dominados.
      */
