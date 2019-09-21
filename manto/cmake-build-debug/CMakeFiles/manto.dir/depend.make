@@ -3,33 +3,53 @@
 
 CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/Manto.cpp
 CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/Manto.h
-CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/figures/Figure.h
-CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/figures/Point.h
-CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/space/Vector.h
+CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/Tester.h
+CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/figures/figures2/Figure2.h
+CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/figures/figures3/Figure3.h
 
-CMakeFiles/manto.dir/base/figures/Figure.cpp.o: ../base/figures/Figure.cpp
-CMakeFiles/manto.dir/base/figures/Figure.cpp.o: ../base/figures/Figure.h
+CMakeFiles/manto.dir/base/Tester.cpp.o: ../base/Tester.cpp
+CMakeFiles/manto.dir/base/Tester.cpp.o: ../base/Tester.h
 
-CMakeFiles/manto.dir/base/figures/Point.cpp.o: ../base/figures/Figure.h
-CMakeFiles/manto.dir/base/figures/Point.cpp.o: ../base/figures/Point.cpp
-CMakeFiles/manto.dir/base/figures/Point.cpp.o: ../base/figures/Point.h
-CMakeFiles/manto.dir/base/figures/Point.cpp.o: ../base/space/Vector.h
+CMakeFiles/manto.dir/base/figures/figures2/Figure2.cpp.o: ../base/Tester.h
+CMakeFiles/manto.dir/base/figures/figures2/Figure2.cpp.o: ../base/figures/figures2/Figure2.cpp
+CMakeFiles/manto.dir/base/figures/figures2/Figure2.cpp.o: ../base/figures/figures2/Figure2.h
 
-CMakeFiles/manto.dir/base/space/Line.cpp.o: ../base/space/Line.cpp
-CMakeFiles/manto.dir/base/space/Line.cpp.o: ../base/space/Line.h
+CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.o: ../base/Tester.h
+CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.o: ../base/figures/figures2/Figure2.h
+CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.o: ../base/figures/figures2/Point2.cpp
+CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.o: ../base/figures/figures2/Point2.h
+CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.o: ../base/figures/figures3/Figure3.h
+CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.o: ../base/spaces/spaces2/Vector2.h
 
-CMakeFiles/manto.dir/base/space/Plane.cpp.o: ../base/figures/Figure.h
-CMakeFiles/manto.dir/base/space/Plane.cpp.o: ../base/figures/Point.h
-CMakeFiles/manto.dir/base/space/Plane.cpp.o: ../base/space/Plane.cpp
-CMakeFiles/manto.dir/base/space/Plane.cpp.o: ../base/space/Plane.h
-CMakeFiles/manto.dir/base/space/Plane.cpp.o: ../base/space/Vector.h
+CMakeFiles/manto.dir/base/figures/figures3/Figure3.cpp.o: ../base/figures/figures2/Figure2.h
+CMakeFiles/manto.dir/base/figures/figures3/Figure3.cpp.o: ../base/figures/figures3/Figure3.cpp
+CMakeFiles/manto.dir/base/figures/figures3/Figure3.cpp.o: ../base/figures/figures3/Figure3.h
 
-CMakeFiles/manto.dir/base/space/Vector.cpp.o: ../base/space/Vector.cpp
-CMakeFiles/manto.dir/base/space/Vector.cpp.o: ../base/space/Vector.h
+CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o: ../base/Tester.h
+CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o: ../base/figures/figures2/Figure2.h
+CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o: ../base/figures/figures2/Point2.h
+CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o: ../base/figures/figures3/Figure3.h
+CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o: ../base/figures/figures3/Point3.cpp
+CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o: ../base/figures/figures3/Point3.h
+CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o: ../base/spaces/spaces2/Vector2.h
+CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o: ../base/spaces/spaces3/Vector3.h
+
+CMakeFiles/manto.dir/base/spaces/spaces2/Vector2.cpp.o: ../base/spaces/spaces2/Vector2.cpp
+CMakeFiles/manto.dir/base/spaces/spaces2/Vector2.cpp.o: ../base/spaces/spaces2/Vector2.h
+
+CMakeFiles/manto.dir/base/spaces/spaces3/Vector3.cpp.o: ../base/figures/figures2/Figure2.h
+CMakeFiles/manto.dir/base/spaces/spaces3/Vector3.cpp.o: ../base/figures/figures3/Figure3.h
+CMakeFiles/manto.dir/base/spaces/spaces3/Vector3.cpp.o: ../base/spaces/spaces2/Vector2.h
+CMakeFiles/manto.dir/base/spaces/spaces3/Vector3.cpp.o: ../base/spaces/spaces3/Vector3.cpp
+CMakeFiles/manto.dir/base/spaces/spaces3/Vector3.cpp.o: ../base/spaces/spaces3/Vector3.h
 
 CMakeFiles/manto.dir/main.cpp.o: ../base/Manto.h
-CMakeFiles/manto.dir/main.cpp.o: ../base/figures/Figure.h
-CMakeFiles/manto.dir/main.cpp.o: ../base/figures/Point.h
-CMakeFiles/manto.dir/main.cpp.o: ../base/space/Vector.h
+CMakeFiles/manto.dir/main.cpp.o: ../base/Tester.h
+CMakeFiles/manto.dir/main.cpp.o: ../base/figures/figures2/Figure2.h
+CMakeFiles/manto.dir/main.cpp.o: ../base/figures/figures2/Point2.h
+CMakeFiles/manto.dir/main.cpp.o: ../base/figures/figures3/Figure3.h
+CMakeFiles/manto.dir/main.cpp.o: ../base/figures/figures3/Point3.h
+CMakeFiles/manto.dir/main.cpp.o: ../base/spaces/spaces2/Vector2.h
+CMakeFiles/manto.dir/main.cpp.o: ../base/spaces/spaces3/Vector3.h
 CMakeFiles/manto.dir/main.cpp.o: ../main.cpp
 

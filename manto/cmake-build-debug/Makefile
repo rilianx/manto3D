@@ -150,140 +150,194 @@ base/Manto.cpp.s:
 	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/Manto.cpp.s
 .PHONY : base/Manto.cpp.s
 
-base/figures/Figure.o: base/figures/Figure.cpp.o
+base/Tester.o: base/Tester.cpp.o
 
-.PHONY : base/figures/Figure.o
-
-# target to build an object file
-base/figures/Figure.cpp.o:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/Figure.cpp.o
-.PHONY : base/figures/Figure.cpp.o
-
-base/figures/Figure.i: base/figures/Figure.cpp.i
-
-.PHONY : base/figures/Figure.i
-
-# target to preprocess a source file
-base/figures/Figure.cpp.i:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/Figure.cpp.i
-.PHONY : base/figures/Figure.cpp.i
-
-base/figures/Figure.s: base/figures/Figure.cpp.s
-
-.PHONY : base/figures/Figure.s
-
-# target to generate assembly for a file
-base/figures/Figure.cpp.s:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/Figure.cpp.s
-.PHONY : base/figures/Figure.cpp.s
-
-base/figures/Point.o: base/figures/Point.cpp.o
-
-.PHONY : base/figures/Point.o
+.PHONY : base/Tester.o
 
 # target to build an object file
-base/figures/Point.cpp.o:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/Point.cpp.o
-.PHONY : base/figures/Point.cpp.o
+base/Tester.cpp.o:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/Tester.cpp.o
+.PHONY : base/Tester.cpp.o
 
-base/figures/Point.i: base/figures/Point.cpp.i
+base/Tester.i: base/Tester.cpp.i
 
-.PHONY : base/figures/Point.i
+.PHONY : base/Tester.i
 
 # target to preprocess a source file
-base/figures/Point.cpp.i:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/Point.cpp.i
-.PHONY : base/figures/Point.cpp.i
+base/Tester.cpp.i:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/Tester.cpp.i
+.PHONY : base/Tester.cpp.i
 
-base/figures/Point.s: base/figures/Point.cpp.s
+base/Tester.s: base/Tester.cpp.s
 
-.PHONY : base/figures/Point.s
+.PHONY : base/Tester.s
 
 # target to generate assembly for a file
-base/figures/Point.cpp.s:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/Point.cpp.s
-.PHONY : base/figures/Point.cpp.s
+base/Tester.cpp.s:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/Tester.cpp.s
+.PHONY : base/Tester.cpp.s
 
-base/space/Line.o: base/space/Line.cpp.o
+base/figures/figures2/Figure2.o: base/figures/figures2/Figure2.cpp.o
 
-.PHONY : base/space/Line.o
+.PHONY : base/figures/figures2/Figure2.o
 
 # target to build an object file
-base/space/Line.cpp.o:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Line.cpp.o
-.PHONY : base/space/Line.cpp.o
+base/figures/figures2/Figure2.cpp.o:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures2/Figure2.cpp.o
+.PHONY : base/figures/figures2/Figure2.cpp.o
 
-base/space/Line.i: base/space/Line.cpp.i
+base/figures/figures2/Figure2.i: base/figures/figures2/Figure2.cpp.i
 
-.PHONY : base/space/Line.i
+.PHONY : base/figures/figures2/Figure2.i
 
 # target to preprocess a source file
-base/space/Line.cpp.i:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Line.cpp.i
-.PHONY : base/space/Line.cpp.i
+base/figures/figures2/Figure2.cpp.i:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures2/Figure2.cpp.i
+.PHONY : base/figures/figures2/Figure2.cpp.i
 
-base/space/Line.s: base/space/Line.cpp.s
+base/figures/figures2/Figure2.s: base/figures/figures2/Figure2.cpp.s
 
-.PHONY : base/space/Line.s
+.PHONY : base/figures/figures2/Figure2.s
 
 # target to generate assembly for a file
-base/space/Line.cpp.s:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Line.cpp.s
-.PHONY : base/space/Line.cpp.s
+base/figures/figures2/Figure2.cpp.s:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures2/Figure2.cpp.s
+.PHONY : base/figures/figures2/Figure2.cpp.s
 
-base/space/Plane.o: base/space/Plane.cpp.o
+base/figures/figures2/Point2.o: base/figures/figures2/Point2.cpp.o
 
-.PHONY : base/space/Plane.o
+.PHONY : base/figures/figures2/Point2.o
 
 # target to build an object file
-base/space/Plane.cpp.o:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Plane.cpp.o
-.PHONY : base/space/Plane.cpp.o
+base/figures/figures2/Point2.cpp.o:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.o
+.PHONY : base/figures/figures2/Point2.cpp.o
 
-base/space/Plane.i: base/space/Plane.cpp.i
+base/figures/figures2/Point2.i: base/figures/figures2/Point2.cpp.i
 
-.PHONY : base/space/Plane.i
+.PHONY : base/figures/figures2/Point2.i
 
 # target to preprocess a source file
-base/space/Plane.cpp.i:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Plane.cpp.i
-.PHONY : base/space/Plane.cpp.i
+base/figures/figures2/Point2.cpp.i:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.i
+.PHONY : base/figures/figures2/Point2.cpp.i
 
-base/space/Plane.s: base/space/Plane.cpp.s
+base/figures/figures2/Point2.s: base/figures/figures2/Point2.cpp.s
 
-.PHONY : base/space/Plane.s
+.PHONY : base/figures/figures2/Point2.s
 
 # target to generate assembly for a file
-base/space/Plane.cpp.s:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Plane.cpp.s
-.PHONY : base/space/Plane.cpp.s
+base/figures/figures2/Point2.cpp.s:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.s
+.PHONY : base/figures/figures2/Point2.cpp.s
 
-base/space/Vector.o: base/space/Vector.cpp.o
+base/figures/figures3/Figure3.o: base/figures/figures3/Figure3.cpp.o
 
-.PHONY : base/space/Vector.o
+.PHONY : base/figures/figures3/Figure3.o
 
 # target to build an object file
-base/space/Vector.cpp.o:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Vector.cpp.o
-.PHONY : base/space/Vector.cpp.o
+base/figures/figures3/Figure3.cpp.o:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures3/Figure3.cpp.o
+.PHONY : base/figures/figures3/Figure3.cpp.o
 
-base/space/Vector.i: base/space/Vector.cpp.i
+base/figures/figures3/Figure3.i: base/figures/figures3/Figure3.cpp.i
 
-.PHONY : base/space/Vector.i
+.PHONY : base/figures/figures3/Figure3.i
 
 # target to preprocess a source file
-base/space/Vector.cpp.i:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Vector.cpp.i
-.PHONY : base/space/Vector.cpp.i
+base/figures/figures3/Figure3.cpp.i:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures3/Figure3.cpp.i
+.PHONY : base/figures/figures3/Figure3.cpp.i
 
-base/space/Vector.s: base/space/Vector.cpp.s
+base/figures/figures3/Figure3.s: base/figures/figures3/Figure3.cpp.s
 
-.PHONY : base/space/Vector.s
+.PHONY : base/figures/figures3/Figure3.s
 
 # target to generate assembly for a file
-base/space/Vector.cpp.s:
-	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/space/Vector.cpp.s
-.PHONY : base/space/Vector.cpp.s
+base/figures/figures3/Figure3.cpp.s:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures3/Figure3.cpp.s
+.PHONY : base/figures/figures3/Figure3.cpp.s
+
+base/figures/figures3/Point3.o: base/figures/figures3/Point3.cpp.o
+
+.PHONY : base/figures/figures3/Point3.o
+
+# target to build an object file
+base/figures/figures3/Point3.cpp.o:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o
+.PHONY : base/figures/figures3/Point3.cpp.o
+
+base/figures/figures3/Point3.i: base/figures/figures3/Point3.cpp.i
+
+.PHONY : base/figures/figures3/Point3.i
+
+# target to preprocess a source file
+base/figures/figures3/Point3.cpp.i:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.i
+.PHONY : base/figures/figures3/Point3.cpp.i
+
+base/figures/figures3/Point3.s: base/figures/figures3/Point3.cpp.s
+
+.PHONY : base/figures/figures3/Point3.s
+
+# target to generate assembly for a file
+base/figures/figures3/Point3.cpp.s:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.s
+.PHONY : base/figures/figures3/Point3.cpp.s
+
+base/spaces/spaces2/Vector2.o: base/spaces/spaces2/Vector2.cpp.o
+
+.PHONY : base/spaces/spaces2/Vector2.o
+
+# target to build an object file
+base/spaces/spaces2/Vector2.cpp.o:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/spaces/spaces2/Vector2.cpp.o
+.PHONY : base/spaces/spaces2/Vector2.cpp.o
+
+base/spaces/spaces2/Vector2.i: base/spaces/spaces2/Vector2.cpp.i
+
+.PHONY : base/spaces/spaces2/Vector2.i
+
+# target to preprocess a source file
+base/spaces/spaces2/Vector2.cpp.i:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/spaces/spaces2/Vector2.cpp.i
+.PHONY : base/spaces/spaces2/Vector2.cpp.i
+
+base/spaces/spaces2/Vector2.s: base/spaces/spaces2/Vector2.cpp.s
+
+.PHONY : base/spaces/spaces2/Vector2.s
+
+# target to generate assembly for a file
+base/spaces/spaces2/Vector2.cpp.s:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/spaces/spaces2/Vector2.cpp.s
+.PHONY : base/spaces/spaces2/Vector2.cpp.s
+
+base/spaces/spaces3/Vector3.o: base/spaces/spaces3/Vector3.cpp.o
+
+.PHONY : base/spaces/spaces3/Vector3.o
+
+# target to build an object file
+base/spaces/spaces3/Vector3.cpp.o:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/spaces/spaces3/Vector3.cpp.o
+.PHONY : base/spaces/spaces3/Vector3.cpp.o
+
+base/spaces/spaces3/Vector3.i: base/spaces/spaces3/Vector3.cpp.i
+
+.PHONY : base/spaces/spaces3/Vector3.i
+
+# target to preprocess a source file
+base/spaces/spaces3/Vector3.cpp.i:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/spaces/spaces3/Vector3.cpp.i
+.PHONY : base/spaces/spaces3/Vector3.cpp.i
+
+base/spaces/spaces3/Vector3.s: base/spaces/spaces3/Vector3.cpp.s
+
+.PHONY : base/spaces/spaces3/Vector3.s
+
+# target to generate assembly for a file
+base/spaces/spaces3/Vector3.cpp.s:
+	$(MAKE) -f CMakeFiles/manto.dir/build.make CMakeFiles/manto.dir/base/spaces/spaces3/Vector3.cpp.s
+.PHONY : base/spaces/spaces3/Vector3.cpp.s
 
 main.o: main.cpp.o
 
@@ -324,21 +378,27 @@ help:
 	@echo "... base/Manto.o"
 	@echo "... base/Manto.i"
 	@echo "... base/Manto.s"
-	@echo "... base/figures/Figure.o"
-	@echo "... base/figures/Figure.i"
-	@echo "... base/figures/Figure.s"
-	@echo "... base/figures/Point.o"
-	@echo "... base/figures/Point.i"
-	@echo "... base/figures/Point.s"
-	@echo "... base/space/Line.o"
-	@echo "... base/space/Line.i"
-	@echo "... base/space/Line.s"
-	@echo "... base/space/Plane.o"
-	@echo "... base/space/Plane.i"
-	@echo "... base/space/Plane.s"
-	@echo "... base/space/Vector.o"
-	@echo "... base/space/Vector.i"
-	@echo "... base/space/Vector.s"
+	@echo "... base/Tester.o"
+	@echo "... base/Tester.i"
+	@echo "... base/Tester.s"
+	@echo "... base/figures/figures2/Figure2.o"
+	@echo "... base/figures/figures2/Figure2.i"
+	@echo "... base/figures/figures2/Figure2.s"
+	@echo "... base/figures/figures2/Point2.o"
+	@echo "... base/figures/figures2/Point2.i"
+	@echo "... base/figures/figures2/Point2.s"
+	@echo "... base/figures/figures3/Figure3.o"
+	@echo "... base/figures/figures3/Figure3.i"
+	@echo "... base/figures/figures3/Figure3.s"
+	@echo "... base/figures/figures3/Point3.o"
+	@echo "... base/figures/figures3/Point3.i"
+	@echo "... base/figures/figures3/Point3.s"
+	@echo "... base/spaces/spaces2/Vector2.o"
+	@echo "... base/spaces/spaces2/Vector2.i"
+	@echo "... base/spaces/spaces2/Vector2.s"
+	@echo "... base/spaces/spaces3/Vector3.o"
+	@echo "... base/spaces/spaces3/Vector3.i"
+	@echo "... base/spaces/spaces3/Vector3.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

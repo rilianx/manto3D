@@ -3,87 +3,97 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include "Manto.h"
-#include "figures/Point.h"
+#include "Tester.h"
 
-void Manto::addFigure(Figure* figure) {
-    // Creando lista de fragmentos y procesando insercion de la figura
-    list<Figure*> lFragmentos = processFigure(figure);
-
-    // Agragando fragmentos no dominados del parametro figure
-    for(auto fragment : lFragmentos)
-        lFigures.push_back(fragment);
-}
-
-void printFigure(Figure* f){
-    std::cout<<f->toString()<<std::endl;
-}
-
-void Manto::printAllFigures() {
-    // Seteando la lista en el inicio
-    lFigures.begin();
-
-    // Iterando las figuras e imprimiendolas
-    for(auto & figure : lFigures){
-        printFigure(figure);
-    }
-}
 
 Manto::~Manto() {
-    std::cout << "Eliminando manto" << std::endl;
-
-    // Iterando las figuras y eliminandolas
-    for(auto figure : lFigures){
-        Point * p = dynamic_cast<Point*>(figure);
-        if(p != NULL)
-            delete p;
-        else
-            delete figure;
-    }
-
-    std::cout << "Manto eliminado" << std::endl;
+    if(Tester::DEBUG_DELET)
+        std::cout << "Eliminado el manto" << std::endl;
 }
 
-list<Figure *> Manto::processFigure(Figure *f) {
-    list<Figure *> lFragments;  // Fragmentos no dominados de la figura f
-    lFragments.push_back(f);    // Figura completa como fragmento no dominado
+void Manto::addFigure(Figure3 *figure) {
+    lFigure3.push_back(figure); // temporal para hacer pruebas
 
-    // Iterador
-    list<Figure *>::iterator itr = lFigures.begin();
-
-    for(auto & figure : lFigures){
-        // Intersectando las listas de fragmentos
-        lFragments = intersect(lFragments, non_dominated_fragments(f, figure));
-
-        // Actualizando fragmentos no dominados de figure
-        list<Figure *> fragmentsFigure = non_dominated_fragments(figure, f);
-
-        // Si se generaron fragmentos se elimina la figura del manto y se
-        // agregan sus fragmentos no dominados
-        if(fragmentsFigure.size() > 1){
-            // FIXME:
-            //   - sacarlo y ponerlo
-            //   - Colocar los fragmentos y figuras en una lista temporal e ir
-            //   borrando esta, luego eliminar esta lista y agregar los
-            //   elementos de la nueva (La temporal.
-
-
-            // Eliminando figure del manto
-            lFigures.erase(itr);
-
-            // Agregando los fragmentos de figure al manto
-            for(auto & fragment : fragmentsFigure)
-                lFigures.push_back(fragment);
-        }
-        else{ // Avanzando en el iterador
-            itr++;
-        }
-
-    }
-
-    return lFragments;
+    // Agregando proyecciones
+    int pxy = Figure3::PROJECTION_XY;
+    int pxz = Figure3::PROJECTION_XZ;
+    int pyz = Figure3::PROJECTION_YZ;
+    Figure2* fpxy = figure->getProjection(pxy);
+    Figure2* fpxz = figure->getProjection(pxz);
+    Figure2* fpyz = figure->getProjection(pyz);
+    mapFigureXY[fpxy->getKey()] = fpxy;
+    mapFigureXZ[fpxz->getKey()] = fpxz;
+    mapFigureYZ[fpyz->getKey()] = fpyz;
 }
 
+void Manto::printAllFigures3() {
+    lFigure3.begin();
 
+    for(auto & figure : lFigure3){
+        std::cout << figure->toString() << std::endl;
+    }
+}
 
+void Manto::printAllGraphFigures3() {
+    lFigure3.begin();
 
+    for(auto & figure : lFigure3){
+        std::cout << figure->toGraphString() << std::endl;
+    }
+}
+
+void Manto::printAllFigures2(int PROJECTION_PLANE) {
+    // Seleccionando mapa de figuras
+    std::map<float, Figure2*> map;
+    switch(PROJECTION_PLANE){
+        case Figure3::PROJECTION_XY:
+            map = mapFigureXY;
+            break;
+        case Figure3::PROJECTION_XZ:
+            map = mapFigureXY;
+            break;
+        case Figure3::PROJECTION_YZ:
+            map = mapFigureXY;
+            break;
+        default:
+            break;
+    }
+
+    // Imprimiendo mapa ordenado
+    for (auto i = map.begin(); i != map.end(); i++) {
+        std::cout << i->first << " : " << i->second->toString() << '\n';
+    }
+}
+
+void Manto::saveInstance(std::string path) {
+    ofstream myfile;
+    // Guardando figuras reales (tercera dimension)
+    myfile.open (path + "Figures.txt");
+    for(auto & figure : lFigure3){
+        myfile << figure->toGraphString() << std::endl;
+    }
+    myfile.close();
+
+    // Guardando proyecciones en el plano xy
+    myfile.open(path + "Pxy.txt");
+    for (auto & i : mapFigureXY) {
+        myfile << i.second->toGraphString(Figure3::PROJECTION_XY) << std::endl;
+    }
+    myfile.close();
+
+    // Guardando proyecciones en el plano xz
+    myfile.open(path + "Pxz.txt");
+    for (auto & i : mapFigureXZ) {
+        myfile << i.second->toGraphString(Figure3::PROJECTION_XZ) << std::endl;
+    }
+    myfile.close();
+
+    // Guardando proyecciones en el plano yz
+    myfile.open(path + "Pyz.txt");
+    for (auto & i : mapFigureYZ) {
+        myfile << i.second->toGraphString(Figure3::PROJECTION_YZ) << std::endl;
+    }
+    myfile.close();
+}

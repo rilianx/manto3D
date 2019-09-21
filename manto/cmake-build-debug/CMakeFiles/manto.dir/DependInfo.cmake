@@ -5,11 +5,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/Manto.cpp.o"
-  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/figures/Figure.cpp.o"
-  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/figures/Point.cpp.o"
-  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Line.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/space/Line.cpp.o"
-  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Plane.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/space/Plane.cpp.o"
-  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Vector.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/space/Vector.cpp.o"
+  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/Tester.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/Tester.cpp.o"
+  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/figures/figures2/Figure2.cpp.o"
+  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Point2.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.o"
+  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Figure3.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/figures/figures3/Figure3.cpp.o"
+  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Point3.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o"
+  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces2/Vector2.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/spaces/spaces2/Vector2.cpp.o"
+  "/Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces3/Vector3.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/base/spaces/spaces3/Vector3.cpp.o"
   "/Volumes/PQNIO2/Proyectos/manto3D/manto/main.cpp" "/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

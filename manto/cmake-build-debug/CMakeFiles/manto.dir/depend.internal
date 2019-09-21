@@ -4,32 +4,52 @@
 CMakeFiles/manto.dir/base/Manto.cpp.o
  /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.cpp
  /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Vector.h
-CMakeFiles/manto.dir/base/figures/Figure.cpp.o
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.cpp
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.h
-CMakeFiles/manto.dir/base/figures/Point.cpp.o
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.cpp
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Vector.h
-CMakeFiles/manto.dir/base/space/Line.cpp.o
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Line.cpp
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Line.h
-CMakeFiles/manto.dir/base/space/Plane.cpp.o
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Plane.cpp
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Plane.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Vector.h
-CMakeFiles/manto.dir/base/space/Vector.cpp.o
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Vector.cpp
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Vector.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Tester.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Figure3.h
+CMakeFiles/manto.dir/base/Tester.cpp.o
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Tester.cpp
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Tester.h
+CMakeFiles/manto.dir/base/figures/figures2/Figure2.cpp.o
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Tester.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.cpp
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.h
+CMakeFiles/manto.dir/base/figures/figures2/Point2.cpp.o
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Tester.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Point2.cpp
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Point2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Figure3.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces2/Vector2.h
+CMakeFiles/manto.dir/base/figures/figures3/Figure3.cpp.o
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Figure3.cpp
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Figure3.h
+CMakeFiles/manto.dir/base/figures/figures3/Point3.cpp.o
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Tester.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Point2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Figure3.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Point3.cpp
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Point3.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces2/Vector2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces3/Vector3.h
+CMakeFiles/manto.dir/base/spaces/spaces2/Vector2.cpp.o
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces2/Vector2.cpp
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces2/Vector2.h
+CMakeFiles/manto.dir/base/spaces/spaces3/Vector3.cpp.o
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Figure3.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces2/Vector2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces3/Vector3.cpp
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces3/Vector3.h
 CMakeFiles/manto.dir/main.cpp.o
  /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Figure.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/Point.h
- /Volumes/PQNIO2/Proyectos/manto3D/manto/base/space/Vector.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Tester.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Point2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Figure3.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Point3.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces2/Vector2.h
+ /Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces3/Vector3.h
  /Volumes/PQNIO2/Proyectos/manto3D/manto/main.cpp

@@ -1,20 +1,23 @@
-#include <iostream>
-#include "base/space/Vector.h"
 #include "base/Manto.h"
-#include "base/figures/Point.h"
+#include "base/figures/figures3/Point3.h"
+#include "base/Tester.h"
 
 int main() {
     Manto manto;
 
-    Point* p = new Point(1, 1, 1);
+    // Test de puntos semi-aleatorio aleatorio
+    for(float i = 1; i < 10; i+=0.01f) {
+        float param = i;
+        float multipler = (float)(rand()%4)/4.0f + 2;
+        manto.addFigure(new Point3(
+                abs(Tester::fun1(param) * multipler + 3),
+                abs(Tester::fun2(param) * multipler + 3),
+                abs(Tester::fun3(param) * multipler + 4)));
+    }
 
-    manto.addFigure(p);
-    manto.addFigure(new Point(1, 2, 5));
-    manto.addFigure(new Point(2, 3, 1));
+    manto.printAllGraphFigures3();
 
-    manto.printAllFigures();
-
-    std::cout << p->toString() << std::endl;
+    manto.saveInstance("/Users/brauliolobo/Desktop/Instance/");
 
     return 0;
 }
