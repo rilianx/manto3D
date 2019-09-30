@@ -14,3 +14,11 @@ std::string Figure2::getStringCoordenateToGraph(float x, float y, float z) {
     std::string s(ss.str());
     return s;
 }
+
+bool Figure2::isDominated() const {
+    return dominated;
+}
+
+void Figure2::setDominated(bool dominated) {
+    Figure2::dominated = dominated;
+}

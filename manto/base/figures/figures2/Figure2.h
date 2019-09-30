@@ -10,6 +10,8 @@
 
 class Figure2 {
 
+    bool dominated = false;
+
 protected:
 
     /**
@@ -23,6 +25,8 @@ protected:
     std::string getStringCoordenateToGraph(float x, float y, float z);
 
 public:
+    bool isDominated() const;
+    void setDominated(bool dominated);
 
     virtual float getKey() = 0;
     virtual std::string toString() = 0;

@@ -12,48 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32126cf6-b316-478f-9e3a-fe6a9ca8700a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/Tester.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/Tester.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/figures/figures2/Figure2.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/figures/figures2/Figure2.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/figures/figures2/Point2.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/figures/figures2/Point2.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/figures/figures3/Figure3.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/figures/figures3/Figure3.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/figures/figures3/Point3.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/figures/figures3/Point3.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/spaces/spaces2/Vector2.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/spaces/spaces2/Vector2.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/spaces/spaces3/Vector3.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/spaces/spaces3/Vector3.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/Manto.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/base/Manto.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/Manto.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/Manto.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/manto.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/manto.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/figures/figures2/Figure2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/base/figures/figures2/Figure2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/figures/figures2/Figure2.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/figures/figures2/Figure2.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/figures/figures3/Point3.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/figures/figures3/Point3.h" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +54,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -210,6 +174,17 @@
       <workItem from="1568927606217" duration="2252000" />
       <workItem from="1568999788376" duration="2980000" />
       <workItem from="1569012505097" duration="925000" />
+      <workItem from="1569080454142" duration="5517000" />
+      <workItem from="1569165441865" duration="738000" />
+      <workItem from="1569436698375" duration="401000" />
+      <workItem from="1569606175712" duration="27000" />
+      <workItem from="1569606617119" duration="1780000" />
+      <workItem from="1569643112941" duration="986000" />
+      <workItem from="1569708135235" duration="3806000" />
+      <workItem from="1569769517707" duration="247000" />
+      <workItem from="1569773897222" duration="3319000" />
+      <workItem from="1569871567671" duration="2567000" />
+      <workItem from="1569877452369" duration="1329000" />
     </task>
     <servers />
   </component>

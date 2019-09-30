@@ -11,6 +11,7 @@
 #include "Figure3.h"
 
 class Point3 : public Figure3{
+
     Vector3 position = Vector3(0,0,0);
     Point2 projections[3];
 
