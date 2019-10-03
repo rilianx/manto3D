@@ -11,10 +11,16 @@ iostream
 -
 fstream
 -
+unordered_map
+-
 Manto.h
 /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.h
 Tester.h
 /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Tester.h
+figures/figures2/Point2.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Point2.h
+figures/figures3/Point3.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Point3.h
 
 /Volumes/PQNIO2/Proyectos/manto3D/manto/base/Manto.h
 list
@@ -36,9 +42,29 @@ stdio.h
 string
 -
 
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Point2.h
+../../spaces/spaces2/Vector2.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces2/Vector2.h
+Figure2.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.h
+
 /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Figure3.h
 string
 -
 ../figures2/Figure2.h
 /Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Figure2.h
+
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Point3.h
+../../spaces/spaces3/Vector3.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces3/Vector3.h
+../figures2/Point2.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures2/Point2.h
+Figure3.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/figures/figures3/Figure3.h
+
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces2/Vector2.h
+
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces3/Vector3.h
+../spaces2/Vector2.h
+/Volumes/PQNIO2/Proyectos/manto3D/manto/base/spaces/spaces2/Vector2.h
 

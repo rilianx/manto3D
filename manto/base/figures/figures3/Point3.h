@@ -32,6 +32,14 @@ public:
     float getZ() const;
 
     /**
+     * Comprueba si el punto ingresado como parametro es equivalente al
+     * actual (this).
+     * @param p - Punto que se quiere comparar
+     * @return  - Retorna True si el punto p es equivalente al actual (this).
+     */
+    bool equal(Point3* p);
+
+    /**
      * Obtiene las proyecciones de la figura.
      * @param PROJECTION_PLANE  - Indice constante del plano donde se quiere
      *                            obtener la proyeccion (Por ejemplo:

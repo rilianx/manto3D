@@ -15,9 +15,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/Manto.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/base/Manto.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/Manto.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/Manto.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/figures/figures2/Figure2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/base/figures/figures2/Figure2.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/figures/figures2/Figure2.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/figures/figures2/Figure2.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/figures/figures3/Point3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/base/figures/figures3/Point3.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/figures/figures3/Point3.h" beforeDir="false" afterPath="$PROJECT_DIR$/base/figures/figures3/Point3.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/manto.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +187,9 @@
       <workItem from="1569769517707" duration="247000" />
       <workItem from="1569773897222" duration="3319000" />
       <workItem from="1569871567671" duration="2567000" />
-      <workItem from="1569877452369" duration="1329000" />
+      <workItem from="1569877452369" duration="1704000" />
+      <workItem from="1569953327640" duration="1818000" />
+      <workItem from="1570042017800" duration="7186000" />
     </task>
     <servers />
   </component>

@@ -63,3 +63,9 @@ std::string Point3::toGraphString() {
     std::string s(ss.str());
     return s;
 }
+
+bool Point3::equal(Point3* p) {
+    return this->getX() == p->getX() &&
+            this->getY() == p->getY() &&
+            this->getZ() == p->getZ();
+}

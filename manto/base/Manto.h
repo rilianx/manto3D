@@ -16,6 +16,8 @@ class Manto {
 
     // Lista de figuras en 3 dimensiones
     list<Figure3*> lFigure3;
+    list<Figure3*> lFigure3Dominated; // Lista de figuras dominadas
+    list<Figure2*> lFigure2Dominated; // Lista de proyecciones dominadas
 
     // Mapas ordenados de proyecciones. Las llaves de estos mapas
     // corresponden a las coordenada abscissas menores de cada figura.
@@ -85,8 +87,8 @@ private:
      * @return      - Retorna una lista de figuras en tres dimensiones que
      *                corresponde a la union de estas tres listas.
      */
-    list<Figure3*> spaceUnion(list<Figure2*> lXY, list<Figure2*> lXZ,
-                              list<Figure2*> lYZ);
+    list<Figure3*> spaceUnion(Figure3* figure, list<Figure2*> lXY,
+                              list<Figure2*> lXZ, list<Figure2*> lYZ);
 public:
     ~Manto();
 

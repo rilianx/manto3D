@@ -5,7 +5,11 @@ CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/Manto.cpp
 CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/Manto.h
 CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/Tester.h
 CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/figures/figures2/Figure2.h
+CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/figures/figures2/Point2.h
 CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/figures/figures3/Figure3.h
+CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/figures/figures3/Point3.h
+CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/spaces/spaces2/Vector2.h
+CMakeFiles/manto.dir/base/Manto.cpp.o: ../base/spaces/spaces3/Vector3.h
 
 CMakeFiles/manto.dir/base/Tester.cpp.o: ../base/Tester.cpp
 CMakeFiles/manto.dir/base/Tester.cpp.o: ../base/Tester.h
