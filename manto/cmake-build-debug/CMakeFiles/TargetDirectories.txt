@@ -1,3 +1,0 @@
-/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Volumes/PQNIO2/Proyectos/manto3D/manto/cmake-build-debug/CMakeFiles/manto.dir

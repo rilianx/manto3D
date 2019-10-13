@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Otros ignore
+.idea/
+manto/.idea/
+manto/cmake-build-debug/
+.gitignore.swp
+.DS_Store
+Instance/
