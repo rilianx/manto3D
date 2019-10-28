@@ -3,6 +3,10 @@ project(manto)
 
 set(CMAKE_CXX_STANDARD 14)
 
+# Flags para usar dtrace
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
+
 include_directories(base)
 include_directories(base/figures/figures2)
 include_directories(base/figures/figures3)
@@ -26,4 +30,4 @@ add_executable(manto
         base/Manto.h
         base/Tester.cpp
         base/Tester.h
-        main.cpp)
+        main.cpp base/figures/figures3/Segment3.cpp base/figures/figures3/Segment3.h base/figures/figures2/Segment2.cpp base/figures/figures2/Segment2.h base/util/Range.cpp base/util/Range.h base/util/RangeContainer.cpp base/util/RangeContainer.h)

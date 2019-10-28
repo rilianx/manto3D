@@ -7,6 +7,7 @@
 
 #include <list>
 #include <map>
+#include <unordered_set>
 #include "figures/figures3/Figure3.h"
 #include "figures/figures2/Figure2.h"
 
@@ -15,7 +16,7 @@ using namespace std;
 class Manto {
 
     // Lista de figuras en 3 dimensiones
-    list<Figure3*> lFigure3;
+    std::unordered_set<Figure3*> lFigure3;
     list<Figure3*> lFigure3Dominated; // Lista de figuras dominadas
     list<Figure2*> lFigure2Dominated; // Lista de proyecciones dominadas
 
@@ -63,10 +64,14 @@ private:
      * @param f1        - Figura que se quiere fragmentar. Se retornarán los
      *                    fragmentos de esta figura que no son dominados.
      * @param f2        - Figura con la que se intersecta la figura f1.
+     * @param fragments - Lista que se llenara con los fragmentos generados
+     *                    de la figura f1 con la interseccion de la figura f2.
+     * @param PROJECTION_PLANE - Indice del plano de proyeccion.
      * @return          - retorna los fragmentos de la figura f1 que no son
      *                    dominados.
      */
-    list<Figure2*> nonDominatedFragmentsProj(Figure2* f1, Figure2* f2);
+    void nonDominatedFragmentsProj(Figure3* f1, Figure3* f2, list<Figure2*>
+            fragments, int PROJECTION_PLANE);
 
     /**
      * Intersecta los espacios contenidos en las dos listas. Retorna el
