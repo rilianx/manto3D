@@ -39,24 +39,21 @@ void testRangos(){
 
     std::cout << "Agregando rango 15, 20" << std::endl;
     rc.agregarRango(15,20);
-    rc.imprimirRangos();
 
-    std::cout << "\nAgregando rango 0,5" << std::endl;
-    rc.agregarRango(0,5);
-    rc.imprimirRangos();
+    std::cout << "\nAgregando rango 1,5" << std::endl;
+    rc.agregarRango(1,5);
 
     std::cout << "\nAgregando rango 23,28" << std::endl;
     rc.agregarRango(23,28);
-    rc.imprimirRangos();
-
-    std::cout << "\nAgregando rango 4,7" << std::endl;
-    rc.agregarRango(4,7);
-    rc.imprimirRangos();
 
     std::cout << "\nAgregando rango 6,10" << std::endl;
     rc.agregarRango(6,10);
-    rc.imprimirRangos();
 
+    // std::cout << "\nAgregando rango 4,7" << std::endl;
+    // rc.agregarRango(4,7);
+
+    std::cout << "\nAgregando rango 0,13" << std::endl;
+    rc.agregarRango(0,13);
 
     std::cout << "Rangos agregados" << std::endl;
 

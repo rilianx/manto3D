@@ -12,7 +12,7 @@
 
 class RangeContainer {
 
-    std::map<int, Range*> rangos; // lInf es la llave
+    std::map<float, Range*> rangos; // lInf es la llave
 
 public:
 
@@ -23,6 +23,17 @@ public:
      *                parametro.
      */
     Range* loContiene(float num);
+
+    /**
+     * Busca el primer rango dentro de los limites ingresados como parametro
+     * œparam lInf  - Limite inferior del intervalo donde se quiere buscar el
+     *                rango.
+     * @param lSup  - Limite superior del intervalo donde se quiere buscar el
+     *                rango.
+     * @return      - Retorna el primer rango contenido entre los limites
+     *                ingresados como parametro.
+     */
+    Range* primerRangoDentro(float lInf, float lSup);
 
     /**
      * Agrega el rango ingresado como parametro al contenedor de rangos
