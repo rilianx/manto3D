@@ -6,6 +6,7 @@
 #include <fstream>
 #include <unordered_map>
 #include <figures/figures3/Segment3.h>
+#include <util/RangeContainer.h>
 #include "Manto.h"
 #include "Tester.h"
 #include "figures/figures2/Point2.h"
@@ -251,12 +252,58 @@ list<Figure3 *> Manto::spaceUnion(Figure3* figure, list<Figure2 *> lXY,
         list<Figure2 *> lXZ, list<Figure2 *> lYZ) {
     list<Figure3 *> lFigures3; // Lista de figuras generadas por la union
 
-    if(!lXY.empty() || !lXZ.empty() || !lYZ.empty()){
+    // Si las listas no contienen elementos, retorna la lista sin elementos
+    if(lXY.empty() || lXZ.empty() || lYZ.empty())
+        return lFigures3;
 
+    // Haciendo cast de la figura
+    Segment3* segment3 = dynamic_cast<Segment3*>(figure);
+
+    // Union de segmentos
+    if(segment3 != nullptr){
+        float lInf;
+        float lSup;
+        float d1, d2;
+        RangeContainer rangeContainer;
+
+        // Agregando rangos de proyecciones en XY
+        Segment2* projection = segment3->getProjection(Figure3::PROJECTION_XY);
+        for (auto &figure2 : lXY) {
+            Segment2* segment2 = dynamic_cast<Segment2*>(figure2);
+            d1 = projection->getDelta(segment2->getP1());
+            d2 = projection->getDelta(segment2->getP2());
+            lInf = min(d1, d2);
+            lSup = max(d1, d2);
+
+            rangeContainer.agregarRango(lInf, lSup);
+        }
+
+        // Agregando rangos de proyecciones en XZ
+        projection = segment3->getProjection(Figure3::PROJECTION_XZ);
+        for (auto &figure2 : lXZ) {
+            Segment2* segment2 = dynamic_cast<Segment2*>(figure2);
+            d1 = projection->getDelta(segment2->getP1());
+            d2 = projection->getDelta(segment2->getP2());
+            lInf = min(d1, d2);
+            lSup = max(d1, d2);
+
+            rangeContainer.agregarRango(lInf, lSup);
+        }
+
+        // Agregando rangos de proyecciones en YZ
+        projection = segment3->getProjection(Figure3::PROJECTION_YZ);
+        for (auto &figure2 : lYZ) {
+            Segment2* segment2 = dynamic_cast<Segment2*>(figure2);
+            d1 = projection->getDelta(segment2->getP1());
+            d2 = projection->getDelta(segment2->getP2());
+            lInf = min(d1, d2);
+            lSup = max(d1, d2);
+
+            rangeContainer.agregarRango(lInf, lSup);
+        }
     }
 
     // TODO:
-    //    - Programar union en caso de que sean segmentos
     //    - Programar union en caso de que sean triangulos
     return lFigures3;
 }

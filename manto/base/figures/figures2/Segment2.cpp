@@ -40,3 +40,17 @@ Segment2::~Segment2() {
     }
 }
 
+const Vector2 &Segment2::getP1() const {
+    return p1;
+}
+
+const Vector2 &Segment2::getP2() const {
+    return p2;
+}
+
+float Segment2::getDelta(Vector2 p) {
+    float delta = (p.getAbscissa() - p1.getAbscissa()) /
+            (p2.getAbscissa() - p1.getAbscissa());
+    return delta;
+}
+

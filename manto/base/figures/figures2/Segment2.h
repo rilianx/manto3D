@@ -21,6 +21,17 @@ public:
     Segment2();
     ~Segment2();
 
+    const Vector2 &getP1() const;
+    const Vector2 &getP2() const;
+
+    /**
+     * Calcula el parametro delta que debería tener el vector p1-p2 para llegar
+     * a p.
+     * @param p - Punto hasta donde se quiere calcular del parametro delta
+     * @return  - Retorna el parametro delta calculado.
+     */
+    float getDelta(Vector2 p);
+
     /**
      * Genera la llave que se utiliza para identifica este punto en el mapa
      * ordenado. Esta corresponde al valor de su abscissa.

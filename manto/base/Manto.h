@@ -86,6 +86,7 @@ private:
     /**
      * Une las tres listas de figuras en dos dimensiones para generar una
      * lista de figuras en tres dimensiones.
+     * @param figure - Figura madre de las listas de figuras ingresadas.
      * @param lXY    - Lista 1 de figuras (Corresponde a la proyeccion XY)
      * @param lXZ    - Lista 1 de figuras (Corresponde a la proyeccion XZ)
      * @param lYZ    - Lista 1 de figuras (Corresponde a la proyeccion YZ)
