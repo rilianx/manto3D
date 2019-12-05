@@ -4,6 +4,7 @@
 #include "base/Tester.h"
 #include <sys/time.h>
 #include <util/RangeContainer.h>
+#include <set>
 
 void testInfinito(){
     Manto manto;
@@ -34,36 +35,46 @@ void testInfinito(){
     manto.saveInstance("/Users/brauliolobo/Documents/Manto/Instance/");
 }
 
+void agregarRango(RangeContainer &rc, float lInf, float lSup){
+    std::cout << "Agregando rango " << lInf << ", " << lSup << std::endl;
+    rc.agregarRango(lInf, lSup);
+}
+
 void testRangos(){
     RangeContainer rc = RangeContainer();
 
-    std::cout << "Agregando rango 15, 20" << std::endl;
-    rc.agregarRango(15,20);
-
-    std::cout << "\nAgregando rango 1,5" << std::endl;
-    rc.agregarRango(1,5);
-
-    std::cout << "\nAgregando rango 23,28" << std::endl;
-    rc.agregarRango(23,28);
-
-    std::cout << "\nAgregando rango 6,10" << std::endl;
-    rc.agregarRango(6,10);
-
-    // std::cout << "\nAgregando rango 4,7" << std::endl;
-    // rc.agregarRango(4,7);
-
-    std::cout << "\nAgregando rango 0,13" << std::endl;
-    rc.agregarRango(0,13);
+    agregarRango(rc, 1, 2);
+    agregarRango(rc, 1, 2);
+    agregarRango(rc, 1, 3);
+    agregarRango(rc, 1, 2);
+    agregarRango(rc, 0.5f, 3);
+    agregarRango(rc, 4, 5);
 
     std::cout << "Rangos agregados" << std::endl;
 
     rc.imprimirRangos();
+}
 
+void testSegmentos(){
+    Manto manto;
+
+    Point3* point3 = new Point3(1.5f, 1.7f, 1.3f);
+
+    Vector3 p2 = {2,2,1};
+    Vector3 p1 = {1,1,3};
+    Segment3* segment3 = new Segment3(p1, p2);
+
+    manto.addFigure(segment3);
+    manto.addFigure(point3);
+
+    manto.printAllFigures3();
 }
 
 int main() {
     // testInfinito();
-    testRangos();
+    // testRangos();
+    testSegmentos();
+
 
     return 0;
 }

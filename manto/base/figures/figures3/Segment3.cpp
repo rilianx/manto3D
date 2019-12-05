@@ -5,6 +5,8 @@
 #include <sstream>
 #include <Tester.h>
 #include <iostream>
+#include <map>
+#include <set>
 #include "Segment3.h"
 
 Segment3::Segment3(Vector3 p1, Vector3 p2){
@@ -101,4 +103,35 @@ void Segment3::generateProjections() {
     projections[pxy] = Segment2(p1.getX(), p1.getY(), p2.getX(), p2.getY());
     projections[pxz] = Segment2(p1.getX(), p1.getZ(), p2.getX(), p2.getZ());
     projections[pyz] = Segment2(p1.getY(), p1.getZ(), p2.getY(), p2.getZ());
+}
+
+Vector3 Segment3::getP(float delta) {
+    float x = p1.getX() + delta*(p2.getX() - p1.getX());
+    float y = p1.getY() + delta*(p2.getY() - p1.getY());
+    float z = p1.getZ() + delta*(p2.getZ() - p1.getZ());
+    return {x, y, z};
+}
+
+Segment3 *Segment3::overlap(Segment3 *segment) {
+    // FIXME: esto es asumiendo que ambos segmentos son linealmente
+    //  dependientes. Es decir, ambos son parte de la misma linea. Esto no
+    //  siempre pasa, asi que hay que hacer un comprobador.
+    //  Nota: es probable que en los casos actuales en los que se usa esta
+    //  funcion no sea necesario agregar esta comprobacion
+
+    Vector3 pp1 = getMenorPX();
+    Vector3 pp2 = getMayorPX();
+    Vector3 pp3 = segment->getMenorPX();
+    Vector3 pp4 = segment->getMayorPX();
+
+    if(pp2.getX() > pp3.getX() || pp4.getX() > pp1.getX()){
+        float inf = std::max(pp3.getX(), pp1.getX());
+        float sup = std::min(pp2.getX(), pp4.getX());
+        Vector3 vInf = (pp3.getX() > pp1.getX()) ? pp3 : pp1;
+        Vector3 vSup = (pp2.getX() < pp4.getX()) ? pp2 : pp4;
+
+        return new Segment3(vInf, vSup);
+    }
+
+    return nullptr;
 }

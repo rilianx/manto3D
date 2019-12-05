@@ -140,7 +140,8 @@ list<Figure3 *> Manto::processFigure(Figure3 *f) {
     //  (resultando en la lista figures).
     // list<Figure3 *> fInRegion; // Figuras en la region proyectada de f
     // list<Figure3 *> inRegionf; // Figuras en las que f está en un region
-    std::unordered_set<Figure3 *> figures = lFigure3; // figuras afectadas y que afectan a f
+    std::unordered_set<Figure3 *> figures = lFigure3; // figuras afectadas y
+                                                      // que afectan a f
 
     // Procesando figura f y figuras dentro del manto
     for(auto & figure : figures){
@@ -173,7 +174,7 @@ list<Figure3 *> Manto::processFigure(Figure3 *f) {
 
     // Agregando fragmentos generados
     for (auto &toAdd : fToAdd) {
-        figures.insert(toAdd);
+        lFigure3.insert(toAdd);
     }
 
     return nDomFrag;
@@ -190,18 +191,6 @@ list<Figure3*> Manto::nonDominatedFragments(Figure3 *figure1, Figure3*figure2){
         fragments.push_back(figure1);
         return fragments;
     }
-
-    // Procesamiento rapido para segmentos y puntos
-    // Point3 *p;
-    // if(p1 != nullptr)
-    //     p = p1;
-    // else if(p2 != nullptr)
-    //     p = p2;
-    // if(p != nullptr) {
-    //     Segment3 *segment = dynamic_cast<Segment3*>(figure1);
-    //     if(segment == nullptr)
-    //         segment = dynamic_cast<Segment3*>(figure2);
-    // }
 
     // Calculando interseccionde proyecciones
     list<Figure2*> intXY;
@@ -228,22 +217,72 @@ list<Figure3*> Manto::spaceIntersect(list<Figure3*> l1, list<Figure3*> l2){
     Point3* p2 = dynamic_cast<Point3*>(l2.front());
     if(p1 != nullptr && p2 != nullptr && p1->equal(p2)){
         intersected.push_back(p1);
+        return intersected;
+    }
+
+    // En caso de que ambas listas contengan segmentos
+    Segment3* s1 = dynamic_cast<Segment3*>(l1.front());
+    Segment3* s2 = dynamic_cast<Segment3*>(l2.front());
+    Segment3* overlap;
+    if(s1 != nullptr && s2 != nullptr){
+
+        // Intersectando los segmentos
+        for (auto &f1 : l1) {
+            s1 = dynamic_cast<Segment3*>(f1);
+            for (auto &f2 : l2) {
+                s2 = dynamic_cast<Segment3*>(f2);
+                overlap = s1->overlap(s2);
+
+                // En caso de que haya interseccion
+                if(overlap != nullptr)
+                    intersected.push_front(overlap);
+            }
+        }
+
+        return intersected;
     }
 
     // TODO:
-    //    - Intersectar espacios de puntos (?)
-    //    - Intersectar espacios de segmentos
     //    - Intersectar espacios de triangulos
 
     return intersected;
 }
 
 void Manto::nonDominatedFragmentsProj(Figure3 *f1,
-        Figure3 *f2, list<Figure2 *> fragments, int PROJECTION_PLANE) {
+        Figure3 *f2, list<Figure2 *> &fragments, int PROJECTION_PLANE) {
+    // Programando nonDominatedFragmentsProj para segmentos
+    Segment3* s1 = dynamic_cast<Segment3*>(f1);
+    if(s1 != nullptr){
+        Segment2* s1p = s1->getProjection(PROJECTION_PLANE);
+        Point3* p2 = dynamic_cast<Point3*>(f2);
+        if(p2 != nullptr){ // Figura 2 es un punto
+            s1p->fragmentedBy(p2->getProjection(PROJECTION_PLANE), fragments);
+        }
+        else{
+            Segment3* s2 = dynamic_cast<Segment3*>(f2);
+            if(s2 != nullptr){ // Figura 2 es un segmento
+                s1p->fragmentedBy(s2->getProjection(PROJECTION_PLANE),
+                        fragments);
+            }
+        }
+    }
+
+    // nonDoinatedFragmentsPorj para puntos
+    Point3* p = dynamic_cast<Point3*>(f1);
+    if(p != nullptr){
+        Segment3* s = dynamic_cast<Segment3*>(f2);
+        Point2* pp = p->getProjection(PROJECTION_PLANE);
+        if(s != nullptr){
+            Segment2* sp = s->getProjection(PROJECTION_PLANE);
+            bool puntoDominadoPorElSegmento = sp->domina(*pp);
+            if(!puntoDominadoPorElSegmento)
+                fragments.push_back(pp);
+        }
+
+    }
 
 
     // TODO:
-    //    - Programar fragmentos dominados para segmentos
     //    - Programar fragmentos dominados para triangulos
 
 }
@@ -253,8 +292,15 @@ list<Figure3 *> Manto::spaceUnion(Figure3* figure, list<Figure2 *> lXY,
     list<Figure3 *> lFigures3; // Lista de figuras generadas por la union
 
     // Si las listas no contienen elementos, retorna la lista sin elementos
-    if(lXY.empty() || lXZ.empty() || lYZ.empty())
+    if(lXY.empty() && lXZ.empty() && lYZ.empty())
         return lFigures3;
+
+    Point3* point3 = dynamic_cast<Point3*>(figure);
+    if(point3 != nullptr){
+        if(!lXY.empty() || !lXZ.empty() || !lYZ.empty())
+            lFigures3.push_back(figure);
+        return lFigures3;
+    }
 
     // Haciendo cast de la figura
     Segment3* segment3 = dynamic_cast<Segment3*>(figure);
@@ -301,6 +347,10 @@ list<Figure3 *> Manto::spaceUnion(Figure3* figure, list<Figure2 *> lXY,
 
             rangeContainer.agregarRango(lInf, lSup);
         }
+
+        rangeContainer.imprimirRangos();
+
+        rangeContainer.toSegments(lFigures3, *segment3);
     }
 
     // TODO:

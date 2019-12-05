@@ -22,6 +22,8 @@ public:
     float getAbscissa() const;
     float getOrdinate() const;
 
+    const Vector2 &getPosition() const;
+
     /**
      * Genera la llave que se utiliza para identifica este punto en el mapa
      * ordenado. Esta corresponde al valor de su abscissa.

@@ -35,7 +35,27 @@ public:
     float getMaxY();
     float getMaxZ();
 
+    Vector3 getMenorPX(){
+        if(p1.getX() < p2.getX())
+            return p1;
+        return p2;
+    }
+
+    Vector3 getMayorPX(){
+        if(p1.getX() > p2.getX())
+            return p1;
+        return p2;
+    }
+
     bool equal(Segment3* segment);
+
+    /**
+     * Obtiene el punto generado por p1+delta(p2-p1)=p
+     * @param delta     - Parametro multiplicador del vector director (p2-p1)
+     * @return          - Retora el punto generado por la ecuacion:
+     *                    p1 + delta(p2 - p1) = p
+     */
+    Vector3 getP(float delta);
 
     /**
      * Obtiene las proyecciones de la figura
@@ -50,6 +70,13 @@ public:
     virtual std::string toString();
     virtual std::string toGraphString();
 
+    /**
+     * Intersecta este segmento con el pasado como paremtro. Retorna el
+     * resultado de la interseccion.
+     * @param segment   - Segmento que se
+     * @return
+     */
+    Segment3* overlap(Segment3* segment);
 };
 
 #endif //MANTO_SEGMENT3_H

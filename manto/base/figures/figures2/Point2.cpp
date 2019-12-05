@@ -53,6 +53,9 @@ std::string Point2::toGraphString(int PROJECTION_PLANE) {
     }
 }
 
+const Vector2 &Point2::getPosition() const {
+    return position;
+}
 
 Point2::Point2() = default;
 

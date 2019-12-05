@@ -64,14 +64,15 @@ private:
      * @param f1        - Figura que se quiere fragmentar. Se retornarán los
      *                    fragmentos de esta figura que no son dominados.
      * @param f2        - Figura con la que se intersecta la figura f1.
-     * @param fragments - Lista que se llenara con los fragmentos generados
-     *                    de la figura f1 con la interseccion de la figura f2.
+     * @param fragments - Lista que se llenara con los fragmentos (no
+     *                    dominados) generados de la figura f1 con la
+     *                    interseccion de la figura f2.
      * @param PROJECTION_PLANE - Indice del plano de proyeccion.
      * @return          - retorna los fragmentos de la figura f1 que no son
      *                    dominados.
      */
     void nonDominatedFragmentsProj(Figure3* f1, Figure3* f2, list<Figure2*>
-            fragments, int PROJECTION_PLANE);
+            &fragments, int PROJECTION_PLANE);
 
     /**
      * Intersecta los espacios contenidos en las dos listas. Retorna el

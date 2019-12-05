@@ -8,11 +8,14 @@
 
 #include <map>
 #include <iostream>
+#include <figures/figures3/Figure3.h>
+#include <figures/figures3/Segment3.h>
 #include "Range.h"
 
 class RangeContainer {
 
     std::map<float, Range*> rangos; // lInf es la llave
+    int size = 0;
 
 public:
 
@@ -48,6 +51,17 @@ public:
                          rango.second->getLSup() << std::endl;
         }
     }
+
+    /**
+     * Crea sub segmentos dentro del segmento madre ingresado como parametro
+     * y los agrega a la lista de figuras. Estos sub segmentos son creados en
+     * base a los valores de los rangos contenidos en este contenedor.
+     * @param lFigures  - Lista de figuras que se llenará con los segmentos
+     *                    creados.
+     * @param sMother   - Segmento que contiene a los sub segmentos que se
+     *                    van a crear.
+     */
+    void toSegments(std::list<Figure3*> &lFigures, Segment3 sMother);
 };
 
 
