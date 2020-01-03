@@ -31,8 +31,6 @@ Range *RangeContainer::loContiene(float num) {
 }
 
 void RangeContainer::agregarRango(float lInf, float lSup) {
-    std::cout << "Agregando rango " << lInf << ", " << lSup << std::endl;
-
     Range* solapado = loContiene(lInf);
 
     // Si no esta solapado con un rango menor al nuevo
@@ -61,10 +59,6 @@ void RangeContainer::agregarRango(float lInf, float lSup) {
         rangos.erase(primerRangoDentro(lInf,lSup)->getLInf());
         size--;
     }
-
-    std::cout << "Rango agregado... Resultado: " << std::endl;
-    imprimirRangos();
-    std::cout << "\n" << std::endl;
 }
 
 Range *RangeContainer::primerRangoDentro(float lInf, float lSup) {

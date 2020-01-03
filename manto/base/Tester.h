@@ -7,6 +7,7 @@
 
 #include <math.h>
 #include <stdio.h>
+#include "Manto.h"
 
 class Tester {
 
@@ -17,6 +18,13 @@ public:
     static float fun1(float param);
     static float fun2(float param);
     static float fun3(float param);
+
+    /**
+     * Agrega puntos al mento utilizando las funciones fun1, fun2 y fun3
+     * @param manto     - Manto al que se le van a agregar los puntos.
+     * @param param     - Parametro que se va a usar en las tres funciones.
+     */
+    static void agregarPunto(Manto& manto, float param);
 
     /**
      * Entrega la parte decimal del numero ingresado como parametro.

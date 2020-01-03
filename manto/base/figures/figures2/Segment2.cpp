@@ -15,16 +15,20 @@ std::string Segment2::toGraphString(int PROJECTION_PLANE) {
         case Figure3::PROJECTION_XY:
             ss << getStringCoordenateToGraph(p1.getAbscissa(), p1.getOrdinate(),0);
             ss << getStringCoordenateToGraph(p2.getAbscissa(), p2.getOrdinate(),0);
+            break;
         case Figure3::PROJECTION_XZ:
             ss << getStringCoordenateToGraph(p1.getAbscissa(), 0, p1.getOrdinate());
             ss << getStringCoordenateToGraph(p2.getAbscissa(), 0, p2.getOrdinate());
+            break;
         case Figure3::PROJECTION_YZ:
             ss << getStringCoordenateToGraph(0, p1.getAbscissa(), p1.getOrdinate());
             ss << getStringCoordenateToGraph(0, p2.getAbscissa(), p2.getOrdinate());
+            break;
         default:
             return "Error de Segment2_52";
     }
-
+    std::string s(ss.str());
+    return s;
 }
 
 std::string Segment2::toString() {
@@ -100,8 +104,8 @@ void Segment2::fragmentedBy(Point2 *p, std::list<Figure2*> &fragments) {
         }
 
         // Caso 2: El punto domina completamente el segmento
-        if (pp1.getAbscissa() > pA->getAbscissa() &&
-            pp2.getAbscissa() < pB->getAbscissa()) {
+        if (pp1.getAbscissa() >= pA->getAbscissa() &&
+            pp2.getAbscissa() <= pB->getAbscissa()) {
             return;
         }
 
@@ -162,7 +166,6 @@ void Segment2::fragmentedBy(Point2 *p, std::list<Figure2*> &fragments) {
         // Caso 5 y 6: El punto domina completamente al segmento
         if(pA->getAbscissa() < pp1.getAbscissa() &&
             pB->getAbscissa() < pp1.getAbscissa()){
-            fragments.push_back(this);
             return;
         }
     }
@@ -409,19 +412,25 @@ bool Segment2::domina(Point2 p) {
     Vector2 pp1 = getMenorAbscissa();
     Vector2 pp2 = getMayorAbscissa();
 
+    // En caso de que el segmento sea ascendente
+    if(pp1.getOrdinate() < pp2.getOrdinate()){
+        return p.getAbscissa() > pp1.getAbscissa() &&
+            p.getOrdinate() > pp1.getOrdinate();
+    }
+
     // Caso en que el punto este antes del segmento
     if(p.getAbscissa() < pp1.getAbscissa())
-        return true;
+        return false;
 
     // Caso en que el punto este despues del segmento
     if(p.getAbscissa() > pp2.getAbscissa())
-        return p.getOrdinate() > pp2.getOrdinate() &&
-               p.getOrdinate() > pp1.getOrdinate();
+        return p.getOrdinate() > pp2.getOrdinate(); //&&
+               // p.getOrdinate() > pp1.getOrdinate();
 
     // Obteniendo delta o lambda del punto generado por la vertical que pasa
     // por el punto
-    float delta = (p.getAbscissa() - pp1.getAbscissa()) /
-                  (pp2.getAbscissa() - pp1.getAbscissa());
+    float delta = (p.getAbscissa() - getP1().getAbscissa()) /
+                  (getP2().getAbscissa() - getP1().getAbscissa());
     Vector2* pA = getP(delta);
     return pA->getOrdinate() < p.getOrdinate();
 }

@@ -6,13 +6,17 @@
 #include "Tester.h"
 
 float Tester::fun1(float param) {
-    return cos(param);
+    return abs(cos(param) * 2 + 3);
 }
 float Tester::fun2(float param) {
-    return sin(param);
+    return abs(sin(param) * 2 + 3);
 }
 float Tester::fun3(float param) {
-    return sin(param*2);
+    return abs(sin(param*2) * 2 + 4);
+}
+
+void Tester::agregarPunto(Manto& manto, float param) {
+    manto.addFigure(new Point3(fun1(param), fun2(param), fun3(param)));
 }
 
 unsigned Tester::p_fraccionaria(double d) {
@@ -35,3 +39,5 @@ unsigned Tester::p_fraccionaria(double d) {
 
     return retvalue;
 }
+
+

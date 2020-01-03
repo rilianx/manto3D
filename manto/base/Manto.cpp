@@ -9,8 +9,7 @@
 #include <util/RangeContainer.h>
 #include "Manto.h"
 #include "Tester.h"
-#include "figures/figures2/Point2.h"
-#include "figures/figures3/Point3.h"
+
 
 
 Manto::~Manto() {
@@ -89,7 +88,16 @@ void Manto::saveInstance(std::string path) {
     // Guardando figuras reales (tercera dimension)
     myfile.open (path + "Figures.txt");
     for(auto & figure : lFigure3){
-        myfile << figure->toGraphString() << std::endl;
+        if(dynamic_cast<Point3*>(figure)!= nullptr)
+            myfile << figure->toGraphString() << std::endl;
+    }
+    myfile.close();
+
+    // Guardando figuras reales (tercera dimension)
+    myfile.open (path + "FiguresSegments.txt");
+    for(auto & figure : lFigure3){
+        if(dynamic_cast<Segment3*>(figure)!= nullptr)
+            myfile << figure->toGraphString() << std::endl;
     }
     myfile.close();
 
@@ -118,9 +126,12 @@ void Manto::saveInstance(std::string path) {
     myfile.open(path + "dominated.txt");
     for (auto & i : lFigure3Dominated) {
         myfile << i->toGraphString() << std::endl;
-        myfile << i->getProjection(Figure3::PROJECTION_XY)->toGraphString(Figure3::PROJECTION_XY) << std::endl;
-        myfile << i->getProjection(Figure3::PROJECTION_XZ)->toGraphString(Figure3::PROJECTION_XZ) << std::endl;
-        myfile << i->getProjection(Figure3::PROJECTION_YZ)->toGraphString(Figure3::PROJECTION_YZ) << std::endl;
+        myfile << i->getProjection(Figure3::PROJECTION_XY)
+            ->toGraphString(Figure3::PROJECTION_XY) << std::endl;
+        myfile << i->getProjection(Figure3::PROJECTION_XZ)
+            ->toGraphString(Figure3::PROJECTION_XZ) << std::endl;
+        myfile << i->getProjection(Figure3::PROJECTION_YZ)
+             ->toGraphString(Figure3::PROJECTION_YZ) << std::endl;
     }
     myfile.close();
 }
@@ -151,12 +162,13 @@ list<Figure3 *> Manto::processFigure(Figure3 *f) {
         // Actualizando fragmentos no dominados de figure
         list<Figure3 *> fragments = nonDominatedFragments(figure, f);
         // Si figure se ha fragmentado
-        if(fragments.size() > 1){
+        // if(fragments.size() > 1){
+            // OPTIMIZE: Discriminar si se ha fragmentado.
             fToDel.push_back(figure);
             for (auto &fragment : fragments) {
                 fToAdd.push_back(fragment);
             }
-        }
+        //}
         // Si figure ha sido dominada
         if(fragments.empty()){
             fToDel.push_back(figure);
@@ -347,8 +359,6 @@ list<Figure3 *> Manto::spaceUnion(Figure3* figure, list<Figure2 *> lXY,
 
             rangeContainer.agregarRango(lInf, lSup);
         }
-
-        rangeContainer.imprimirRangos();
 
         rangeContainer.toSegments(lFigures3, *segment3);
     }
