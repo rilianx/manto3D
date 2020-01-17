@@ -57,10 +57,13 @@ std::string Point3::toString() {
 
 std::string Point3::toGraphString() {
     std::ostringstream ss;
-    ss << (int)getX() << "," <<  Tester::p_fraccionaria(getX()) << ";" <<
-          (int)getY() << "," <<  Tester::p_fraccionaria(getY()) << ";" <<
-          (int)getZ() << "," <<  Tester::p_fraccionaria(getZ());
+    ss << getX() << ";" <<
+          getY() << ";" <<
+          getZ();
     std::string s(ss.str());
+    std::replace(s.begin(), s.end(), '.', ',');
+
+    //std::cout << toString() << " == " << s << std::endl;
     return s;
 }
 
@@ -68,4 +71,25 @@ bool Point3::equal(Point3* p) {
     return this->getX() == p->getX() &&
             this->getY() == p->getY() &&
             this->getZ() == p->getZ();
+}
+
+bool Point3::isDominated(Figure3* figure) {
+    Point3* point;
+
+    // Discriminando casso de la figura
+    switch (figure->getInstance()){
+        // Caso en que sea un punto
+        case POINT_INSTANCE:
+            point = dynamic_cast<Point3*>(figure);
+            return point->getX() <= getX() && point->getY() <= getY()
+                    && point->getZ() <= getZ();
+        default:
+            std::cout << "Error 0ad12: Caso no encontrado" << std::endl;
+            break;
+    }
+    return false;
+}
+
+int Point3::getInstance() {
+    return Figure3::POINT_INSTANCE;
 }

@@ -7,7 +7,7 @@
 
 
 #include <string>
-#include "../figures2/Figure2.h"
+#include "Figure2.h"
 
 class Figure3 {
 
@@ -17,6 +17,10 @@ public:
     static const int PROJECTION_XY = 0;
     static const int PROJECTION_XZ = 1;
     static const int PROJECTION_YZ = 2;
+
+    // Constantes para identificar que tipo de instancia es
+    static const int POINT_INSTANCE = 0;
+    static const int SEGMENT_INSTANCE = 1;
 
     /**
      * Obtiene las proyecciones de la figura.
@@ -29,6 +33,24 @@ public:
     virtual Figure2* getProjection(int PROJECTION_PLANE) = 0;
     virtual std::string toString() = 0;
     virtual std::string toGraphString() = 0;
+
+    /**
+     * Comprueba si la figura actual (this) es dominada por la figura
+     * ingresada por parametro.
+     * @param figure3   - Figura que podria (o no) dominar a esta figura (this).
+     * @return          - Retorna True si figure3 domina a esta figura (this) y
+     *                    Retorna falso en el caso contrario.
+     */
+    virtual bool isDominated(Figure3 *figure3) = 0;
+
+    /**
+     * Obtiene la instancia de la figura. Esto se hace así para evitar hacer
+     * casteos dinámicos demasiadas veces, de esta forma se reduce el tiempo
+     * de ejecución.
+     * @return  - Retorna un entero correspondiente a la instancia de la
+     *            figura. Por ejemplo, POINT_INSTANCE, SEGMENT_INSTANCE, etc.
+     */
+    virtual int getInstance() = 0;
 };
 
 

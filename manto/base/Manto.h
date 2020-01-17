@@ -142,7 +142,11 @@ public:
      */
     void saveInstance(std::string path);
 
-
+    /**
+     * Valida la instancia actual del manto, comprueba que las figuras
+     * insertas en el manto no estén dominadas por ninguna otra.
+     */
+    void validateInstance();
 };
 
 

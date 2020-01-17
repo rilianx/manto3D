@@ -20,7 +20,7 @@ void testInfinito(){
     Segment3* segment = new Segment3(p1, p2);
     manto.addFigure(segment);
 
-    float precision = 1; // Genera mas puntos
+    float precision = 100; // Genera mas puntos
     // Test de puntos semi-aleatorio aleatorio
     for(float i = 1; i < 15; i+=1/precision) {
         Tester::agregarPunto(manto, i);
@@ -34,6 +34,8 @@ void testInfinito(){
 
     // Guardando instancias generadas
     manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+
+    manto.validateInstance();
 }
 
 void agregarRango(RangeContainer &rc, float lInf, float lSup){
@@ -81,30 +83,8 @@ void testSegmentos(){
 }
 
 int main() {
-    // testInfinito();
+    testInfinito();
     // testSegmentos();
-
-    // Instancienado manto
-    Manto manto;
-
-    // Creanod nuevo punto
-    Point3* p = new Point3(1.3f, 1.5f, 0);
-
-    // Agregando punto al m anto
-
-
-    // Creando nuevo segmento
-    Vector3 p2 = {2,2,1};
-    Vector3 p1 = {1,1,3};
-    Segment3* segment = new Segment3(p1, p2);
-
-    // Agregando segmento al manto
-
-    manto.addFigure(segment);
-    manto.addFigure(p);
-
-    const char* path = "/Users/brauliolobo/Documents/manto3D/Instance/";
-    manto.saveInstance(path);
 
     return 0;
 }

@@ -28,20 +28,20 @@ public:
     Segment3(Vector3 p1, Vector3 p2);
     ~Segment3();
 
-    float getMenorX();
-    float getMenorY();
-    float getMenorZ();
+    float getMinX();
+    float getMinY();
+    float getMinZ();
     float getMaxX();
     float getMaxY();
     float getMaxZ();
 
-    Vector3 getMenorPX(){
+    Vector3 getMinPX(){
         if(p1.getX() < p2.getX())
             return p1;
         return p2;
     }
 
-    Vector3 getMayorPX(){
+    Vector3 getMaxPX(){
         if(p1.getX() > p2.getX())
             return p1;
         return p2;
@@ -69,6 +69,9 @@ public:
 
     virtual std::string toString();
     virtual std::string toGraphString();
+
+    virtual bool isDominated(Figure3* figure);
+    virtual int getInstance();
 
     /**
      * Intersecta este segmento con el pasado como paremtro. Retorna el

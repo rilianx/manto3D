@@ -51,6 +51,9 @@ public:
 
     virtual std::string toString();
     virtual std::string toGraphString();
+
+    virtual bool isDominated(Figure3* figure3);
+    virtual int getInstance();
 };
 
 

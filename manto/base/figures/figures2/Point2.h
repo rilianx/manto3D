@@ -32,7 +32,6 @@ public:
     virtual float getKey();
     virtual std::string toString();
     virtual std::string toGraphString(int PROYECTION_PLANE);
-
 };
 
 

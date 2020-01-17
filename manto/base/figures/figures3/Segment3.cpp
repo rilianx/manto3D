@@ -22,19 +22,19 @@ Segment3::Segment3(float p1x, float p1y, float p1z, float p2x, float p2y,
     generateProjections();
 }
 
-float Segment3::getMenorX() {
+float Segment3::getMinX() {
     if(p1.getX() < p2.getX())
         return p1.getX();
     return p2.getX();
 }
 
-float Segment3::getMenorY() {
+float Segment3::getMinY() {
     if(p1.getY() < p2.getY())
         return p1.getY();
     return p2.getY();
 }
 
-float Segment3::getMenorZ() {
+float Segment3::getMinZ() {
     if(p1.getZ() < p2.getZ())
         return p1.getZ();
     return p2.getZ();
@@ -59,9 +59,9 @@ float Segment3::getMaxZ() {
 }
 
 bool Segment3::equal(Segment3 *segment) {
-    return this->getMenorX() == segment->getMenorX() &&
-           this->getMenorY() == segment->getMenorY() &&
-           this->getMenorZ() == segment->getMenorZ() &&
+    return this->getMinX() == segment->getMinX() &&
+            this->getMinY() == segment->getMinY() &&
+            this->getMinZ() == segment->getMinZ() &&
            this->getMaxX()   == segment->getMaxX() &&
            this->getMaxY()   == segment->getMaxY() &&
            this->getMaxZ()   == segment->getMaxZ();
@@ -81,13 +81,16 @@ std::string Segment3::toString() {
 
 std::string Segment3::toGraphString() {
     std::ostringstream ss;
-    ss << (int)p1.getX() << "," <<  Tester::p_fraccionaria(p1.getX()) << ";" <<
-       (int)p1.getY() << "," <<  Tester::p_fraccionaria(p1.getY()) << ";" <<
-       (int)p1.getZ() << "," <<  Tester::p_fraccionaria(p1.getZ()) << ";" <<
-       (int)p2.getX() << "," <<  Tester::p_fraccionaria(p2.getX()) << ";" <<
-       (int)p2.getY() << "," <<  Tester::p_fraccionaria(p2.getY()) << ";" <<
-       (int)p2.getZ() << "," <<  Tester::p_fraccionaria(p2.getZ());
+    ss << p1.getX() << ";" <<
+       p1.getY() << ";" <<
+       p1.getZ() << ";" <<
+       p2.getX() << ";" <<
+       p2.getY() << ";" <<
+       p2.getZ();
     std::string s(ss.str());
+
+    std::replace(s.begin(), s.end(), '.', ',');
+
     return s;
 }
 
@@ -119,10 +122,10 @@ Segment3 *Segment3::overlap(Segment3 *segment) {
     //  Nota: es probable que en los casos actuales en los que se usa esta
     //  funcion no sea necesario agregar esta comprobacion
 
-    Vector3 pp1 = getMenorPX();
-    Vector3 pp2 = getMayorPX();
-    Vector3 pp3 = segment->getMenorPX();
-    Vector3 pp4 = segment->getMayorPX();
+    Vector3 pp1 = getMinPX();
+    Vector3 pp2 = getMaxPX();
+    Vector3 pp3 = segment->getMinPX();
+    Vector3 pp4 = segment->getMaxPX();
 
     if(pp2.getX() > pp3.getX() || pp4.getX() > pp1.getX()){
         float inf = std::max(pp3.getX(), pp1.getX());
@@ -134,4 +137,13 @@ Segment3 *Segment3::overlap(Segment3 *segment) {
     }
 
     return nullptr;
+}
+
+bool Segment3::isDominated(Figure3* figure) {
+    std::cout << "Probando (Segmento)" << std::endl;
+    return false;
+}
+
+int Segment3::getInstance() {
+    return Figure3::SEGMENT_INSTANCE;
 }

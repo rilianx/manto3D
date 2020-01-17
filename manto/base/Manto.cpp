@@ -155,7 +155,7 @@ list<Figure3 *> Manto::processFigure(Figure3 *f) {
                                                       // que afectan a f
 
     // Procesando figura f y figuras dentro del manto
-    for(auto & figure : figures){
+    for(auto &figure : figures){
         // Intersectando areas
         nDomFrag = spaceIntersect(nDomFrag, nonDominatedFragments(f, figure));
 
@@ -198,21 +198,29 @@ list<Figure3*> Manto::nonDominatedFragments(Figure3 *figure1, Figure3*figure2){
     // Procesamiento rapido para puntos
     Point3 *p1 = dynamic_cast<Point3*>(figure1);
     Point3 *p2 = dynamic_cast<Point3*>(figure2);
-    if(p1 != nullptr && p2 != nullptr && !(p1->getX() > p2->getX() &&
-        p1->getY() > p2->getY() && p1->getZ() > p2->getZ())){
-        fragments.push_back(figure1);
-        return fragments;
+    if(p1 != nullptr && p2 != nullptr) {
+        if (!(p1->getX() >= p2->getX() &&
+              p1->getY() >= p2->getY() && p1->getZ() >= p2->getZ())) {
+            fragments.push_back(figure1);
+            return fragments;
+        }
     }
 
+    // OPTIMIZE: saltar esto si se cumple el if anterior
     // Calculando interseccionde proyecciones
-    list<Figure2*> intXY;
-    list<Figure2*> intXZ;
-    list<Figure2*> intYZ;
-    nonDominatedFragmentsProj(figure1, figure2, intXY, Figure3::PROJECTION_XY);
-    nonDominatedFragmentsProj(figure1, figure2, intXZ, Figure3::PROJECTION_XZ);
-    nonDominatedFragmentsProj(figure1, figure2, intYZ, Figure3::PROJECTION_YZ);
+    else {
+        list<Figure2 *> intXY;
+        list<Figure2 *> intXZ;
+        list<Figure2 *> intYZ;
+        nonDominatedFragmentsProj(figure1, figure2, intXY,
+                                  Figure3::PROJECTION_XY);
+        nonDominatedFragmentsProj(figure1, figure2, intXZ,
+                                  Figure3::PROJECTION_XZ);
+        nonDominatedFragmentsProj(figure1, figure2, intYZ,
+                                  Figure3::PROJECTION_YZ);
 
-    fragments = spaceUnion(figure1, intXY, intXZ, intYZ);
+        fragments = spaceUnion(figure1, intXY, intXZ, intYZ);
+    }
 
     return fragments;
 }
@@ -366,4 +374,25 @@ list<Figure3 *> Manto::spaceUnion(Figure3* figure, list<Figure2 *> lXY,
     // TODO:
     //    - Programar union en caso de que sean triangulos
     return lFigures3;
+}
+
+void Manto::validateInstance() {
+    std::cout << "Validando instancias" << std::endl;
+    int numFigurasValidadas = 0;
+    int numFigurasConError = 0;
+    for (auto &figure1 : lFigure3) {
+        numFigurasValidadas++;
+        for (auto &figure2 : lFigure3) {
+            if(figure1 == figure2) continue;
+            if(figure1->isDominated(figure2)){
+                numFigurasConError++;
+                std::cout << "Error con figura (Dominada) " << figure1
+                          << std::endl;
+                break;
+            }
+        }
+    }
+    std::cout << "Figuras validadas: " << numFigurasValidadas << std::endl;
+    std::cout << "Figuras con error: " << numFigurasConError << std::endl;
+
 }
