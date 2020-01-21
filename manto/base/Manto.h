@@ -19,7 +19,8 @@ class Manto {
 
     // Lista de figuras en 3 dimensiones
     std::unordered_set<Figure3*> lFigure3;
-    list<Figure3*> lFigure3Dominated; // Lista de figuras dominadas
+    std::unordered_set<Figure3*> lFigure3Dominated; // Lista de figuras
+    // dominadas
     list<Figure2*> lFigure2Dominated; // Lista de proyecciones dominadas
 
     // Mapas ordenados de proyecciones. Las llaves de estos mapas

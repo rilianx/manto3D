@@ -24,7 +24,7 @@ void Manto::addFigure(Figure3 *figure) {
 
     // En caso de que la figura se haya dominado, la guardamos para verla luego
     if(noDominatedFragments.empty())
-        lFigure3Dominated.push_back(figure);
+        lFigure3Dominated.insert(figure);
 
     // Agregando los gragmentos no dominados de la figura
     for(auto & fragment : noDominatedFragments) {
@@ -85,18 +85,19 @@ void Manto::printAllFigures2(int PROJECTION_PLANE) {
 
 void Manto::saveInstance(std::string path) {
     ofstream myfile;
-    // Guardando figuras reales (tercera dimension)
-    myfile.open (path + "Figures.txt");
+
+    // Guardando puntos no dominados
+    myfile.open (path + "puntos.txt");
     for(auto & figure : lFigure3){
-        if(dynamic_cast<Point3*>(figure)!= nullptr)
+        if(figure->getInstance() == Figure3::POINT_INSTANCE)
             myfile << figure->toGraphString() << std::endl;
     }
     myfile.close();
 
-    // Guardando figuras reales (tercera dimension)
-    myfile.open (path + "FiguresSegments.txt");
+    // Guardando segmentos no dominados
+    myfile.open (path + "segmentos.txt");
     for(auto & figure : lFigure3){
-        if(dynamic_cast<Segment3*>(figure)!= nullptr)
+        if(figure->getInstance() == Figure3::SEGMENT_INSTANCE)
             myfile << figure->toGraphString() << std::endl;
     }
     myfile.close();
@@ -122,16 +123,18 @@ void Manto::saveInstance(std::string path) {
     }
     myfile.close();
 
-    // Guardando proyecciones en el plano yz
-    myfile.open(path + "dominated.txt");
-    for (auto & i : lFigure3Dominated) {
-        myfile << i->toGraphString() << std::endl;
-        myfile << i->getProjection(Figure3::PROJECTION_XY)
-            ->toGraphString(Figure3::PROJECTION_XY) << std::endl;
-        myfile << i->getProjection(Figure3::PROJECTION_XZ)
-            ->toGraphString(Figure3::PROJECTION_XZ) << std::endl;
-        myfile << i->getProjection(Figure3::PROJECTION_YZ)
-             ->toGraphString(Figure3::PROJECTION_YZ) << std::endl;
+    // ---------------------- GUARDANDO FIGURAS DOMINADAS ----------------------
+    myfile.open(path + "puntosD.txt");
+    for (auto & figureD : lFigure3Dominated) {
+        if(figureD->getInstance() == Figure3::POINT_INSTANCE)
+            myfile << figureD->toGraphString() << std::endl;
+    }
+    myfile.close();
+
+    myfile.open(path + "segmentosD.txt");
+    for (auto & figureD : lFigure3Dominated) {
+        if(figureD->getInstance() == Figure3::SEGMENT_INSTANCE)
+            myfile << figureD->toGraphString() << std::endl;
     }
     myfile.close();
 }
@@ -181,12 +184,13 @@ list<Figure3 *> Manto::processFigure(Figure3 *f) {
         mapFigureXY.erase(toDel->getProjection(Figure3::PROJECTION_XY)->getKey());
         mapFigureXZ.erase(toDel->getProjection(Figure3::PROJECTION_XZ)->getKey());
         mapFigureYZ.erase(toDel->getProjection(Figure3::PROJECTION_YZ)->getKey());
-        lFigure3Dominated.push_back(toDel);
+        lFigure3Dominated.insert(toDel);
     }
 
     // Agregando fragmentos generados
     for (auto &toAdd : fToAdd) {
         lFigure3.insert(toAdd);
+        lFigure3Dominated.erase(toAdd);
     }
 
     return nDomFrag;

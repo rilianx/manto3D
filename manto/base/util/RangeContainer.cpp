@@ -55,7 +55,7 @@ void RangeContainer::agregarRango(float lInf, float lSup) {
         loContiene(lInf)->setLimit(solapado->getLSup());
     }
 
-    while(primerRangoDentro(lInf,lSup) != nullptr){
+    while(primerRangoDentro(lInf,lSup) != nullptr && size > 0){
         rangos.erase(primerRangoDentro(lInf,lSup)->getLInf());
         size--;
     }

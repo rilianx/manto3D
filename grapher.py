@@ -44,8 +44,29 @@ def readFileSegments(file_name):
 # Data del grafico
 data = []
 
+
+# Cargando segmentos dominados
 # Cargando segmentos no dominados
-lista = readFileSegments("Instance/FiguresSegments.txt")
+lista = readFileSegments("Instance/segmentosD.txt")
+for x,y,z in lista:
+    nSegmentos += 1
+    tracel = go.Scatter3d(
+        x=x,
+        y=y,
+        z=z,
+        mode='lines', # Aqui se puede agregar +lines para generar lineas
+        line=dict(
+            color='gray',
+            width=1
+        ),
+        legendgroup="Segmentos dominados",
+        showlegend=False
+    )
+    data.append(tracel)
+
+
+# Cargando segmentos no dominados
+lista = readFileSegments("Instance/segmentos.txt")
 for x,y,z in lista:
     nSegmentos += 1
     tracel = go.Scatter3d(
@@ -61,11 +82,13 @@ for x,y,z in lista:
         line=dict(
             color='blue',
             width=2
-        )
+        ),
+        legendgroup="Segmentos",
+        showlegend=False
     )
     data.append(tracel)
 
-x, y, z = readFile("Instance/Figures.txt") 
+x, y, z = readFile("Instance/puntos.txt") 
 tracel = go.Scatter3d(
     x=x,
     y=y,
@@ -77,7 +100,21 @@ tracel = go.Scatter3d(
         opacity=1),
     name="No dominado")
 data.append(tracel)
-nPuntos *= len(x)
+nPuntos += len(x)
+
+x, y, z = readFile("Instance/puntosD.txt") 
+tracel = go.Scatter3d(
+    x=x,
+    y=y,
+    z=z,
+    mode='markers', # Aqui se puede agregar +lines para generar lineas
+    marker=dict(
+        size=2,
+        color='gray',
+        opacity=1),
+    name="dominado")
+data.append(tracel)
+nPuntos += len(x)
 
 """
 x, y, z = readFile("Instance/Pxy.txt") 

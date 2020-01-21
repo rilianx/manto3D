@@ -179,7 +179,7 @@ void Segment2::fragmentedBy(Segment2 *s, std::list<Figure2*> &fragments) {
 
     // Caso especial: El segmento S es ascentente, por tanto puede ser
     // procesado como si fuese un simple punto.
-    if(pp3.getOrdinate() < pp4.getOrdinate()){
+    if(pp3.getOrdinate() <= pp4.getOrdinate()){
         Point2* p = new Point2(pp3);
         this->fragmentedBy(p, fragments);
         return;
