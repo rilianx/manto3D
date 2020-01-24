@@ -72,6 +72,7 @@ public:
 
     virtual bool isDominated(Figure3* figure);
     virtual int getInstance();
+    virtual bool equal(Figure3 *figure3);
 
     /**
      * Intersecta este segmento con el pasado como paremtro. Retorna el

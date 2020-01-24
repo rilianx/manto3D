@@ -128,8 +128,6 @@ Segment3 *Segment3::overlap(Segment3 *segment) {
     Vector3 pp4 = segment->getMaxPX();
 
     if(pp2.getX() > pp3.getX() || pp4.getX() > pp1.getX()){
-        float inf = std::max(pp3.getX(), pp1.getX());
-        float sup = std::min(pp2.getX(), pp4.getX());
         Vector3 vInf = (pp3.getX() > pp1.getX()) ? pp3 : pp1;
         Vector3 vSup = (pp2.getX() < pp4.getX()) ? pp2 : pp4;
 
@@ -147,3 +145,24 @@ bool Segment3::isDominated(Figure3* figure) {
 int Segment3::getInstance() {
     return Figure3::SEGMENT_INSTANCE;
 }
+
+bool Segment3::equal(Figure3 *figure3) {
+    if(figure3->getInstance() != this->getInstance())
+        return false;
+
+    // Haciendo cast del segmento ingresado
+    Segment3 *s3 = dynamic_cast<Segment3*>(figure3);
+
+    // Obteniendo puntos
+    Vector3 pp1 = s3->getMinPX();
+    Vector3 pp2 = s3->getMaxPX();
+    Vector3 pp3 = this->getMinPX();
+    Vector3 pp4 = this->getMaxPX();
+
+    bool minEqual = pp1.getX() == pp3.getX() && pp1.getY() == pp3.getY()
+                && pp1.getZ() == pp3.getZ();
+    bool maxEqual = pp2.getX() == pp4.getX() && pp2.getY() == pp4.getY()
+                    && pp2.getZ() == pp4.getZ();
+    return minEqual && maxEqual;
+}
+

@@ -185,10 +185,10 @@ void Segment2::fragmentedBy(Segment2 *s, std::list<Figure2*> &fragments) {
         return;
     }
 
-    float d1 = (pp3.getAbscissa() - pp1.getAbscissa()) /
-            (pp2.getAbscissa() - pp1.getAbscissa());
-    float d2 = (pp4.getOrdinate() - pp1.getOrdinate()) /
-            (pp2.getOrdinate() - pp1.getOrdinate());
+    float d1 = (pp3.getAbscissa() - p1.getAbscissa()) /
+            (p2.getAbscissa() - p1.getAbscissa());
+    float d2 = (pp4.getOrdinate() - p1.getOrdinate()) /
+            (p2.getOrdinate() - p1.getOrdinate());
 
     // Puntos de interseccion entre los extremos del area dominada y el segmento
     Vector2 *pA = getP(d1);

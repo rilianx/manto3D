@@ -124,17 +124,24 @@ void Manto::saveInstance(std::string path) {
     myfile.close();
 
     // ---------------------- GUARDANDO FIGURAS DOMINADAS ----------------------
+    // Limpiando figuras dominadas
+    std::map<string, Figure3*> mFigureDominatedCleared;
+
+    for (const auto &figure : lFigure3Dominated) {
+        mFigureDominatedCleared[figure->toGraphString()] = figure;
+    }
+
     myfile.open(path + "puntosD.txt");
-    for (auto & figureD : lFigure3Dominated) {
-        if(figureD->getInstance() == Figure3::POINT_INSTANCE)
-            myfile << figureD->toGraphString() << std::endl;
+    for (auto & figureD : mFigureDominatedCleared) {
+        if(figureD.second->getInstance() == Figure3::POINT_INSTANCE)
+            myfile << figureD.second->toGraphString() << std::endl;
     }
     myfile.close();
 
     myfile.open(path + "segmentosD.txt");
-    for (auto & figureD : lFigure3Dominated) {
-        if(figureD->getInstance() == Figure3::SEGMENT_INSTANCE)
-            myfile << figureD->toGraphString() << std::endl;
+    for (auto & figureD : mFigureDominatedCleared) {
+        if(figureD.second->getInstance() == Figure3::SEGMENT_INSTANCE)
+            myfile << figureD.second->toGraphString() << std::endl;
     }
     myfile.close();
 }
@@ -143,6 +150,8 @@ list<Figure3 *> Manto::processFigure(Figure3 *f) {
     list<Figure3 *> nDomFrag; // fragmentos no dominados de f
     list<Figure3 *> fToAdd;   // Figuras o fragmentos que se agregaran al manto
     list<Figure3 *> fToDel;   // Figuras que se eliminaran del manto
+
+    lFigure3Dominated.insert(f);
 
     // En caso de que no hayan figuras dentro del manto
     nDomFrag.push_back(f);
@@ -165,13 +174,12 @@ list<Figure3 *> Manto::processFigure(Figure3 *f) {
         // Actualizando fragmentos no dominados de figure
         list<Figure3 *> fragments = nonDominatedFragments(figure, f);
         // Si figure se ha fragmentado
-        // if(fragments.size() > 1){
-            // OPTIMIZE: Discriminar si se ha fragmentado.
+        if(fragments.size() != 1 || (*fragments.begin()) != figure) {
             fToDel.push_back(figure);
             for (auto &fragment : fragments) {
                 fToAdd.push_back(fragment);
             }
-        //}
+        }
         // Si figure ha sido dominada
         if(fragments.empty()){
             fToDel.push_back(figure);
@@ -181,16 +189,12 @@ list<Figure3 *> Manto::processFigure(Figure3 *f) {
     // Eliminando figuras fragmentadas
     for (auto &toDel : fToDel) {
         lFigure3.erase(toDel);
-        mapFigureXY.erase(toDel->getProjection(Figure3::PROJECTION_XY)->getKey());
-        mapFigureXZ.erase(toDel->getProjection(Figure3::PROJECTION_XZ)->getKey());
-        mapFigureYZ.erase(toDel->getProjection(Figure3::PROJECTION_YZ)->getKey());
-        lFigure3Dominated.insert(toDel);
+
     }
 
     // Agregando fragmentos generados
     for (auto &toAdd : fToAdd) {
         lFigure3.insert(toAdd);
-        lFigure3Dominated.erase(toAdd);
     }
 
     return nDomFrag;

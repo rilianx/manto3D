@@ -54,6 +54,7 @@ public:
 
     virtual bool isDominated(Figure3* figure3);
     virtual int getInstance();
+    virtual bool equal(Figure3 *figure3);
 };
 
 

@@ -59,8 +59,6 @@ for x,y,z in lista:
             color='gray',
             width=1
         ),
-        legendgroup="Segmentos dominados",
-        showlegend=False
     )
     data.append(tracel)
 
@@ -82,9 +80,7 @@ for x,y,z in lista:
         line=dict(
             color='blue',
             width=2
-        ),
-        legendgroup="Segmentos",
-        showlegend=False
+        )
     )
     data.append(tracel)
 

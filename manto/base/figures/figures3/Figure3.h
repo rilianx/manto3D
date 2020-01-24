@@ -51,6 +51,14 @@ public:
      *            figura. Por ejemplo, POINT_INSTANCE, SEGMENT_INSTANCE, etc.
      */
     virtual int getInstance() = 0;
+
+    /**
+     * Comprueba si la figura es igual a la ingresada como parametro
+     * @param figure3   - Figura que se quiere comprobar si es igual a la
+     *                    figura actual (this).
+     * @return          - Retorna True si la figura es igual a la figura actual
+     */
+    virtual bool equal(Figure3 *figure3) = 0;
 };
 
 

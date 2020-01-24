@@ -93,3 +93,11 @@ bool Point3::isDominated(Figure3* figure) {
 int Point3::getInstance() {
     return Figure3::POINT_INSTANCE;
 }
+
+bool Point3::equal(Figure3 *figure3) {
+    if(figure3->getInstance() != this->getInstance())
+        return false;
+    Point3* p3 = dynamic_cast<Point3*>(figure3);
+    return p3->getX() == this->getX() && p3->getY() == this->getY() &&
+            p3->getZ() == this->getZ();
+}
