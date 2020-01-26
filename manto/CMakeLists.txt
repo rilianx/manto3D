@@ -30,4 +30,4 @@ add_executable(manto
         base/Manto.h
         base/Tester.cpp
         base/Tester.h
-        main.cpp base/figures/figures3/Segment3.cpp base/figures/figures3/Segment3.h base/figures/figures2/Segment2.cpp base/figures/figures2/Segment2.h base/util/Range.cpp base/util/Range.h base/util/RangeContainer.cpp base/util/RangeContainer.h)
+        main.cpp base/figures/figures3/Segment3.cpp base/figures/figures3/Segment3.h base/figures/figures2/Segment2.cpp base/figures/figures2/Segment2.h base/util/Range.cpp base/util/Range.h base/util/RangeContainer.cpp base/util/RangeContainer.h base/figures/figures3/Triangle3.cpp base/figures/figures3/Triangle3.h base/figures/figures2/Triangle2.cpp base/figures/figures2/Triangle2.h)

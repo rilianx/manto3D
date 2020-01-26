@@ -5,6 +5,7 @@
 #include <sys/time.h>
 #include <util/RangeContainer.h>
 #include <set>
+#include <figures/figures3/Triangle3.h>
 
 void testInfinito() {
     Manto manto;
@@ -15,7 +16,7 @@ void testInfinito() {
 
     std::cout << "Iniciando " << std::endl;
 
-    float precision = 100; // Genera mas puntos
+    float precision = 50; // Genera mas puntos
     // Test de puntos semi-aleatorio aleatorio
     for (float i = 1; i < 15; i += 1 / precision) {
         Tester::agregarPunto(manto, i);
@@ -100,13 +101,27 @@ void testSegmentos() {
     manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
 }
 
+void testTriangulos(){
+    Manto manto;
+
+    Vector3 p1 = {1,1,1};
+    Vector3 p2 = {5,1,1};
+    Vector3 p3 = {5,1,5};
+
+    Triangle3* triangle3 = new Triangle3(p1, p2, p3);
+
+    manto.addFigure(triangle3);
+
+    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+}
+
 int main() {
     // ---------------------- EL TO.DO PARA EL NUEVO DIA ----------------------
-    // done: hacer que no se guarden tantas repeticiones de segmentos en el
-    //  archivo de segmentosD.txt
-    // todo: implementar mejores pruebas de dominacion
-    testInfinito();
+    //
+
+    // testInfinito();
     // testSegmentos();
+    testTriangulos();
 
     return 0;
 }

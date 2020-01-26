@@ -102,6 +102,14 @@ void Manto::saveInstance(std::string path) {
     }
     myfile.close();
 
+    // Guardando segmentos no dominados
+    myfile.open (path + "triangulos.txt");
+    for(auto & figure : lFigure3){
+        if(figure->getInstance() == Figure3::TRIANGLE_INSTANCE)
+            myfile << figure->toGraphString() << std::endl;
+    }
+    myfile.close();
+
     // Guardando proyecciones en el plano xy
     myfile.open(path + "Pxy.txt");
     for (auto & i : mapFigureXY) {
@@ -141,6 +149,13 @@ void Manto::saveInstance(std::string path) {
     myfile.open(path + "segmentosD.txt");
     for (auto & figureD : mFigureDominatedCleared) {
         if(figureD.second->getInstance() == Figure3::SEGMENT_INSTANCE)
+            myfile << figureD.second->toGraphString() << std::endl;
+    }
+    myfile.close();
+
+    myfile.open(path + "triangulosD.txt");
+    for (auto & figureD : mFigureDominatedCleared) {
+        if(figureD.second->getInstance() == Figure3::TRIANGLE_INSTANCE)
             myfile << figureD.second->toGraphString() << std::endl;
     }
     myfile.close();

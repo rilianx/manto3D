@@ -6,7 +6,6 @@
 #include <Tester.h>
 #include <iostream>
 #include <map>
-#include <set>
 #include "Segment3.h"
 
 Segment3::Segment3(Vector3 p1, Vector3 p2){
@@ -138,7 +137,7 @@ Segment3 *Segment3::overlap(Segment3 *segment) {
 }
 
 bool Segment3::isDominated(Figure3* figure) {
-    std::cout << "Probando (Segmento)" << std::endl;
+    std::cout << "Probando dominancia (Segmento)" << std::endl;
     return false;
 }
 

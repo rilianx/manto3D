@@ -21,6 +21,7 @@ public:
     // Constantes para identificar que tipo de instancia es
     static const int POINT_INSTANCE = 0;
     static const int SEGMENT_INSTANCE = 1;
+    static const int TRIANGLE_INSTANCE = 2;
 
     /**
      * Obtiene las proyecciones de la figura.
