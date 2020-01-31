@@ -15,6 +15,7 @@ private:
 
 public:
     Vector2(float abscissa, float ordinate);
+    Vector2();
 
     float getAbscissa() const;
     float getOrdinate() const;

@@ -11,23 +11,22 @@
 #include "Tester.h"
 
 
-
 Manto::~Manto() {
-    if(Tester::DEBUG_DELET)
+    if (Tester::DEBUG_DELET)
         std::cout << "Eliminado el manto" << std::endl;
 }
 
 void Manto::addFigure(Figure3 *figure) {
 
     // Creando lista de fragmentos no dominados
-    list<Figure3*> noDominatedFragments = processFigure(figure);
+    list<Figure3 *> noDominatedFragments = processFigure(figure);
 
     // En caso de que la figura se haya dominado, la guardamos para verla luego
-    if(noDominatedFragments.empty())
+    if (noDominatedFragments.empty())
         lFigure3Dominated.insert(figure);
 
     // Agregando los gragmentos no dominados de la figura
-    for(auto & fragment : noDominatedFragments) {
+    for (auto &fragment : noDominatedFragments) {
         // Agregado figura
         lFigure3.insert(fragment);
 
@@ -47,7 +46,7 @@ void Manto::addFigure(Figure3 *figure) {
 void Manto::printAllFigures3() {
     lFigure3.begin();
 
-    for(auto & figure : lFigure3){
+    for (auto &figure : lFigure3) {
         std::cout << figure->toString() << std::endl;
     }
 }
@@ -55,15 +54,15 @@ void Manto::printAllFigures3() {
 void Manto::printAllGraphFigures3() {
     lFigure3.begin();
 
-    for(auto & figure : lFigure3){
+    for (auto &figure : lFigure3) {
         std::cout << figure->toGraphString() << std::endl;
     }
 }
 
 void Manto::printAllFigures2(int PROJECTION_PLANE) {
     // Seleccionando mapa de figuras
-    std::map<float, Figure2*> map;
-    switch(PROJECTION_PLANE){
+    std::map<float, Figure2 *> map;
+    switch (PROJECTION_PLANE) {
         case Figure3::PROJECTION_XY:
             map = mapFigureXY;
             break;
@@ -87,75 +86,75 @@ void Manto::saveInstance(std::string path) {
     ofstream myfile;
 
     // Guardando puntos no dominados
-    myfile.open (path + "puntos.txt");
-    for(auto & figure : lFigure3){
-        if(figure->getInstance() == Figure3::POINT_INSTANCE)
+    myfile.open(path + "puntos.txt");
+    for (auto &figure : lFigure3) {
+        if (figure->getInstance() == Figure3::POINT_INSTANCE)
             myfile << figure->toGraphString() << std::endl;
     }
     myfile.close();
 
     // Guardando segmentos no dominados
-    myfile.open (path + "segmentos.txt");
-    for(auto & figure : lFigure3){
-        if(figure->getInstance() == Figure3::SEGMENT_INSTANCE)
+    myfile.open(path + "segmentos.txt");
+    for (auto &figure : lFigure3) {
+        if (figure->getInstance() == Figure3::SEGMENT_INSTANCE)
             myfile << figure->toGraphString() << std::endl;
     }
     myfile.close();
 
     // Guardando segmentos no dominados
-    myfile.open (path + "triangulos.txt");
-    for(auto & figure : lFigure3){
-        if(figure->getInstance() == Figure3::TRIANGLE_INSTANCE)
+    myfile.open(path + "triangulos.txt");
+    for (auto &figure : lFigure3) {
+        if (figure->getInstance() == Figure3::TRIANGLE_INSTANCE)
             myfile << figure->toGraphString() << std::endl;
     }
     myfile.close();
 
     // Guardando proyecciones en el plano xy
     myfile.open(path + "Pxy.txt");
-    for (auto & i : mapFigureXY) {
+    for (auto &i : mapFigureXY) {
         myfile << i.second->toGraphString(Figure3::PROJECTION_XY) << std::endl;
     }
     myfile.close();
 
     // Guardando proyecciones en el plano xz
     myfile.open(path + "Pxz.txt");
-    for (auto & i : mapFigureXZ) {
+    for (auto &i : mapFigureXZ) {
         myfile << i.second->toGraphString(Figure3::PROJECTION_XZ) << std::endl;
     }
     myfile.close();
 
     // Guardando proyecciones en el plano yz
     myfile.open(path + "Pyz.txt");
-    for (auto & i : mapFigureYZ) {
+    for (auto &i : mapFigureYZ) {
         myfile << i.second->toGraphString(Figure3::PROJECTION_YZ) << std::endl;
     }
     myfile.close();
 
     // ---------------------- GUARDANDO FIGURAS DOMINADAS ----------------------
     // Limpiando figuras dominadas
-    std::map<string, Figure3*> mFigureDominatedCleared;
+    std::map<string, Figure3 *> mFigureDominatedCleared;
 
     for (const auto &figure : lFigure3Dominated) {
         mFigureDominatedCleared[figure->toGraphString()] = figure;
     }
 
     myfile.open(path + "puntosD.txt");
-    for (auto & figureD : mFigureDominatedCleared) {
-        if(figureD.second->getInstance() == Figure3::POINT_INSTANCE)
+    for (auto &figureD : mFigureDominatedCleared) {
+        if (figureD.second->getInstance() == Figure3::POINT_INSTANCE)
             myfile << figureD.second->toGraphString() << std::endl;
     }
     myfile.close();
 
     myfile.open(path + "segmentosD.txt");
-    for (auto & figureD : mFigureDominatedCleared) {
-        if(figureD.second->getInstance() == Figure3::SEGMENT_INSTANCE)
+    for (auto &figureD : mFigureDominatedCleared) {
+        if (figureD.second->getInstance() == Figure3::SEGMENT_INSTANCE)
             myfile << figureD.second->toGraphString() << std::endl;
     }
     myfile.close();
 
     myfile.open(path + "triangulosD.txt");
-    for (auto & figureD : mFigureDominatedCleared) {
-        if(figureD.second->getInstance() == Figure3::TRIANGLE_INSTANCE)
+    for (auto &figureD : mFigureDominatedCleared) {
+        if (figureD.second->getInstance() == Figure3::TRIANGLE_INSTANCE)
             myfile << figureD.second->toGraphString() << std::endl;
     }
     myfile.close();
@@ -179,24 +178,24 @@ list<Figure3 *> Manto::processFigure(Figure3 *f) {
     // list<Figure3 *> fInRegion; // Figuras en la region proyectada de f
     // list<Figure3 *> inRegionf; // Figuras en las que f está en un region
     std::unordered_set<Figure3 *> figures = lFigure3; // figuras afectadas y
-                                                      // que afectan a f
+    // que afectan a f
 
     // Procesando figura f y figuras dentro del manto
-    for(auto &figure : figures){
+    for (auto &figure : figures) {
         // Intersectando areas
         nDomFrag = spaceIntersect(nDomFrag, nonDominatedFragments(f, figure));
 
         // Actualizando fragmentos no dominados de figure
         list<Figure3 *> fragments = nonDominatedFragments(figure, f);
         // Si figure se ha fragmentado
-        if(fragments.size() != 1 || (*fragments.begin()) != figure) {
+        if (fragments.size() != 1 || (*fragments.begin()) != figure) {
             fToDel.push_back(figure);
             for (auto &fragment : fragments) {
                 fToAdd.push_back(fragment);
             }
         }
         // Si figure ha sido dominada
-        if(fragments.empty()){
+        if (fragments.empty()) {
             fToDel.push_back(figure);
         }
     }
@@ -215,13 +214,19 @@ list<Figure3 *> Manto::processFigure(Figure3 *f) {
     return nDomFrag;
 }
 
-list<Figure3*> Manto::nonDominatedFragments(Figure3 *figure1, Figure3*figure2){
-    list<Figure3*> fragments; // Fragmentos de figure 1 no dominados
+list<Figure3 *>
+Manto::nonDominatedFragments(Figure3 *figure1, Figure3 *figure2) {
+    list<Figure3 *> fragments; // Fragmentos de figure 1 no dominados
+
+    // Obtiniendo las instancias de las figuras
+    int instFigure1 = figure1->getInstance();
+    int instFigure2 = figure2->getInstance();
 
     // Procesamiento rapido para puntos
-    Point3 *p1 = dynamic_cast<Point3*>(figure1);
-    Point3 *p2 = dynamic_cast<Point3*>(figure2);
-    if(p1 != nullptr && p2 != nullptr) {
+    if (instFigure1 == Figure3::POINT_INSTANCE &&
+        instFigure2 == Figure3::POINT_INSTANCE) {
+        Point3 *p1 = dynamic_cast<Point3 *>(figure1);
+        Point3 *p2 = dynamic_cast<Point3 *>(figure2);
         if (!(p1->getX() >= p2->getX() &&
               p1->getY() >= p2->getY() && p1->getZ() >= p2->getZ())) {
             fragments.push_back(figure1);
@@ -229,7 +234,6 @@ list<Figure3*> Manto::nonDominatedFragments(Figure3 *figure1, Figure3*figure2){
         }
     }
 
-    // OPTIMIZE: saltar esto si se cumple el if anterior
     // Calculando interseccionde proyecciones
     else {
         list<Figure2 *> intXY;
@@ -248,36 +252,36 @@ list<Figure3*> Manto::nonDominatedFragments(Figure3 *figure1, Figure3*figure2){
     return fragments;
 }
 
-list<Figure3*> Manto::spaceIntersect(list<Figure3*> l1, list<Figure3*> l2){
-    list<Figure3*> intersected;
+list<Figure3 *> Manto::spaceIntersect(list<Figure3 *> l1, list<Figure3 *> l2) {
+    list<Figure3 *> intersected;
 
     // En caso de que alguna lista venga vacia, el retorn es vacio
-    if(l1.empty() || l2.empty())
+    if (l1.empty() || l2.empty())
         return intersected;
 
     // En caso de que ambas listas contengan puntos (No se fragmentan)
-    Point3* p1 = dynamic_cast<Point3*>(l1.front());
-    Point3* p2 = dynamic_cast<Point3*>(l2.front());
-    if(p1 != nullptr && p2 != nullptr && p1->equal(p2)){
+    Point3 *p1 = dynamic_cast<Point3 *>(l1.front());
+    Point3 *p2 = dynamic_cast<Point3 *>(l2.front());
+    if (p1 != nullptr && p2 != nullptr && p1->equal(p2)) {
         intersected.push_back(p1);
         return intersected;
     }
 
     // En caso de que ambas listas contengan segmentos
-    Segment3* s1 = dynamic_cast<Segment3*>(l1.front());
-    Segment3* s2 = dynamic_cast<Segment3*>(l2.front());
-    Segment3* overlap;
-    if(s1 != nullptr && s2 != nullptr){
+    Segment3 *s1 = dynamic_cast<Segment3 *>(l1.front());
+    Segment3 *s2 = dynamic_cast<Segment3 *>(l2.front());
+    Segment3 *overlap;
+    if (s1 != nullptr && s2 != nullptr) {
 
         // Intersectando los segmentos
         for (auto &f1 : l1) {
-            s1 = dynamic_cast<Segment3*>(f1);
+            s1 = dynamic_cast<Segment3 *>(f1);
             for (auto &f2 : l2) {
-                s2 = dynamic_cast<Segment3*>(f2);
+                s2 = dynamic_cast<Segment3 *>(f2);
                 overlap = s1->overlap(s2);
 
                 // En caso de que haya interseccion
-                if(overlap != nullptr)
+                if (overlap != nullptr)
                     intersected.push_front(overlap);
             }
         }
@@ -291,34 +295,39 @@ list<Figure3*> Manto::spaceIntersect(list<Figure3*> l1, list<Figure3*> l2){
     return intersected;
 }
 
+
 void Manto::nonDominatedFragmentsProj(Figure3 *f1,
-        Figure3 *f2, list<Figure2 *> &fragments, int PROJECTION_PLANE) {
+                                      Figure3 *f2, list<Figure2 *> &fragments,
+                                      int PROJECTION_PLANE) {
+    // Obteniendo las instancias de las figuras
+    int instF1 = f1->getInstance();
+    int instF2 = f2->getInstance();
+
     // Programando nonDominatedFragmentsProj para segmentos
-    Segment3* s1 = dynamic_cast<Segment3*>(f1);
-    if(s1 != nullptr){
-        Segment2* s1p = s1->getProjection(PROJECTION_PLANE);
-        Point3* p2 = dynamic_cast<Point3*>(f2);
-        if(p2 != nullptr){ // Figura 2 es un punto
+    Segment3 *s1 = dynamic_cast<Segment3 *>(f1);
+    if (s1 != nullptr) {
+        Segment2 *s1p = s1->getProjection(PROJECTION_PLANE);
+        Point3 *p2 = dynamic_cast<Point3 *>(f2);
+        if (p2 != nullptr) { // Figura 2 es un punto
             s1p->fragmentedBy(p2->getProjection(PROJECTION_PLANE), fragments);
-        }
-        else{
-            Segment3* s2 = dynamic_cast<Segment3*>(f2);
-            if(s2 != nullptr){ // Figura 2 es un segmento
+        } else {
+            Segment3 *s2 = dynamic_cast<Segment3 *>(f2);
+            if (s2 != nullptr) { // Figura 2 es un segmento
                 s1p->fragmentedBy(s2->getProjection(PROJECTION_PLANE),
-                        fragments);
+                                  fragments);
             }
         }
     }
 
     // nonDoinatedFragmentsPorj para puntos
-    Point3* p = dynamic_cast<Point3*>(f1);
-    if(p != nullptr){
-        Segment3* s = dynamic_cast<Segment3*>(f2);
-        Point2* pp = p->getProjection(PROJECTION_PLANE);
-        if(s != nullptr){
-            Segment2* sp = s->getProjection(PROJECTION_PLANE);
+    Point3 *p = dynamic_cast<Point3 *>(f1);
+    if (p != nullptr) {
+        Segment3 *s = dynamic_cast<Segment3 *>(f2);
+        Point2 *pp = p->getProjection(PROJECTION_PLANE);
+        if (s != nullptr) {
+            Segment2 *sp = s->getProjection(PROJECTION_PLANE);
             bool puntoDominadoPorElSegmento = sp->domina(*pp);
-            if(!puntoDominadoPorElSegmento)
+            if (!puntoDominadoPorElSegmento)
                 fragments.push_back(pp);
         }
 
@@ -330,35 +339,35 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
 
 }
 
-list<Figure3 *> Manto::spaceUnion(Figure3* figure, list<Figure2 *> lXY,
-        list<Figure2 *> lXZ, list<Figure2 *> lYZ) {
+list<Figure3 *> Manto::spaceUnion(Figure3 *figure, list<Figure2 *> lXY,
+                                  list<Figure2 *> lXZ, list<Figure2 *> lYZ) {
     list<Figure3 *> lFigures3; // Lista de figuras generadas por la union
 
     // Si las listas no contienen elementos, retorna la lista sin elementos
-    if(lXY.empty() && lXZ.empty() && lYZ.empty())
+    if (lXY.empty() && lXZ.empty() && lYZ.empty())
         return lFigures3;
 
-    Point3* point3 = dynamic_cast<Point3*>(figure);
-    if(point3 != nullptr){
-        if(!lXY.empty() || !lXZ.empty() || !lYZ.empty())
+    Point3 *point3 = dynamic_cast<Point3 *>(figure);
+    if (point3 != nullptr) {
+        if (!lXY.empty() || !lXZ.empty() || !lYZ.empty())
             lFigures3.push_back(figure);
         return lFigures3;
     }
 
     // Haciendo cast de la figura
-    Segment3* segment3 = dynamic_cast<Segment3*>(figure);
+    Segment3 *segment3 = dynamic_cast<Segment3 *>(figure);
 
     // Union de segmentos
-    if(segment3 != nullptr){
+    if (segment3 != nullptr) {
         float lInf;
         float lSup;
         float d1, d2;
         RangeContainer rangeContainer;
 
         // Agregando rangos de proyecciones en XY
-        Segment2* projection = segment3->getProjection(Figure3::PROJECTION_XY);
+        Segment2 *projection = segment3->getProjection(Figure3::PROJECTION_XY);
         for (auto &figure2 : lXY) {
-            Segment2* segment2 = dynamic_cast<Segment2*>(figure2);
+            Segment2 *segment2 = dynamic_cast<Segment2 *>(figure2);
             d1 = projection->getDelta(segment2->getP1());
             d2 = projection->getDelta(segment2->getP2());
             lInf = min(d1, d2);
@@ -370,7 +379,7 @@ list<Figure3 *> Manto::spaceUnion(Figure3* figure, list<Figure2 *> lXY,
         // Agregando rangos de proyecciones en XZ
         projection = segment3->getProjection(Figure3::PROJECTION_XZ);
         for (auto &figure2 : lXZ) {
-            Segment2* segment2 = dynamic_cast<Segment2*>(figure2);
+            Segment2 *segment2 = dynamic_cast<Segment2 *>(figure2);
             d1 = projection->getDelta(segment2->getP1());
             d2 = projection->getDelta(segment2->getP2());
             lInf = min(d1, d2);
@@ -382,7 +391,7 @@ list<Figure3 *> Manto::spaceUnion(Figure3* figure, list<Figure2 *> lXY,
         // Agregando rangos de proyecciones en YZ
         projection = segment3->getProjection(Figure3::PROJECTION_YZ);
         for (auto &figure2 : lYZ) {
-            Segment2* segment2 = dynamic_cast<Segment2*>(figure2);
+            Segment2 *segment2 = dynamic_cast<Segment2 *>(figure2);
             d1 = projection->getDelta(segment2->getP1());
             d2 = projection->getDelta(segment2->getP2());
             lInf = min(d1, d2);
@@ -406,8 +415,8 @@ void Manto::validateInstance() {
     for (auto &figure1 : lFigure3) {
         numFigurasValidadas++;
         for (auto &figure2 : lFigure3) {
-            if(figure1 == figure2) continue;
-            if(figure1->isDominated(figure2)){
+            if (figure1 == figure2) continue;
+            if (figure1->isDominated(figure2)) {
                 numFigurasConError++;
                 std::cout << "Error con figura (Dominada) " << figure1
                           << std::endl;

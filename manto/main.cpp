@@ -105,19 +105,39 @@ void testTriangulos(){
     Manto manto;
 
     Vector3 p1 = {1,1,1};
-    Vector3 p2 = {5,1,1};
-    Vector3 p3 = {5,1,5};
+    Vector3 p2 = {5,5,1};
+    Vector3 p3 = {5,1,3};
 
     Triangle3* triangle3 = new Triangle3(p1, p2, p3);
 
-    manto.addFigure(triangle3);
+    Vector3 punto = {3,3,1};
 
+    std::cout << "Agregando figuras" << std::endl;
+    manto.addFigure(triangle3);
+    manto.addFigure(new Point3(punto));
+
+    std::cout << "Guardando instancias" << std::endl;
     manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    std::cout << "Listo" << std::endl;
+
+    /*Vector2 v1 = {1,1};
+    Vector2 v2 = {1,3};
+    Vector2 v3 = {5,1};
+
+    Triangle2 triangle2 = {v1, v2, v3};
+
+    Triangle2** triangles = triangle2.split({2, 1}, {3,3});
+    if(triangles != nullptr) {
+        std::cout << triangles[0]->toString() << std::endl;
+        std::cout << triangles[1]->toString() << std::endl;
+        std::cout << triangles[2]->toString() << std::endl;
+    }*/
 }
 
 int main() {
     // ---------------------- EL TO.DO PARA EL NUEVO DIA ----------------------
-    //
+    // done: Implementar SPLIT POLYGON en los triangulos
+    // TODO: Implementar dominacion de triangulos dominados
 
     // testInfinito();
     // testSegmentos();

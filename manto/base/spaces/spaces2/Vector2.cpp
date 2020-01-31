@@ -16,3 +16,8 @@ float Vector2::getAbscissa() const {
 float Vector2::getOrdinate() const {
     return this->ordinate;
 }
+
+Vector2::Vector2() {
+    this->abscissa = 0;
+    this->ordinate = 0;
+}
