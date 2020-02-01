@@ -16,7 +16,7 @@ void testInfinito() {
 
     std::cout << "Iniciando " << std::endl;
 
-    float precision = 50; // Genera mas puntos
+    float precision = 100; // Genera mas puntos
     // Test de puntos semi-aleatorio aleatorio
     for (float i = 1; i < 15; i += 1 / precision) {
         Tester::agregarPunto(manto, i);
@@ -139,9 +139,9 @@ int main() {
     // done: Implementar SPLIT POLYGON en los triangulos
     // TODO: Implementar dominacion de triangulos dominados
 
-    // testInfinito();
+    testInfinito();
     // testSegmentos();
-    testTriangulos();
+    // testTriangulos();
 
     return 0;
 }

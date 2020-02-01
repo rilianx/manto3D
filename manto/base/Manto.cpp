@@ -304,27 +304,28 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
     int instF2 = f2->getInstance();
 
     // Programando nonDominatedFragmentsProj para segmentos
-    Segment3 *s1 = dynamic_cast<Segment3 *>(f1);
-    if (s1 != nullptr) {
-        Segment2 *s1p = s1->getProjection(PROJECTION_PLANE);
-        Point3 *p2 = dynamic_cast<Point3 *>(f2);
-        if (p2 != nullptr) { // Figura 2 es un punto
-            s1p->fragmentedBy(p2->getProjection(PROJECTION_PLANE), fragments);
+    if (instF1 == Figure3::SEGMENT_INSTANCE) {
+        Segment3 *s = dynamic_cast<Segment3*>(f1);
+        Segment2 *sp = s->getProjection(PROJECTION_PLANE);
+        if (instF2 == Figure3::POINT_INSTANCE) { // Figura 2 es un punto
+            Point3 *p = dynamic_cast<Point3 *>(f2);
+            Point2 *pp = p->getProjection(PROJECTION_PLANE);
+            sp->fragmentedBy(pp, fragments);
         } else {
             Segment3 *s2 = dynamic_cast<Segment3 *>(f2);
             if (s2 != nullptr) { // Figura 2 es un segmento
-                s1p->fragmentedBy(s2->getProjection(PROJECTION_PLANE),
-                                  fragments);
+                sp->fragmentedBy(s2->getProjection(PROJECTION_PLANE),
+                                 fragments);
             }
         }
     }
 
     // nonDoinatedFragmentsPorj para puntos
-    Point3 *p = dynamic_cast<Point3 *>(f1);
-    if (p != nullptr) {
-        Segment3 *s = dynamic_cast<Segment3 *>(f2);
+    if (instF1 == Figure3::POINT_INSTANCE) {
+        Point3 *p = dynamic_cast<Point3 *>(f1);
         Point2 *pp = p->getProjection(PROJECTION_PLANE);
-        if (s != nullptr) {
+        if (instF2 == Figure3::SEGMENT_INSTANCE) {
+            Segment3 *s = dynamic_cast<Segment3 *>(f2);
             Segment2 *sp = s->getProjection(PROJECTION_PLANE);
             bool puntoDominadoPorElSegmento = sp->domina(*pp);
             if (!puntoDominadoPorElSegmento)
