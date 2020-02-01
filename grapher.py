@@ -135,6 +135,22 @@ tracel = go.Scatter3d(
 data.append(tracel)
 nPuntos += len(x)
 
+# Cargando triangulos dominados
+lista = readFileTriangles("Instance/triangulosD.txt")
+for x,y,z in lista:
+	tracel = go.Mesh3d(x=x,
+					   y=y,
+					   z=z,
+
+					   # Forzando triangulacion ordenada
+					   i=[0],
+					   j=[1],
+					   k=[2],
+					   opacity=1,
+					   color='gray')
+data.append(tracel)
+
+# Cargando triangulos no dominados
 lista = readFileTriangles("Instance/triangulos.txt")
 for x,y,z in lista:
 	tracel = go.Mesh3d(x=x,

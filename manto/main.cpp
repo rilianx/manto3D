@@ -104,17 +104,17 @@ void testSegmentos() {
 void testTriangulos(){
     Manto manto;
 
-    Vector3 p1 = {1,1,1};
-    Vector3 p2 = {5,5,1};
-    Vector3 p3 = {5,1,3};
+    Vector3 p1 = {1,1,2};
+    Vector3 p2 = {5,5,2};
+    Vector3 p3 = {5,1,4};
 
     Triangle3* triangle3 = new Triangle3(p1, p2, p3);
 
-    Vector3 punto = {3,3,1};
+    Vector3 punto = {3,2,1};
 
     std::cout << "Agregando figuras" << std::endl;
-    manto.addFigure(triangle3);
     manto.addFigure(new Point3(punto));
+    manto.addFigure(triangle3);
 
     std::cout << "Guardando instancias" << std::endl;
     manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
@@ -139,9 +139,9 @@ int main() {
     // done: Implementar SPLIT POLYGON en los triangulos
     // TODO: Implementar dominacion de triangulos dominados
 
-    testInfinito();
+    // testInfinito();
     // testSegmentos();
-    // testTriangulos();
+    testTriangulos();
 
     return 0;
 }

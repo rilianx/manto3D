@@ -8,10 +8,14 @@
 #include <list>
 #include <map>
 #include <unordered_set>
-#include "figures/figures3/Figure3.h"
 #include "figures/figures2/Figure2.h"
 #include "figures/figures2/Point2.h"
+#include "figures/figures2/Triangle2.h"
+#include "figures/figures3/Figure3.h"
 #include "figures/figures3/Point3.h"
+#include <figures/figures3/Segment3.h>
+#include "figures/figures3/Triangle3.h"
+
 
 using namespace std;
 

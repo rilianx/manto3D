@@ -5,7 +5,6 @@
 #include <iostream>
 #include <fstream>
 #include <unordered_map>
-#include <figures/figures3/Segment3.h>
 #include <util/RangeContainer.h>
 #include "Manto.h"
 #include "Tester.h"
@@ -259,20 +258,26 @@ list<Figure3 *> Manto::spaceIntersect(list<Figure3 *> l1, list<Figure3 *> l2) {
     if (l1.empty() || l2.empty())
         return intersected;
 
+    Figure3 *fl1 = l1.front();  // Primer elemento de la lista 1
+    Figure3 *fl2 = l2.front();  // Primer elemento de la lista 2
+
     // En caso de que ambas listas contengan puntos (No se fragmentan)
-    Point3 *p1 = dynamic_cast<Point3 *>(l1.front());
-    Point3 *p2 = dynamic_cast<Point3 *>(l2.front());
-    if (p1 != nullptr && p2 != nullptr && p1->equal(p2)) {
-        intersected.push_back(p1);
-        return intersected;
+    if(fl1->getInstance() == Figure3::POINT_INSTANCE && fl2->getInstance() ==
+       Figure3::POINT_INSTANCE) {
+        Point3 *p1 = dynamic_cast<Point3 *>(l1.front());
+        Point3 *p2 = dynamic_cast<Point3 *>(l2.front());
+        if (p1->equal(p2)) {
+            intersected.push_back(p1);
+            return intersected;
+        }
     }
 
     // En caso de que ambas listas contengan segmentos
-    Segment3 *s1 = dynamic_cast<Segment3 *>(l1.front());
-    Segment3 *s2 = dynamic_cast<Segment3 *>(l2.front());
-    Segment3 *overlap;
-    if (s1 != nullptr && s2 != nullptr) {
-
+    if (fl1->getInstance() == Figure3::SEGMENT_INSTANCE && fl2->getInstance() ==
+         Figure3::SEGMENT_INSTANCE) {
+        Segment3 *s1;
+        Segment3 *s2;
+        Segment3 *overlap;
         // Intersectando los segmentos
         for (auto &f1 : l1) {
             s1 = dynamic_cast<Segment3 *>(f1);
@@ -289,8 +294,11 @@ list<Figure3 *> Manto::spaceIntersect(list<Figure3 *> l1, list<Figure3 *> l2) {
         return intersected;
     }
 
-    // TODO:
-    //    - Intersectar espacios de triangulos
+    if (fl1->getInstance() == Figure3::TRIANGLE_INSTANCE && fl2->getInstance() ==
+        Figure3::TRIANGLE_INSTANCE){
+        // TODO: programar la interseccion de triangulos
+        intersected.push_front(fl1);
+    }
 
     return intersected;
 }
@@ -303,7 +311,7 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
     int instF1 = f1->getInstance();
     int instF2 = f2->getInstance();
 
-    // Programando nonDominatedFragmentsProj para segmentos
+    // Casoss de fragmentacion para segmentos
     if (instF1 == Figure3::SEGMENT_INSTANCE) {
         Segment3 *s = dynamic_cast<Segment3*>(f1);
         Segment2 *sp = s->getProjection(PROJECTION_PLANE);
@@ -320,7 +328,7 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
         }
     }
 
-    // nonDoinatedFragmentsPorj para puntos
+    // Casos de dominacion de puntos
     if (instF1 == Figure3::POINT_INSTANCE) {
         Point3 *p = dynamic_cast<Point3 *>(f1);
         Point2 *pp = p->getProjection(PROJECTION_PLANE);
@@ -331,12 +339,33 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
             if (!puntoDominadoPorElSegmento)
                 fragments.push_back(pp);
         }
+        if (instF2 == Figure3::TRIANGLE_INSTANCE){
+            // TODO: caso puntos triangulo
+            fragments.push_front(pp);
+        }
 
     }
 
+    // Casos de fragmentacion de triangulos
+    if (instF1 == Figure3::TRIANGLE_INSTANCE){
+        Triangle3 *t = dynamic_cast<Triangle3 *>(f1);
+        Triangle2 *tp = t->getProjection(PROJECTION_PLANE);
 
-    // TODO:
-    //    - Programar fragmentos dominados para triangulos
+        if(instF2 == Figure3::POINT_INSTANCE){
+            // TODO: caso triangulo puntos
+            fragments.push_front(tp);
+        }
+
+        if(instF2 == Figure3::SEGMENT_INSTANCE) {
+            // TODO: caso triangulo segmento
+            fragments.push_front(tp);
+        }
+
+        if(instF2 == Figure3::TRIANGLE_INSTANCE) {
+            // TODO: caso triangulo triangulo
+            fragments.push_front(tp);
+        }
+    }
 
 }
 
@@ -404,8 +433,12 @@ list<Figure3 *> Manto::spaceUnion(Figure3 *figure, list<Figure2 *> lXY,
         rangeContainer.toSegments(lFigures3, *segment3);
     }
 
-    // TODO:
-    //    - Programar union en caso de que sean triangulos
+    // Union para fragmentos de triangulos
+    if(figure->getInstance() == Figure3::TRIANGLE_INSTANCE){
+        // TODO: programar la union para fragmentos de triangulos
+        lFigures3.push_front(figure);
+    }
+
     return lFigures3;
 }
 
