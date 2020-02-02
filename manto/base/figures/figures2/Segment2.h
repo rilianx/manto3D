@@ -10,6 +10,7 @@
 #include <list>
 #include "Figure2.h"
 #include "Point2.h"
+#include "Triangle2.h"
 
 class Segment2 : public Figure2 {
 
@@ -41,21 +42,31 @@ public:
     const Vector2 &getP2() const;
 
     /**
-     * Rellena la lista fragments con fragmentos, los cuales son producto de
-     * una fragmentacion generada por el punto ingrasado como parametro.
+     * Rellena la lista fragments con fragmentos no dominados, los cuales son
+     * producto de una fragmentacion generada por el punto ingrasado como
+     * parametro.
      * @param p             - Punto que fragmenta al segmento
      * @param fragments     - Lista de fragmentos que se va a llenar.
      */
     void fragmentedBy(Point2* p, std::list<Figure2*> &fragments);
 
     /**
-     * Rellena la lista fragments con fragmentos, los cuales son producto de
-     * una fragmentacion generada por el segmento ingrasado como parametro.
+     * Rellena la lista fragments con fragmentos no dominados, los cuales son
+     * producto de una fragmentacion generada por el segmento ingrasado como
+     * parametro.
      * @param s             - Segmento que fragmenta al segmento
      * @param fragments     - Lista de fragmentos que se va a llenar.
      */
     void fragmentedBy(Segment2* s, std::list<Figure2*> &fragments);
 
+    /**
+      * Rellena la lista fragments con fragmentos no dominados, los cuales son
+     * producto de una fragmentacion generada por el triangulo ingrasado como
+     * parametro.
+     * @param t             - Triangulo que fragmenta al segmento
+     * @param fragments     - Lista de fragmentos que se va a llenar.
+     */
+    void fragmentedBy(Triangle2* t, std::list<Figure2*> &fragments);
 
     /**
      * Calcula el parametro delta que debería tener el vector p1-p2 para llegar

@@ -38,7 +38,6 @@ void testInfinito() {
     manto.addFigure(segment2);
 
 
-
     std::cout << "\nFinalizado " << std::endl;
 
     gettimeofday(&tp, NULL);
@@ -76,7 +75,7 @@ void testRangos() {
 void testSegmentos() {
     Manto manto;
 
-    Point3* p = new Point3(1.00021, 3.02931, 3.94138);
+    Point3 *p = new Point3(1.00021, 3.02931, 3.94138);
 
     Vector3 p5 = {1.1, 3.2, 4.2};
     Vector3 p6 = {5, 0.2, 0.2};
@@ -86,52 +85,40 @@ void testSegmentos() {
     manto.addFigure(p);
     manto.addFigure(segment);
 
-    /*Vector3 p1 = {1, 3, 3};
-    Vector3 p2 = {3, 1, 1}; // Probar con 3,1,3
-    Segment3 *segment1 = new Segment3(p1, p2);
-    manto.addFigure(segment1);
-
-    Vector3 p3 = {1.3, 1.7, 2};
-    Vector3 p4 = {1.7, 1.3, 2};
-    Segment3 *segment2 = new Segment3(p3, p4);
-    manto.addFigure(segment2);*/
-
     manto.printAllFigures3();
 
     manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
 }
 
-void testTriangulos(){
+void testTriangulos() {
     Manto manto;
 
-    Vector3 p1 = {1,1,2};
-    Vector3 p2 = {5,5,2};
-    Vector3 p3 = {5,1,4};
+    Vector3 p1 = {1, 1, 2};
+    Vector3 p2 = {5, 5, 2};
+    Vector3 p3 = {5, 1, 4};
 
-    Triangle3* triangle3 = new Triangle3(p1, p2, p3);
+    Triangle3 *triangle3 = new Triangle3(p1, p2, p3);
 
-    Vector3 punto = {3,2,1};
+    Vector3 punto = {3, 2, 1};
 
     std::cout << "Agregando figuras" << std::endl;
-    manto.addFigure(new Point3(punto));
     manto.addFigure(triangle3);
+    manto.addFigure(new Point3(punto));
 
     std::cout << "Guardando instancias" << std::endl;
     manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
     std::cout << "Listo" << std::endl;
 
-    /*Vector2 v1 = {1,1};
-    Vector2 v2 = {1,3};
-    Vector2 v3 = {5,1};
+}
 
-    Triangle2 triangle2 = {v1, v2, v3};
-
-    Triangle2** triangles = triangle2.split({2, 1}, {3,3});
-    if(triangles != nullptr) {
-        std::cout << triangles[0]->toString() << std::endl;
-        std::cout << triangles[1]->toString() << std::endl;
-        std::cout << triangles[2]->toString() << std::endl;
-    }*/
+void testSimpleTriangulos(){
+    Triangle2 triangle2 = {{1,1},{4,1},{1,4}};
+    Point2* point2 = new Point2(2,2);
+    std::list<Figure2*> fragments;
+    triangle2.fragmentedBy(point2, fragments);
+    for (auto &fragment : fragments) {
+        std::cout << fragment->toString() << std::endl;
+    }
 }
 
 int main() {
@@ -142,6 +129,8 @@ int main() {
     // testInfinito();
     // testSegmentos();
     testTriangulos();
+
+    // testSimpleTriangulos();
 
     return 0;
 }

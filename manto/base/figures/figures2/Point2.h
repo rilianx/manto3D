@@ -8,6 +8,7 @@
 
 #include "../../spaces/spaces2/Vector2.h"
 #include "Figure2.h"
+#include "Triangle2.h"
 
 class Point2 : public Figure2{
 
@@ -23,6 +24,9 @@ public:
     float getOrdinate() const;
 
     const Vector2 &getPosition() const;
+
+    bool domina(Point2 point);
+    bool domina(Triangle2 triangle);
 
     /**
      * Genera la llave que se utiliza para identifica este punto en el mapa

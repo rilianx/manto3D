@@ -57,6 +57,16 @@ const Vector2 &Point2::getPosition() const {
     return position;
 }
 
+bool Point2::domina(Triangle2 triangle) {
+    return this->domina(triangle.getP1()) && this->domina(triangle.getP2())
+            && this->domina(triangle.getP3());
+}
+
+bool Point2::domina(Point2 point) {
+    return this->getAbscissa() <= point.getAbscissa() &&
+        this->getOrdinate() <= point.getOrdinate();
+}
+
 Point2::Point2() = default;
 
 

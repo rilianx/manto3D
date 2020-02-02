@@ -434,3 +434,7 @@ bool Segment2::domina(Point2 p) {
     Vector2* pA = getP(delta);
     return pA->getOrdinate() < p.getOrdinate();
 }
+
+void Segment2::fragmentedBy(Triangle2 *t, std::list<Figure2 *> &fragments) {
+    // Todo: framgnetacion de segmentos por triangulos
+}

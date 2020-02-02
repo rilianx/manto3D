@@ -353,7 +353,9 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
 
         if(instF2 == Figure3::POINT_INSTANCE){
             // TODO: caso triangulo puntos
-            fragments.push_front(tp);
+            Point3 *p = dynamic_cast<Point3 *>(f2);
+            Point2 *pp = p->getProjection(PROJECTION_PLANE);
+            tp->fragmentedBy(pp, fragments);
         }
 
         if(instF2 == Figure3::SEGMENT_INSTANCE) {
