@@ -33,3 +33,28 @@ float Vector3::getZ() const {
 }
 
 Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
+
+Vector3::Vector3() {
+    this->x = 0;
+    this->y = 0;
+    this->z = 0;
+}
+
+Vector3::~Vector3() {
+}
+
+void Vector3::setX(float x) {
+    Vector3::x = x;
+}
+
+void Vector3::setY(float y) {
+    Vector3::y = y;
+}
+
+void Vector3::setZ(float z) {
+    Vector3::z = z;
+}
+
+void Vector3::print() {
+    std::cout << "(" << x << ", " << y << ", " << z << ")" << std::endl;
+}

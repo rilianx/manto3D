@@ -9,7 +9,6 @@
 #include "Manto.h"
 #include "Tester.h"
 
-
 Manto::~Manto() {
     if (Tester::DEBUG_DELET)
         std::cout << "Eliminado el manto" << std::endl;
@@ -108,6 +107,14 @@ void Manto::saveInstance(std::string path) {
     }
     myfile.close();
 
+    // Guardando segmentos no dominados
+    myfile.open(path + "poligonos.txt");
+    for (auto &figure : lFigure3) {
+        if (figure->getInstance() == Figure3::POLYGON_INSTANCE)
+            myfile << figure->toGraphString() << std::endl;
+    }
+    myfile.close();
+
     // Guardando proyecciones en el plano xy
     myfile.open(path + "Pxy.txt");
     for (auto &i : mapFigureXY) {
@@ -154,6 +161,13 @@ void Manto::saveInstance(std::string path) {
     myfile.open(path + "triangulosD.txt");
     for (auto &figureD : mFigureDominatedCleared) {
         if (figureD.second->getInstance() == Figure3::TRIANGLE_INSTANCE)
+            myfile << figureD.second->toGraphString() << std::endl;
+    }
+    myfile.close();
+
+    myfile.open(path + "poligonosD.txt");
+    for (auto &figureD : mFigureDominatedCleared) {
+        if (figureD.second->getInstance() == Figure3::POLYGON_INSTANCE)
             myfile << figureD.second->toGraphString() << std::endl;
     }
     myfile.close();
@@ -369,6 +383,31 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
         }
     }
 
+    // Casos de fragmentacion de poligonos
+    if(instF1 == Figure3::POLYGON_INSTANCE){
+        Polygon3 *pol = dynamic_cast<Polygon3 *>(f1);
+        Polygon2 *ppol = pol->getProjection(PROJECTION_PLANE);
+
+        if(instF2 == Figure3::POINT_INSTANCE) {
+            // TODO: caso poligono puntos
+            Point3 *p = dynamic_cast<Point3 *>(f2);
+            Point2 *pp = p->getProjection(PROJECTION_PLANE);
+            ppol->fragmentedBy(pp, fragments);
+        }
+        if(instF2 == Figure3::SEGMENT_INSTANCE) {
+            // TODO: caso poligono segmentos
+            fragments.push_front(ppol);
+        }
+        if(instF2 == Figure3::TRIANGLE_INSTANCE) {
+            // TODO: caso poligono triangulo
+            fragments.push_front(ppol);
+        }
+        if(instF2 == Figure3::POLYGON_INSTANCE) {
+            // TODO: caso poligono poligono
+            fragments.push_front(ppol);
+        }
+    }
+
 }
 
 list<Figure3 *> Manto::spaceUnion(Figure3 *figure, list<Figure2 *> lXY,
@@ -433,12 +472,17 @@ list<Figure3 *> Manto::spaceUnion(Figure3 *figure, list<Figure2 *> lXY,
         }
 
         rangeContainer.toSegments(lFigures3, *segment3);
+        return lFigures3;
     }
 
     // Union para fragmentos de triangulos
     if(figure->getInstance() == Figure3::TRIANGLE_INSTANCE){
         // TODO: programar la union para fragmentos de triangulos
         lFigures3.push_front(figure);
+        
+
+
+        return lFigures3;
     }
 
     return lFigures3;

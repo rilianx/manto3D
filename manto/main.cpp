@@ -1,11 +1,67 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include <iostream>
 #include "base/Manto.h"
-#include "base/figures/figures3/Point3.h"
 #include "base/Tester.h"
+#include "base/figures/figures3/Point3.h"
+#include "base/figures/figures3/Triangle3.h"
+#include "base/figures/figures3/Polygon3.h"
+#include "base/figures/figures2/Polygon2.h"
 #include <sys/time.h>
 #include <util/RangeContainer.h>
 #include <set>
-#include <figures/figures3/Triangle3.h>
+#include <iomanip>
+#include "util/clipper/clipper.hpp"
+
+using namespace std;
+using namespace ClipperLib;
+
+
+void testPoligonos(){
+    Paths subject;  // Poligonos primarios
+    Paths clip;     // Poligonos secundarios de comparacion
+    Paths solution; // Poligonos solucion
+    Clipper clpr;
+
+    float scale = 100;
+
+    // Creando subject
+    subject.resize(1);
+    subject[0].resize(3);
+    subject[0][0].X = 1.0 * scale;
+    subject[0][0].Y = 1.0 * scale;
+    subject[0][1].X = 1.0 * scale;
+    subject[0][1].Y = 3.0 * scale;
+    subject[0][2].X = 4.0 * scale;
+    subject[0][2].Y = 1.0 * scale;
+
+    // Creando clip
+    clip.resize(1);
+    clip[0].resize(3);
+    clip[0][0].X = 2.0 * scale;
+    clip[0][0].Y = 0.0 * scale;
+    clip[0][1].X = 2.0 * scale;
+    clip[0][1].Y = 5.0 * scale;
+    clip[0][2].X = 5.0 * scale;
+    clip[0][2].Y = 5.0 * scale;
+
+    clpr.Clear();
+    clpr.AddPaths(subject, ptSubject, true);
+    clpr.AddPaths(clip, ptClip, true);
+    clpr.Execute(ctDifference, solution, pftEvenOdd, pftEvenOdd);
+
+    int countr = 0;
+    for (auto &poly : solution) {
+        std::cout << "Poligono " << countr++ << std::endl;
+        for (auto &vector2 : poly) {
+            std::cout << vector2.X << ", " << vector2.Y << std::endl;
+        }
+    }
+
+}
+
 
 void testInfinito() {
     Manto manto;
@@ -121,6 +177,79 @@ void testSimpleTriangulos(){
     }
 }
 
+void testClipper(){
+    int v1[6] = {1,1,1,3,4,1};
+    Polygon2 p1 = Polygon2(v1,3);
+
+    int v2[6] = {2,0,2,5,5,5};
+    Polygon2 p2 = Polygon2(v2,3);
+
+    auto solution = p1.difference(p2);
+
+    int countr = 0;
+    for (auto &polygon : solution) {
+        std::cout << polygon->toString() << std::endl;
+    }
+}
+
+void testPoligonosEnManto(){
+    // Creando manto
+    Manto manto;
+
+    // Creando vectores
+    Vector3 p1 = {1, 1, 2};
+    Vector3 p2 = {5, 5, 2};
+    Vector3 p3 = {5, 1, 4};
+    Vector3 vectors[3] = {p1, p2, p3};
+
+    // Creando poligono
+    Polygon3* polygon3 = new Polygon3(vectors, 3);
+
+    // Creando punto
+    Vector3 punto = {3, 2, 1};
+
+    // Agregando figuras
+    std::cout << "Agregando figuras al manto" << std::endl;
+    manto.addFigure(polygon3);
+    manto.addFigure(new Point3(punto));
+    std::cout << "Figuras agregadas" << std::endl;
+
+    // Guardando instancias
+    std::cout << "Guardando instancias" << std::endl;
+    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    std::cout << "Listo" << std::endl;
+}
+
+void testProyecciones(){
+    // Creando vectores
+    Vector3 p1 = {1, 1, 2};
+    Vector3 p2 = {5, 5, 2};
+    Vector3 p3 = {5, 1, 4};
+    Vector3 vectors[3] = {p1, p2, p3};
+
+    // Creando poligono
+    Polygon3* polygon3 = new Polygon3(vectors, 3);
+    std::cout << "Poligono: " << polygon3->toString() << std::endl;
+
+    // Proyecciones XY
+    Polygon2* projXY = polygon3->getProjection(Figure3::PROJECTION_XY);
+    std::cout << "Proyeccion XY: " << projXY->toString() << std::endl;
+    Polygon3* polGenXY = projXY->toPolygon3(polygon3, Figure3::PROJECTION_XY);
+    std::cout << "Poligono generado: " << polGenXY->toString() << std::endl;
+
+    // Proyecciones XZ
+    Polygon2* projXZ = polygon3->getProjection(Figure3::PROJECTION_XZ);
+    std::cout << "Proyeccion XZ: " << projXZ->toString() << std::endl;
+    Polygon3* polGenXZ = projXZ->toPolygon3(polygon3, Figure3::PROJECTION_XZ);
+    std::cout << "Poligono generado: " << polGenXZ->toString() << std::endl;
+
+    // Proyecciones YZ
+    Polygon2* projYZ = polygon3->getProjection(Figure3::PROJECTION_YZ);
+    std::cout << "Proyeccion YZ: " << projYZ->toString() << std::endl;
+    Polygon3* polGenYZ = projYZ->toPolygon3(polygon3, Figure3::PROJECTION_YZ);
+    std::cout << "Poligono generado: " << polGenYZ->toString() << std::endl;
+}
+
 int main() {
     // ---------------------- EL TO.DO PARA EL NUEVO DIA ----------------------
     // done: Implementar SPLIT POLYGON en los triangulos
@@ -128,7 +257,10 @@ int main() {
 
     // testInfinito();
     // testSegmentos();
-    testTriangulos();
+    // testTriangulos();
+
+    testPoligonosEnManto();
+    //testProyecciones();
 
     // testSimpleTriangulos();
 

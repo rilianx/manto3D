@@ -16,7 +16,9 @@ class Vector3 {
 
 public:
 
+    Vector3();
     Vector3(float x, float y, float z);
+    ~Vector3();
 
     /**
      * Obtiene las coordenadas de la proyeccion dependiendo de la constante
@@ -34,6 +36,12 @@ public:
     float getX() const;
     float getY() const;
     float getZ() const;
+
+    void setX(float x);
+    void setY(float y);
+    void setZ(float z);
+
+    void print();
 };
 
 

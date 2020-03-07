@@ -12,6 +12,7 @@ include_directories(base/figures/figures2)
 include_directories(base/figures/figures3)
 include_directories(base/spaces/spaces2)
 include_directories(base/spaces/spaces3)
+include_directories(base/util/clipper)
 
 add_executable(manto
         base/figures/figures2/Figure2.cpp
@@ -30,4 +31,4 @@ add_executable(manto
         base/Manto.h
         base/Tester.cpp
         base/Tester.h
-        main.cpp base/figures/figures3/Segment3.cpp base/figures/figures3/Segment3.h base/figures/figures2/Segment2.cpp base/figures/figures2/Segment2.h base/util/Range.cpp base/util/Range.h base/util/RangeContainer.cpp base/util/RangeContainer.h base/figures/figures3/Triangle3.cpp base/figures/figures3/Triangle3.h base/figures/figures2/Triangle2.cpp base/figures/figures2/Triangle2.h base/spaces/spaces2/Line2.cpp base/spaces/spaces2/Line2.h)
+        main.cpp base/util/clipper/clipper.hpp base/util/clipper/clipper.cpp base/figures/figures3/Segment3.cpp base/figures/figures3/Segment3.h base/figures/figures2/Segment2.cpp base/figures/figures2/Segment2.h base/util/Range.cpp base/util/Range.h base/util/RangeContainer.cpp base/util/RangeContainer.h base/figures/figures3/Triangle3.cpp base/figures/figures3/Triangle3.h base/figures/figures2/Triangle2.cpp base/figures/figures2/Triangle2.h base/spaces/spaces2/Line2.cpp base/spaces/spaces2/Line2.h base/figures/figures2/Polygon2.cpp base/figures/figures2/Polygon2.h base/figures/figures3/Polygon3.cpp base/figures/figures3/Polygon3.h)

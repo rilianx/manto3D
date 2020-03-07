@@ -22,6 +22,7 @@ public:
     static const int POINT_INSTANCE = 0;
     static const int SEGMENT_INSTANCE = 1;
     static const int TRIANGLE_INSTANCE = 2;
+    static const int POLYGON_INSTANCE = 3;
 
     /**
      * Obtiene las proyecciones de la figura.

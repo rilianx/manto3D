@@ -54,8 +54,8 @@ Triangle2** Triangle2::split(Vector2 pl1, Vector2 pl2) {
 
     std::list<Vector2*> puntos;   // Puntos de interseccion
 
-    Vector2* polygon = new Vector2[5];  // Contenedor de vectores del poligono
-    int size_polygon = 0;               // Numero de vectores del poligono
+    Vector2* polygon = new Vector2[5];  // Contenedor de path del poligono
+    int size_polygon = 0;               // Numero de path del poligono
     int index_init = -1;
     int index_end = -1;
 
