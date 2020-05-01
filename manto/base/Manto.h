@@ -18,7 +18,6 @@
 #include "figures/figures3/Triangle3.h"
 #include "figures/figures3/Polygon3.h"
 
-
 using namespace std;
 
 class Manto {

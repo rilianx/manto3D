@@ -16,14 +16,11 @@
 
 class Polygon3;
 
-using namespace std;
-using namespace ClipperLib;
-
 class Polygon2 : public Figure2{
 
     // Vectores que forman el poligono
-    Path path;          // Vectores del poligono
-    Paths solutions;    // Soluciones de las operaciones
+    ClipperLib::Path path;          // Vectores del poligono
+    ClipperLib::Paths solutions;    // Soluciones de las operaciones
 
     // El valor de precision tiene que ser potencia de 10. Este se utiliza
     // como multiplicador y divisor, con el fin de obtener mayor o menor
@@ -31,9 +28,11 @@ class Polygon2 : public Figure2{
     // poligonos (Como unionWith, intersect, difference, etc)
     float precision = 1000;
 
+    float MAX_VALUE = 99999;
+
 private:
 
-    static list<Polygon2*> pathsToPolygons(const Paths& paths);
+    static std::list<Polygon2*> pathsToPolygons(const ClipperLib::Paths& paths);
 
 public:
 
@@ -61,7 +60,7 @@ public:
     /**
      * Constructor de poligonos con path
      */
-    explicit Polygon2(Path path);
+    explicit Polygon2(ClipperLib::Path path);
 
     /**
      * Genera una interseccion entre el poligono (this) y el ingresado como
@@ -69,7 +68,7 @@ public:
      * @param polygon   - Poligono con el que se quiere hacer la interseccion.
      * @return          - Retorna los poligonos generados por la interseccion.
      */
-    list<Polygon2*> intersect(const Polygon2& polygon);
+    std::list<Polygon2*> intersect(const Polygon2& polygon);
 
     /**
      * Genera una union entre el poligono (this) y el ingresado como
@@ -77,7 +76,7 @@ public:
      * @param polygon   - Poligono con el que se quiere hacer la union.
      * @return          - Retorna los poligonos generados por la union.
      */
-    list<Polygon2*> unionWith(const Polygon2& polygon);
+    std::list<Polygon2*> unionWith(const Polygon2& polygon);
 
     /**
      * Genera la diferencia entre el poligono (this) y el ingresado como
@@ -85,7 +84,7 @@ public:
      * @param polygon   - Poligono con el que se quiere hacer la diferencia.
      * @return          - Retorna los poligonos generados por la diferencia.
      */
-    list<Polygon2*> difference(const Polygon2& polygon);
+    std::list<Polygon2*> difference(const Polygon2& polygon);
 
     /**
      * Rellena la lista fragments con fragmentos no dominados, los cuales son
@@ -133,7 +132,45 @@ public:
      */
     Polygon3* toPolygon3(Polygon3* p3, int PROJECTION_PLANE);
 
-    const Path &getPath() const;
+    /**
+     * Obtiene el indice del vector que contiene la menor abscisa en el Path
+     * del poligono
+     * @return  - Retorna un entero correspondiente al indice del vector que
+     *            contiene la menor abscisa del path del poligono.
+     */
+    int getMenorAbscissa();
+
+    /**
+     * Obtiene el indice del vector que contiene la menor ordenada en el Path
+     * del poligono
+     * @return  - Retorna un entero correspondiente al indice del vector que
+     *            contiene la menor ordenada del path del poligono
+     */
+    int getMenorOrdinate();
+
+    /**
+     * Obtiene el valor de la abscisa del vector que tiene el indice
+     * ingresado como parametro
+     * @param index - Indice del vector que se quiere obtener la abscisa
+     * @return      - Retorna el valor de la abscisa del path[index]
+     */
+    float getAbscissa(int index);
+
+    /**
+     * Obtiene el valor de la ordenada del vector que tiene el indice
+     * ingresado como parametro
+     * @param index - Indice del vector que se quiere obtener la ordenada
+     * @return      - Retorna el valor de la ordenada del path[index]
+     */
+    float getOrdinate(int index);
+
+    /**
+     * Obtiene el camino, o conjunto de vectores, inferior del poligono.
+     * @return  - Retorna una lista con los vectores seleccionados
+     */
+    std::list<Vector2> getBottomPath();
+
+    const ClipperLib::Path &getPath() const;
 
     // Funciones virutales
     virtual float getKey();

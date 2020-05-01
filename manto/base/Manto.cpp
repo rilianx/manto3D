@@ -2,12 +2,14 @@
 // Created by Braulio Lobo on 9/6/19.
 //
 
+#include "util/Glue.h"
 #include <iostream>
 #include <fstream>
 #include <unordered_map>
 #include <util/RangeContainer.h>
 #include "Manto.h"
 #include "Tester.h"
+#include <util/Intersector.h>
 
 Manto::~Manto() {
     if (Tester::DEBUG_DELET)
@@ -314,6 +316,41 @@ list<Figure3 *> Manto::spaceIntersect(list<Figure3 *> l1, list<Figure3 *> l2) {
         intersected.push_front(fl1);
     }
 
+    if(fl1->getInstance() == Figure3::POLYGON_INSTANCE &&
+        fl2->getInstance() == Figure3::POLYGON_INSTANCE){
+        Polygon3* pl1 = dynamic_cast<Polygon3*>(fl1);
+        // TODO: programar la interseccion de poligonos
+        //intersected.push_front(fl1);
+        Paths paths1;
+        Paths paths2;
+        Paths resultado;
+
+        for (auto &f1 : l1) {
+            Polygon3* p1 = dynamic_cast<Polygon3*>(f1);
+            Polygon2* pp1 = p1->getProjection(Figure3::PROJECTION_XY);
+            paths1.push_back(pp1->getPath());
+        }
+
+        for (auto &f2 : l2) {
+            Polygon3* p2 = dynamic_cast<Polygon3*>(f2);
+            Polygon2* pp2 = p2->getProjection(Figure3::PROJECTION_XY);
+            paths2.push_back(pp2->getPath());
+        }
+
+        Clipper clpr;
+        clpr.Clear();
+        clpr.AddPaths(paths2, ptClip, true);
+        clpr.AddPaths(paths1, ptSubject, true);
+
+        clpr.Execute(ctIntersection, resultado, pftEvenOdd, pftEvenOdd);
+
+        for (auto &pathInPaths : resultado) {
+            intersected.push_back(Polygon2(pathInPaths).toPolygon3(pl1,
+                    Figure3::PROJECTION_XY));
+        }
+
+    }
+
     return intersected;
 }
 
@@ -396,7 +433,9 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
         }
         if(instF2 == Figure3::SEGMENT_INSTANCE) {
             // TODO: caso poligono segmentos
-            fragments.push_front(ppol);
+            Segment3 *s = dynamic_cast<Segment3 *>(f2);
+            Segment2 *sp = s->getProjection(PROJECTION_PLANE);
+            ppol->fragmentedBy(sp, fragments);
         }
         if(instF2 == Figure3::TRIANGLE_INSTANCE) {
             // TODO: caso poligono triangulo
@@ -404,7 +443,9 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
         }
         if(instF2 == Figure3::POLYGON_INSTANCE) {
             // TODO: caso poligono poligono
-            fragments.push_front(ppol);
+            Polygon3 *pol2 = dynamic_cast<Polygon3 *>(f2);
+            Polygon2 *ppol2 = pol2->getProjection(PROJECTION_PLANE);
+            ppol->fragmentedBy(ppol2, fragments);
         }
     }
 
@@ -475,12 +516,22 @@ list<Figure3 *> Manto::spaceUnion(Figure3 *figure, list<Figure2 *> lXY,
         return lFigures3;
     }
 
-    // Union para fragmentos de triangulos
-    if(figure->getInstance() == Figure3::TRIANGLE_INSTANCE){
-        // TODO: programar la union para fragmentos de triangulos
-        lFigures3.push_front(figure);
-        
+    // Union para fragmentos de poligonos
+    if(figure->getInstance() == Figure3::POLYGON_INSTANCE){
+        // Creando el pegamento
+        std::cout << "Creando glue" << std::endl;
+        Glue glue = Glue(dynamic_cast<Polygon3*>(figure));
 
+        // Uniendo las proyecciones de los poligonos
+        for (auto &polyXY : lXY)
+            glue.add(dynamic_cast<Polygon2*>(polyXY), Figure3::PROJECTION_XY);
+        for (auto &polyXZ : lXZ)
+            glue.add(dynamic_cast<Polygon2*>(polyXZ), Figure3::PROJECTION_XZ);
+        for (auto &polyYZ : lYZ)
+            glue.add(dynamic_cast<Polygon2*>(polyYZ), Figure3::PROJECTION_YZ);
+
+        // Generando el resultado
+        lFigures3 = glue.getResult();
 
         return lFigures3;
     }

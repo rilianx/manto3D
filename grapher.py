@@ -2,6 +2,7 @@ import plotly as py
 import plotly.graph_objs as go
 import numpy as np
 import csv
+import tripy
 
 # FIXME: si esto no es necesario hay que borrarlo
 import plotly.figure_factory as ff
@@ -82,6 +83,37 @@ def read_file_polygons(file_name):
                 if selector == 3:
                     selector = 0
             result.append(coordenadas)
+    return result
+
+
+def triangule(x, y, z):
+    # Creando poligono
+    polygon = []
+    polygon3d = []
+    for i in range(len(x)):
+        polygon.append((x[i], y[i]))
+        polygon3d.append([x[i], y[i], z[i]])
+
+    # Triangulando
+    triangles = tripy.earclip(polygon)
+    triangles3D = []
+    for triangle in triangles:
+        ind0 = polygon.index(triangle[0])
+        ind1 = polygon.index(triangle[1])
+        ind2 = polygon.index(triangle[2])
+        triangles3D.append([polygon3d[ind0],
+                            polygon3d[ind1],
+                            polygon3d[ind2]])
+    print(triangles3D)
+
+    result = []
+    for triangle in triangles3D:
+        sub_result = [[], [], []]
+        for coord in triangle:
+            sub_result[0].append(coord[0])
+            sub_result[1].append(coord[1])
+            sub_result[2].append(coord[2])
+        result.append(sub_result)
     return result
 
 
@@ -196,25 +228,38 @@ print(numero_puntos_dominados, " puntos dominados graficados\n")
 print(numero_segmentos, " segmentos graficados")
 print(numero_segmentos_dominados, " segmentos dominados graficados\n")
 print(numero_triangulos, " triangulos graficados")
-print(numero_triangulos_dominados, " triangulos dominados graficados")
+print(numero_triangulos_dominados, " triangulos dominados graficados\n")
 
 lista = read_file_polygons("Instance/poligonosD.txt")
 for x, y, z in lista:
     tracel = go.Mesh3d(x=x,
                        y=y,
                        z=z,
-                       opacity=1,
+                       opacity=0.5,
                        color='gray')
 data.append(tracel)
+numero_poligonos_dominados = len(lista)
 
 # Cargando triangulos no dominados
 lista = read_file_polygons("Instance/poligonos.txt")
 for x, y, z in lista:
-    tracel = go.Mesh3d(x=x,
-                       y=y,
-                       z=z,
-                       opacity=1,
-                       color='rgb(255,100,100)')
+    for triangle in triangule(x, y, z):
+        print(triangle)
+        x2 = triangle[0]
+        y2 = triangle[1]
+        z2 = triangle[2]
+        tracel = go.Mesh3d(x=x2,
+                           y=y2,
+                           z=z2,
+                           opacity=1,
+                           color='rgb(255,100,100)')
+        data.append(tracel)
+
+numero_poligonos = len(lista)
+numero_poligonos_dominados -= numero_poligonos
+
+print(numero_poligonos, " poligonos graficados")
+print(numero_poligonos_dominados, " poligonos dominados graficados")
 
 layout = go.Layout(
     margin=dict(

@@ -15,6 +15,8 @@
 #include <iomanip>
 #include "util/clipper/clipper.hpp"
 
+#include "util/IndexIterator.h"
+
 using namespace std;
 using namespace ClipperLib;
 
@@ -206,12 +208,19 @@ void testPoligonosEnManto(){
     Polygon3* polygon3 = new Polygon3(vectors, 3);
 
     // Creando punto
-    Vector3 punto = {3, 2, 1};
+    Vector3 punto = {3, 2.2, 1};
+    Vector3 punto2 = {2, 2.5, 1};
+    Vector3 punto3 = {4, 1.3, 1};
+    Vector3 punto4 = {3.5, 1.6, 1.5};
 
     // Agregando figuras
     std::cout << "Agregando figuras al manto" << std::endl;
+    // manto.addFigure(new Point3(punto));
+    // manto.addFigure(new Point3(punto2));
+    // manto.addFigure(new Point3(punto3));
+    //manto.addFigure(new Segment3(punto, punto3));
+    manto.addFigure(new Polygon3({punto, punto3, punto4}, 3));
     manto.addFigure(polygon3);
-    manto.addFigure(new Point3(punto));
     std::cout << "Figuras agregadas" << std::endl;
 
     // Guardando instancias
@@ -223,7 +232,7 @@ void testPoligonosEnManto(){
 void testProyecciones(){
     // Creando vectores
     Vector3 p1 = {1, 1, 2};
-    Vector3 p2 = {5, 5, 2};
+    Vector3 p2 = {5, 5, 2.1};
     Vector3 p3 = {5, 1, 4};
     Vector3 vectors[3] = {p1, p2, p3};
 

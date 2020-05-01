@@ -7,7 +7,10 @@
 #include <utility>
 #include <sstream>
 #include <iostream>
+#include "util/IndexIterator.h"
 
+using namespace ClipperLib;
+using namespace std;
 
 Polygon2::Polygon2(const int *vectores, int nVectores) {
     this->path.resize(nVectores);
@@ -101,7 +104,6 @@ Polygon2::Polygon2() {
 }
 
 void Polygon2::fragmentedBy(Point2 *p, std::list<Figure2 *> &fragments) {
-    const int MAX_VALUE = 99999;
     float vectores[8] = {
             p->getAbscissa(), p->getOrdinate(),
             p->getAbscissa(), MAX_VALUE,
@@ -110,14 +112,35 @@ void Polygon2::fragmentedBy(Point2 *p, std::list<Figure2 *> &fragments) {
     };
     Polygon2* polygon2 = new Polygon2(vectores, 4);
 
-    // Fragmentando y llendando la lista de fragmentos
+    // Fragmentando y llenando la lista de fragmentos
     for (auto &fragment : this->difference(*polygon2)) {
         fragments.push_back(fragment);
     }
 }
 
 void Polygon2::fragmentedBy(Segment2 *s, std::list<Figure2 *> &fragments) {
+    // Obteniendo puntos
+    Vector2 pp1 = s->getMenorAbscissa();
+    Vector2 pp2 = s->getMayorAbscissa();
 
+    // generando vertices del poligono de fragmentación
+    float vectores[10] = {
+            pp1.getAbscissa(), MAX_VALUE,
+            MAX_VALUE, MAX_VALUE,
+            MAX_VALUE, pp2.getOrdinate(),
+            pp2.getAbscissa(), pp2.getOrdinate(),
+            pp1.getAbscissa(), pp1.getOrdinate()
+    };
+
+    // Generando poligono
+    Polygon2* polygon2 = new Polygon2(vectores, 5);
+
+    // Fragmentando y llenando la lista de fragmentos
+    for (auto &fragment : this->difference(*polygon2)) {
+        fragments.push_back(fragment);
+    }
+
+    delete(polygon2);
 }
 
 void Polygon2::fragmentedBy(Triangle2 *t, std::list<Figure2 *> &fragments) {
@@ -125,7 +148,38 @@ void Polygon2::fragmentedBy(Triangle2 *t, std::list<Figure2 *> &fragments) {
 }
 
 void Polygon2::fragmentedBy(Polygon2 *p, std::list<Figure2 *> &fragments) {
+    // TODO: programar la fragmentacion de poligono poligono
+    // Obteniendo puntos inferiores del poligono
+    std::list<Vector2> bottomPath = p->getBottomPath();
 
+    // Realmente nVectores es el numero de vectores * 2
+    unsigned long int nVectores = bottomPath.size() * 2 + 6;
+    float minAbscissa = p->getAbscissa(p->getMenorAbscissa());
+    float minOrdinate = p->getOrdinate(p->getMenorOrdinate());
+
+    // Construyendo vectores del poligono de interseccion
+    float vectores[nVectores];
+    int i = 0;
+    for (auto &vector : bottomPath) {
+        vectores[i++] = vector.getAbscissa();
+        vectores[i++] = vector.getOrdinate();
+    }
+    vectores[i++] = MAX_VALUE;
+    vectores[i++] = minOrdinate;
+    vectores[i++] = MAX_VALUE;
+    vectores[i++] = MAX_VALUE;
+    vectores[i++] = minAbscissa;
+    vectores[i] = MAX_VALUE;
+
+    // Generando poligono
+    Polygon2* polygon2 = new Polygon2(vectores, nVectores/2);
+
+    // Fragmentando y llenando la lista de fragmentos
+    for (auto &fragment : this->difference(*polygon2)) {
+        fragments.push_back(fragment);
+    }
+
+    delete(polygon2);
 }
 
 Polygon3* Polygon2::toPolygon3(Polygon3* p3, int PROJECTION_PLANE) {
@@ -183,4 +237,115 @@ Polygon3* Polygon2::toPolygon3(Polygon3* p3, int PROJECTION_PLANE) {
     }
 
     return new Polygon3(vectoresList, path.size());
+}
+
+float Polygon2::getAbscissa(int index) {
+    return path[index].X / precision;
+}
+
+float Polygon2::getOrdinate(int index) {
+    return path[index].Y / precision;
+}
+
+int Polygon2::getMenorAbscissa() {
+    float menorAbscisa = MAX_VALUE;
+    float ordinate = MAX_VALUE;
+    int index = -1;
+    for (int i = 0; i < path.size(); i++) {
+        float abscisa = getAbscissa(i);
+        if(abscisa < menorAbscisa){
+            menorAbscisa = abscisa;
+            ordinate = getOrdinate(i);
+            index = i;
+        }
+
+        // Caso especial en que el nuevo vector se encuentra en la vertical
+        else if(abscisa == menorAbscisa && ordinate < getOrdinate(i)){
+            index = i;
+        }
+
+        if(abscisa < menorAbscisa) {
+            menorAbscisa = abscisa;
+            index = i;
+        }
+
+    }
+
+    if(index == -1){
+        throw "No se pudo obtener el valor minimo de la abscissa";
+    }
+    return index;
+}
+
+int Polygon2::getMenorOrdinate() {
+    float menorOrdenada = MAX_VALUE;
+    float abscisa = MAX_VALUE;
+    int index = -1;
+    for (int i = 0; i < path.size(); i++){
+        float ordenada = getOrdinate(i);
+        if(ordenada < menorOrdenada){
+            menorOrdenada = ordenada;
+            abscisa = getAbscissa(i);
+            index = i;
+        }
+
+        // Caso especial en que el nuevo vector se encuentra en la horizontal
+        else if(ordenada == menorOrdenada && abscisa < getAbscissa(i)){
+            index = i;
+        }
+    }
+
+    if(index == -1){
+        throw "No se pudo obtener el valor minimo de la abscissa";
+    }
+
+    return index;
+}
+
+std::list<Vector2> Polygon2::getBottomPath() {
+    std::list<Vector2> result;
+
+    // Seleccionando vector inicial y final
+    int indexInit = getMenorAbscissa();
+    int indexEnd = getMenorOrdinate();
+
+    // Calculando valor del iterador
+    IndexIterator ii = IndexIterator(indexInit, path.size()-1);
+
+    // Pendientes
+    float mNext; // Pendiente si avanzo
+    float mBack; // Pendiente si retrocedo
+
+    float y1 = getOrdinate(indexInit);
+    float x1 = getAbscissa(indexInit);
+
+    // Avanzando
+    ii.next();
+    float y2 = getOrdinate(ii.get());
+    float x2 = getAbscissa(ii.get());
+    mNext = (y2 - y1) / (x2 - x1);
+    ii.back();
+
+    // Retrocediendo
+    ii.back();
+    y2 = getOrdinate(ii.get());
+    x2 = getAbscissa(ii.get());
+    mBack = (y2 - y1) / (x2 - x1);
+    ii.next();
+
+    int i = ii.get();
+    while(i != indexEnd){
+        result.push_back(Vector2(getAbscissa(i), getOrdinate(i)));
+
+        // Avanzando en la iteracion
+        if(mNext < mBack)
+            ii.next();
+        else
+            ii.back();
+        i = ii.get();
+    }
+
+    result.push_back(Vector2(getAbscissa(i), getOrdinate(i)));
+
+    return result;
 }

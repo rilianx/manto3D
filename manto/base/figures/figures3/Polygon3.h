@@ -23,7 +23,7 @@ private:
      */
     void generateProjections();
 
-public:;
+public:
 
     Polygon3(Vector3* vectors, int nVectors);
     Polygon3(std::list<Vector3> vectorList, int nVectors);
