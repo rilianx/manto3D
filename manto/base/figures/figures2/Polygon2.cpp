@@ -349,3 +349,23 @@ std::list<Vector2> Polygon2::getBottomPath() {
 
     return result;
 }
+
+bool Polygon2::domina(Point2 point2) {
+    std::list<Vector2> bottomPath = getBottomPath();
+    bool first = true;
+    Vector2 *fv = nullptr;
+    for (auto &vector : bottomPath) {
+        if(first) {
+            fv = &vector;
+            first = false;
+            continue;
+        }
+
+        Segment2 s = Segment2(*fv, vector);
+        if(s.domina(point2))
+            return true;
+
+        fv = &vector;
+    }
+    return false;
+}

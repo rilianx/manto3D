@@ -229,6 +229,48 @@ void testPoligonosEnManto(){
     std::cout << "Listo" << std::endl;
 }
 
+void testDominacionesPoligonos(){
+    /*
+     * Este test sirve para comprobar la dominancia de puntos y segmentos por
+     * poligonos
+     */
+
+    // Creando el manto
+    Manto manto;
+
+    // Creando poligono
+    Vector3 p1 = {3, 1, 2};
+    Vector3 p2 = {2, 6, 2};
+    Vector3 p3 = {2, 2, 4};
+    Vector3 vectors[3] = {p1, p2, p3};
+    Polygon3* polygon3 = new Polygon3(vectors, 3);
+
+    // Agregando poligono al manto
+    // manto.addFigure(new Point3(4.5, 2.44, 2.92));
+
+    // Agregando puntos
+    float precision = 0.05f; // Genera mas puntos
+    int iteracion = 1;
+    for (float i = 1; i < 17; i += precision) {
+        std::cout << iteracion << std::endl;
+        Tester::agregarPunto(manto, i);
+        std::string path =
+                "/Users/brauliolobo/Documents/manto3D/Instance/Instance" +
+                           std::to_string((int)iteracion++) + "/";
+        manto.saveInstance(path);
+    }
+
+    manto.addFigure(polygon3);
+
+
+    // Tester::agregarPunto(manto, 1 + 0.3f*11);
+
+    // Guardando instancias
+    std::cout << "Guardando instancias" << std::endl;
+    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    std::cout << "Listo" << std::endl;
+}
+
 void testProyecciones(){
     // Creando vectores
     Vector3 p1 = {1, 1, 2};
@@ -268,8 +310,9 @@ int main() {
     // testSegmentos();
     // testTriangulos();
 
-    testPoligonosEnManto();
-    //testProyecciones();
+    // testPoligonosEnManto();
+    // testProyecciones();
+    testDominacionesPoligonos();
 
     // testSimpleTriangulos();
 

@@ -20,22 +20,27 @@ void Glue::add(Polygon2 *polygon2, int PROJECTION_PLANE) {
     Path path = pp->getPath();
 
     // FIXME: ptSubject o ptClip?
+    /*
     std::cout << "Path agragado" << std::endl;
     for (auto &item : path) {
         std::cout << item.X << ", " << item.Y << std::endl;
-    }
+    }*/
 
-    if(agregados == 0){
-        cplr->AddPath(path, ptClip, true);
-    }
-    else
-        cplr->AddPath(path, ptSubject, true);
+    cplr->Clear();
+    cplr->AddPaths(resultado, ptClip, true);
+    cplr->AddPath(path, ptSubject, true);
+    cplr->Execute(ctUnion, resultado, pftNonZero, pftNonZero);
+    // if(agregados == 2){
+    //     cplr->AddPath(path, ptClip, true);
+    // }
+    // else
+    //     cplr->AddPath(path, ptSubject, true);
     agregados++;
 
 }
 
 std::list<Figure3 *> Glue::getResult() {
-    cplr->Execute(ctUnion, resultado, pftEvenOdd, pftEvenOdd);
+    //cplr->Execute(ctUnion, resultado, pftNonZero, pftNonZero);
 
     list<Figure3*> polygons;
     for (auto &pathInPaths : resultado) {
@@ -48,6 +53,5 @@ std::list<Figure3 *> Glue::getResult() {
 
 Glue::~Glue() {
     delete(cplr);
-    std::cout << "Borrado" << std::endl;
 }
 

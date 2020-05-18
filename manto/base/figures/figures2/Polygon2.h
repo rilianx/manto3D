@@ -177,6 +177,7 @@ public:
     virtual std::string toString();
     virtual std::string toGraphString(int PROJECTION_PLANE);
 
+    bool domina(Point2 point2);
 };
 
 

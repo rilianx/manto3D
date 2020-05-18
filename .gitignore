@@ -38,3 +38,4 @@ manto/cmake-build-debug/
 .gitignore.swp
 .DS_Store
 Instance/
+images/

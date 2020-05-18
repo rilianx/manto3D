@@ -10,6 +10,8 @@
 #include "Manto.h"
 #include "Tester.h"
 #include <util/Intersector.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 Manto::~Manto() {
     if (Tester::DEBUG_DELET)
@@ -83,6 +85,9 @@ void Manto::printAllFigures2(int PROJECTION_PLANE) {
 }
 
 void Manto::saveInstance(std::string path) {
+    const char * path_char = path.data();
+    mkdir(path_char, 0777);
+
     ofstream myfile;
 
     // Guardando puntos no dominados
@@ -394,6 +399,12 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
             // TODO: caso puntos triangulo
             fragments.push_front(pp);
         }
+        if (instF2 == Figure3::POLYGON_INSTANCE){
+            Polygon3 *pol = dynamic_cast<Polygon3 *>(f2);
+            Polygon2 *ppol = pol->getProjection(PROJECTION_PLANE);
+            if(!ppol->domina(*pp))
+                fragments.push_front(pp);
+        }
 
     }
 
@@ -519,7 +530,6 @@ list<Figure3 *> Manto::spaceUnion(Figure3 *figure, list<Figure2 *> lXY,
     // Union para fragmentos de poligonos
     if(figure->getInstance() == Figure3::POLYGON_INSTANCE){
         // Creando el pegamento
-        std::cout << "Creando glue" << std::endl;
         Glue glue = Glue(dynamic_cast<Polygon3*>(figure));
 
         // Uniendo las proyecciones de los poligonos
