@@ -4,6 +4,7 @@
 
 #include "Polygon2.h"
 #include "Polygon3.h"
+#include "Segment2.h"
 #include <utility>
 #include <sstream>
 #include <iostream>
@@ -368,4 +369,24 @@ bool Polygon2::domina(Point2 point2) {
         fv = &vector;
     }
     return false;
+}
+
+bool Polygon2::onPolygon(Vector2 pos) {
+    return onPolygon(pos.getAbscissa(), pos.getOrdinate());
+}
+
+bool Polygon2::onPolygon(float fx, float fy) {
+    int j = path.size()-1;
+    bool adentro = false;
+    long long x = fx * precision;
+    long long y = fy * precision;
+    for(int i = 0; i < path.size(); i++){
+        if((path[i].Y < y and path[j].Y >= y) or (path[j].Y < y and
+        path[i].Y >= y))
+            if(path[i].X + (y - path[i].Y) / (path[j].Y -
+                path[i].Y) * (path[j].X - path[i].X) < x)
+                adentro = !adentro;
+        j = i;
+    }
+    return adentro;
 }

@@ -9,12 +9,12 @@
 #include <list>
 #include "Figure2.h"
 #include "Triangle2.h"
-#include "Segment2.h"
 #include "Point2.h"
 #include "Vector3.h"
 #include <Figure3.h>
 
 class Polygon3;
+class Segment2;
 
 class Polygon2 : public Figure2{
 
@@ -26,7 +26,7 @@ class Polygon2 : public Figure2{
     // como multiplicador y divisor, con el fin de obtener mayor o menor
     // precision en los calculos de las operaciones realizadas a los
     // poligonos (Como unionWith, intersect, difference, etc)
-    float precision = 1000;
+    float precision = 10000;
 
     float MAX_VALUE = 99999;
 
@@ -163,6 +163,24 @@ public:
      * @return      - Retorna el valor de la ordenada del path[index]
      */
     float getOrdinate(int index);
+
+    /**
+     * Comprueba si el punto ingresado está dentro del poligono
+     * @param pos   - Posicion del punto que se quiere comprobar si está
+     *                dentro del poligono
+     * @return      - Retorna True si el poligono contiene el las coordenadas
+     *                ingresadas y False en caso contrario.
+     */
+    bool onPolygon(Vector2 pos);
+
+    /**
+     * Comprueba si el punto ingresado está dentro del poligono
+     * @param x     - Coordenada en el eje X del punto a comprobar
+     * @param y     - Coordenada en el eje Y del punto a comprobar
+     * @return      - Retorna True si el poligono contiene el las coordenadas
+     *                ingresadas y False en caso contrario.
+     */
+    bool onPolygon(float x, float y);
 
     /**
      * Obtiene el camino, o conjunto de vectores, inferior del poligono.

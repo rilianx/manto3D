@@ -53,4 +53,4 @@ add_executable(manto
         base/figures/figures3/Polygon3.h
         base/util/Glue.cpp
         base/util/Glue.h
-        main.cpp base/util/Intersector.cpp base/util/Intersector.h base/util/IndexIterator.cpp base/util/IndexIterator.h)
+        main.cpp base/util/Intersector.cpp base/util/Intersector.h base/util/IndexIterator.cpp base/util/IndexIterator.h base/spaces/spaces3/Line3.cpp base/spaces/spaces3/Line3.h base/spaces/spaces3/Plane.cpp base/spaces/spaces3/Plane.h)

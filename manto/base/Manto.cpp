@@ -375,12 +375,17 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
             Point3 *p = dynamic_cast<Point3 *>(f2);
             Point2 *pp = p->getProjection(PROJECTION_PLANE);
             sp->fragmentedBy(pp, fragments);
-        } else {
+        }
+        if (instF2 == Figure3::SEGMENT_INSTANCE){
             Segment3 *s2 = dynamic_cast<Segment3 *>(f2);
             if (s2 != nullptr) { // Figura 2 es un segmento
                 sp->fragmentedBy(s2->getProjection(PROJECTION_PLANE),
                                  fragments);
             }
+        }
+        if(instF2 == Figure3::POLYGON_INSTANCE){
+            Polygon3 *p3 = dynamic_cast<Polygon3*>(f2);
+            sp->fragmentedBy(p3->getProjection(PROJECTION_PLANE), fragments);
         }
     }
 

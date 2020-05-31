@@ -125,6 +125,7 @@ def graficar(sub_path="", show=True ,save_image=False, image_name="image"):
     # Cargando segmentos dominados
     # Cargando segmentos no dominados
     lista = read_file_segments(path + "segmentosD.txt")
+    nSegmentos = 0
     for x, y, z in lista:
         nSegmentos += 1
         tracel = go.Scatter3d(

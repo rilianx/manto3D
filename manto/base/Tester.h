@@ -27,6 +27,15 @@ public:
     static void agregarPunto(Manto& manto, float param);
 
     /**
+     * Agrega puntos a lo largo de segmento, esto normalmente sirve para
+     * hacer pruebas.
+     * @param manto     - Manto donde se van a agregar los puntos
+     * @param cantidad  - Cantidad de puntos que se van a agregar
+     * @param segment3  - Segmento en donde se van a agregar
+     */
+    static void agregarPunto(Manto& manto, int cantidad, Segment3 segment3);
+
+    /**
      * Entrega la parte decimal del numero ingresado como parametro.
      * @param d     - Numero al que se le quiere extraer la parte decimal.
      * @return      - Retorna la parte decimal del numero d

@@ -438,3 +438,24 @@ bool Segment2::domina(Point2 p) {
 void Segment2::fragmentedBy(Triangle2 *t, std::list<Figure2 *> &fragments) {
     // Todo: framgnetacion de segmentos por triangulos
 }
+
+void Segment2::fragmentedBy(Polygon2 *p, std::list<Figure2 *> &fragments) {
+    // Todo: framgnetacion de segmentos por poligonos
+    list<Vector2> bottomPath = p->getBottomPath();
+
+    bool first = true;
+    Vector2 *fv = nullptr;
+    for (auto &vector : bottomPath) {
+        if(first) {
+            fv = &vector;
+            first = false;
+            continue;
+        }
+
+        Segment2 s = Segment2(vector, *fv);
+        this->fragmentedBy(&s, fragments);  // Quitar esta
+        // Hacer interseccion de los espacios del los segmentos generados en
+        // este "for" y los fragmentos resultantes colocarlos en el fragments
+        // idea: copiar lo que esta en spaceIntersect
+    }
+}

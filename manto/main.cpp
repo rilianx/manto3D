@@ -240,7 +240,7 @@ void testDominacionesPoligonos(){
 
     // Creando poligono
     Vector3 p1 = {3, 1, 2};
-    Vector3 p2 = {2, 6, 2};
+    Vector3 p2 = {0.5, 6, 2};
     Vector3 p3 = {2, 2, 4};
     Vector3 vectors[3] = {p1, p2, p3};
     Polygon3* polygon3 = new Polygon3(vectors, 3);
@@ -253,12 +253,19 @@ void testDominacionesPoligonos(){
     int iteracion = 1;
     for (float i = 1; i < 17; i += precision) {
         std::cout << iteracion << std::endl;
-        Tester::agregarPunto(manto, i);
-        std::string path =
-                "/Users/brauliolobo/Documents/manto3D/Instance/Instance" +
-                           std::to_string((int)iteracion++) + "/";
-        manto.saveInstance(path);
+        //Tester::agregarPunto(manto, i);
+        // std::string path =
+        //         "/Users/brauliolobo/Documents/manto3D/Instance/Instance" +
+        //                    std::to_string((int)iteracion++) + "/";
+        // manto.saveInstance(path);
     }
+
+    // Agragando segmento
+    Vector3 ps1 = {1, 3, 2.5};
+    Vector3 ps2 = {4, 0.5, 5};
+    Segment3* segment3 = new Segment3(ps1, ps2);
+    // manto.addFigure(segment3);
+    Tester::agregarPunto(manto, 100, *segment3);
 
     manto.addFigure(polygon3);
 

@@ -11,6 +11,7 @@
 #include "Figure2.h"
 #include "Point2.h"
 #include "Triangle2.h"
+#include "Polygon2.h"
 
 class Segment2 : public Figure2 {
 
@@ -67,6 +68,15 @@ public:
      * @param fragments     - Lista de fragmentos que se va a llenar.
      */
     void fragmentedBy(Triangle2* t, std::list<Figure2*> &fragments);
+
+    /**
+     * Rellena la lista fragments con fragmentos no dominados, los cuales son
+     * producto de una fragmentacion generada por el poligono ingresado como
+     * parametro.
+     * @param p             - Poligono que fragmenta al segmento
+     * @param fragments     - Lista de fragmentos que se va a llenar.
+     */
+    void fragmentedBy(Polygon2* p, std::list<Figure2*> &fragments);
 
     /**
      * Calcula el parametro delta que debería tener el vector p1-p2 para llegar

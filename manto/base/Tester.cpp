@@ -40,4 +40,11 @@ unsigned Tester::p_fraccionaria(double d) {
     return retvalue;
 }
 
+void Tester::agregarPunto(Manto &manto, int cantidad, Segment3 segment3) {
+    float step = 1.0f/(float)cantidad;
+    for(float i = 0; i <= 1; i += step){
+        manto.addFigure(new Point3(segment3.getP(i)));
+    }
+}
+
 
