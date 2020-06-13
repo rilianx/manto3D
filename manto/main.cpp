@@ -14,6 +14,7 @@
 #include <set>
 #include <iomanip>
 #include "util/clipper/clipper.hpp"
+#include <unistd.h>
 
 #include "util/IndexIterator.h"
 
@@ -181,10 +182,10 @@ void testSimpleTriangulos(){
 
 void testClipper(){
     int v1[6] = {1,1,1,3,4,1};
-    Polygon2 p1 = Polygon2(v1,3);
+    Polygon2 p1 = Polygon2(v1,3, Figure3::PROJECTION_XY);
 
     int v2[6] = {2,0,2,5,5,5};
-    Polygon2 p2 = Polygon2(v2,3);
+    Polygon2 p2 = Polygon2(v2,3, Figure3::PROJECTION_XY);
 
     auto solution = p1.difference(p2);
 
@@ -278,6 +279,140 @@ void testDominacionesPoligonos(){
     std::cout << "Listo" << std::endl;
 }
 
+/**
+ * Genera un cubo de puntos de testeo para comprobar el espacio dominado por
+ * un poligono
+ */
+void testDominatedSpace(){
+    Manto manto;
+
+    // Configuraciones
+    const float margen = 1;       // Margen del cubo que encierra al poligono
+    const int cPuntos = 6000;   // Cantidad de puntos contenidos en el cubo
+
+    // Creando poligono
+    Vector3 p1 = {3, 1, 2};
+    Vector3 p2 = {0.5, 6, 2};
+    Vector3 p3 = {2, 2, 4};
+    Vector3 vectors[3] = {p1, p2, p3};
+    Polygon3* polygon3 = new Polygon3(vectors, 3);
+
+    // Agregando poligono al manto
+    manto.addFigure(polygon3);
+
+    float x1 = min(min(p1.getX(), p2.getX()), p3.getX()) - margen;
+    float y1 = min(min(p1.getY(), p2.getY()), p3.getY()) - margen;
+    float z1 = min(min(p1.getZ(), p2.getZ()), p3.getZ()) - margen;
+    float x2 = max(max(p1.getX(), p2.getX()), p3.getX()) + margen;
+    float y2 = max(max(p1.getY(), p2.getY()), p3.getY()) + margen;
+    float z2 = max(max(p1.getZ(), p2.getZ()), p3.getZ()) + margen;
+
+    // Agregando puntos para el testeo
+    Tester::testDominatedSpace(manto, polygon3 , cPuntos,
+            x1, y1, z1, x2, y2, z2);
+
+    // Guardando instancias
+    std::cout << "Guardando instancias" << std::endl;
+    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    std::cout << "Listo" << std::endl;
+}
+
+// Busca el espacio critico. Coloca puntos en los espacios donde se se genera
+// un cambio entre espacio dominado y espacio no dominado.
+void testCriticalSpace(){
+    Manto manto;
+
+    // Configuraciones
+    const float margen = 0;       // Margen del cubo que encierra al poligono
+    const int cPuntos = 3000;   // Cantidad de puntos contenidos en el cubo
+
+    // Creando poligono
+    Vector3 p1 = {3, 1, 2};
+    Vector3 p2 = {0.5, 6, 2};
+    Vector3 p3 = {2, 2, 4};
+    Vector3 vectors[3] = {p1, p2, p3};
+    Polygon3* polygon3 = new Polygon3(vectors, 3);
+
+    manto.addFigure(polygon3);
+
+    // Configuraciones
+    float min = 0;
+    float max = 7;
+    float precision = 0.15f;
+    float precision_search = 0.001;
+    Point3 preP = {0,0,0};
+    Point3 p = {0,0,0};
+
+
+    printf("Iniciando\n");
+    for(float z = min; z < max; z += precision){
+        preP = {0,0,0};
+        printf("%c[2K", 27);
+        printf("%.2f\n", z/max / 3);
+        for(float y = min; y < max; y += precision){
+            for(float x = min; x < max; x += precision_search){
+                p = {x, y, z};
+                if(polygon3->domina(&p)){
+                    if(preP.getX() != 0 && preP.getY() != 0 &&
+                        preP.getZ() != 0) {
+                        manto.addFigureTestDominatedSpace(
+                                new Point3(preP.getX(), preP.getY(),
+                                        preP.getZ()), polygon3);
+                    }
+                    break;
+                }
+                preP = p;
+            }
+        }
+    }
+
+    for(float z = min; z < max; z += precision){
+        preP = {0,0,0};
+        printf("%c[2K", 27);
+        printf("%.2f\n", (z/max)/3 + 1.0/3.0);
+        for(float x = min; x < max; x += precision){
+            for(float y = min; y < max; y += precision_search){
+                p = {x, y, z};
+                if(polygon3->domina(&p)){
+                    if(preP.getX() != 0 && preP.getY() != 0 &&
+                       preP.getZ() != 0) {
+                        manto.addFigureTestDominatedSpace(
+                                new Point3(preP.getX(), preP.getY(),
+                                           preP.getZ()), polygon3);
+                    }
+                    break;
+                }
+                preP = p;
+            }
+        }
+    }
+
+    for(float y = min; y < max; y += precision){
+        preP = {0,0,0};
+        printf("%c[2K", 27);
+        printf("%.2f\n", (y/max)/3 + 2.0/3.0);
+        for(float x = min; x < max; x += precision){
+            for(float z = min; z < max; z += precision_search){
+                p = {x, y, z};
+                if(polygon3->domina(&p)){
+                    if(preP.getX() != 0 && preP.getY() != 0 &&
+                       preP.getZ() != 0) {
+                        manto.addFigureTestDominatedSpace(
+                                new Point3(preP.getX(), preP.getY(),
+                                           preP.getZ()), polygon3);
+                    }
+                    break;
+                }
+                preP = p;
+            }
+        }
+    }
+
+    std::cout << "Guardando instancias" << std::endl;
+    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    std::cout << "Listo" << std::endl;
+}
+
 void testProyecciones(){
     // Creando vectores
     Vector3 p1 = {1, 1, 2};
@@ -319,7 +454,16 @@ int main() {
 
     // testPoligonosEnManto();
     // testProyecciones();
-    testDominacionesPoligonos();
+    // testDominacionesPoligonos();
+
+    char cwd[1024];
+    getcwd(cwd, sizeof(cwd));
+    printf("Current working dir: %s\n", cwd);
+
+    //testDominatedSpace();
+    testCriticalSpace();
+
+
 
     // testSimpleTriangulos();
 

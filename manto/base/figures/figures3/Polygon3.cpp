@@ -3,6 +3,8 @@
 //
 
 #include "Polygon3.h"
+#include <algorithm>
+#include <cfloat>
 #include <sstream>
 #include <iostream>
 
@@ -27,9 +29,9 @@ void Polygon3::generateProjections() {
     }
 
     // Asignando proyecciones
-    projections[pxy] = Polygon2(vectoresXY, nVectors);
-    projections[pxz] = Polygon2(vectoresXZ, nVectors);
-    projections[pyz] = Polygon2(vectoresYZ, nVectors);
+    projections[pxy] = Polygon2(vectoresXY, nVectors, pxy);
+    projections[pxz] = Polygon2(vectoresXZ, nVectors, pxz);
+    projections[pyz] = Polygon2(vectoresYZ, nVectors, pyz);
 }
 
 Polygon3::Polygon3(Vector3 *vectors, int nVectors) {
@@ -106,6 +108,42 @@ Vector3 *Polygon3::getVectors() const {
 }
 
 Polygon3::~Polygon3() {
+}
+
+Plane Polygon3::getPlane() {
+    return Plane(vectors[0], vectors[1], vectors[2]);
+}
+
+bool Polygon3::domina(Point3 *figure) {
+    Point2* pxy = figure->getProjection(Figure3::PROJECTION_XY);
+    Point2* pxz = figure->getProjection(Figure3::PROJECTION_XZ);
+    Point2* pyz = figure->getProjection(Figure3::PROJECTION_YZ);
+    bool xy = projections[PROJECTION_XY].domina(*pxy, *figure, *this);
+    bool xz = projections[PROJECTION_XZ].domina(*pxz, *figure, *this);
+    bool yz = projections[PROJECTION_YZ].domina(*pyz, *figure, *this);
+    return xy && xz && yz;
+}
+
+bool Polygon3::inBox(Point3 point3) {
+    float x1 = FLT_MAX;
+    float y1 = FLT_MAX;
+    float z1 = FLT_MAX;
+    float x2 = 0;
+    float y2 = 0;
+    float z2 = 0;
+
+    for (int i = 0; i < nVectors; i++) {
+        x1 = std::min(vectors[i].getX(), x1);
+        y1 = std::min(vectors[i].getY(), y1);
+        z1 = std::min(vectors[i].getZ(), z1);
+        x2 = std::max(vectors[i].getX(), x2);
+        y2 = std::max(vectors[i].getY(), y2);
+        z2 = std::max(vectors[i].getZ(), z2);
+    }
+
+    return point3.getX() > x1 && point3.getX() < x2 &&
+            point3.getZ() > z1 && point3.getZ() < z2 &&
+            point3.getY() > y1 && point3.getY() < y2;
 }
 
 

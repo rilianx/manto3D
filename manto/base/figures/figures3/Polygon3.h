@@ -6,6 +6,7 @@
 #define MANTO_POLYGON3_H
 
 #include <spaces/spaces3/Vector3.h>
+#include <spaces/spaces3/Plane.h>
 #include "figures/figures2/Polygon2.h"
 #include "Figure3.h"
 
@@ -45,7 +46,23 @@ public:
     virtual bool equal(Figure3 *figure3);
     virtual bool isDominated(Figure3* figure);
 
+    /**
+     * Comprueba si domina al punto ingresado como parametro
+     * @param figure    - Punto que podría o no estar dominado por el polgono
+     * @return          - Retorna True si domina al punto y False en caso
+     *                    contrario.
+     */
+    bool domina(Point3* figure);
+
     Vector3 *getVectors() const;
+
+    /**
+     * Obtiene el plano que contiene al poligono
+     * @return  - Retorna el
+     */
+    Plane getPlane();
+
+    bool inBox(Point3 point3);
 };
 
 

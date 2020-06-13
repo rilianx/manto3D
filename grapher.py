@@ -172,7 +172,7 @@ def graficar(sub_path="", show=True ,save_image=False, image_name="image"):
         z=z,
         mode='markers',  # Aqui se puede agregar +lines para generar lineas
         marker=dict(
-            size=4,
+            size=3,
             color='rgb(100,100,255)',
             opacity=1),
         name="No dominado")

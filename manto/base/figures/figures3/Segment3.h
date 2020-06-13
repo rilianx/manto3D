@@ -75,6 +75,14 @@ public:
     virtual bool equal(Figure3 *figure3);
 
     /**
+     * Comprueba si domina el punto
+     * @param point3    - Punto que probablemente esta dominado por el segmento
+     * @return          - Retorna True si el segmento domina al punto y False
+     *                    en caso contrario.
+     */
+    bool domina(Point3* point3);
+
+    /**
      * Intersecta este segmento con el pasado como paremtro. Retorna el
      * resultado de la interseccion.
      * @param segment   - Segmento que se

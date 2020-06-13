@@ -31,6 +31,15 @@ public:
 
     Plane(const Vector3& p1, const Vector3& p2, const Vector3& p3);
 
+    /**
+     * Obtiene el punto mas cercano entre este plano y las corrdenadas del
+     * punto ingresado como parametro
+     * @param point     - Coordenadas mas cercana al punto que se va a obtener
+     * @return          - Obtiene el punto mas cercano al "point" contenido
+     *                    en el plano.
+     */
+    Vector3 getClosestPointTo(Vector3 point);
+
     const Vector3 &getVd1() const;
 
     const Vector3 &getVd2() const;

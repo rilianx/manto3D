@@ -10,6 +10,7 @@
 #include "Figure2.h"
 #include "Triangle2.h"
 #include "Point2.h"
+#include "Point3.h"
 #include "Vector3.h"
 #include <Figure3.h>
 
@@ -22,6 +23,8 @@ class Polygon2 : public Figure2{
     ClipperLib::Path path;          // Vectores del poligono
     ClipperLib::Paths solutions;    // Soluciones de las operaciones
 
+    Vector2* vectores;
+
     // El valor de precision tiene que ser potencia de 10. Este se utiliza
     // como multiplicador y divisor, con el fin de obtener mayor o menor
     // precision en los calculos de las operaciones realizadas a los
@@ -29,6 +32,9 @@ class Polygon2 : public Figure2{
     float precision = 10000;
 
     float MAX_VALUE = 99999;
+
+    // Plano en que está proyectada esta proyeccion.
+    int PROJECTION_PLANE = -1;
 
 private:
 
@@ -46,16 +52,18 @@ public:
      * @param vectores  - Arreglo de vectores. Corresponden a enteros
      *                    pareados, de la forma: {x1,y1,x2,y2..., xn, yn}.
      * @param nVectores - Numero de vectores que conforman el poligono.
+     * @param PROJECTION_PLANE - Plano en que está proyectada esta proyeccion
      */
-    Polygon2(const int* vectores, int nVectores);
+    Polygon2(const int* vectores, int nVectores, int PROJECTION_PLANE);
 
     /**
      * Constructor de poligono
      * @param vectores  - Arreglo de vectores. Corresponden a enteros
      *                    pareados, de la forma: {x1,y1,x2,y2..., xn, yn}.
      * @param nVectores - Numero de vectores que conforman el poligono.
+     * @param PROJECTION_PLANE - Plano en que está proyectada esta proyeccion
      */
-    Polygon2(const float* vectores, int nVectores);
+    Polygon2(const float* vectores, int nVectores, int PROJECTION_PLANE);
 
     /**
      * Constructor de poligonos con path
@@ -195,7 +203,15 @@ public:
     virtual std::string toString();
     virtual std::string toGraphString(int PROJECTION_PLANE);
 
-    bool domina(Point2 point2);
+    /**
+     * Comprueba si el punto está dominado por el poligono
+     * @param point2    - Punto que podria o no estar dominado por el poligono
+     * @param point3    - Punto que provoca la proyeccion "point2"
+     * @param polygon3  - Poligono que provoca esta proyeccion.
+     * @return          - Retorna True si es que el poligono domina al punto
+     *                    y False en caso contrario
+     */
+    bool domina(Point2 point2, Point3 point3, Polygon3 polygon3);
 };
 
 

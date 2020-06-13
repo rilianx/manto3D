@@ -9,9 +9,7 @@
 #include <util/RangeContainer.h>
 #include "Manto.h"
 #include "Tester.h"
-#include <util/Intersector.h>
 #include <sys/stat.h>
-#include <sys/types.h>
 
 Manto::~Manto() {
     if (Tester::DEBUG_DELET)
@@ -42,6 +40,13 @@ void Manto::addFigure(Figure3 *figure) {
         mapFigureXY[fpxy->getKey()] = fpxy;
         mapFigureXZ[fpxz->getKey()] = fpxz;
         mapFigureYZ[fpyz->getKey()] = fpyz;
+    }
+}
+
+void Manto::addFigureTestDominatedSpace(Figure3 *figure, Figure3 *target) {
+    list<Figure3 *> nDomFrag = nonDominatedFragments(figure, target);
+    for (auto &frag : nDomFrag) {
+        lFigure3.insert(frag);
     }
 }
 
@@ -407,7 +412,7 @@ void Manto::nonDominatedFragmentsProj(Figure3 *f1,
         if (instF2 == Figure3::POLYGON_INSTANCE){
             Polygon3 *pol = dynamic_cast<Polygon3 *>(f2);
             Polygon2 *ppol = pol->getProjection(PROJECTION_PLANE);
-            if(!ppol->domina(*pp))
+            if(!ppol->domina(*pp, *p, *pol))
                 fragments.push_front(pp);
         }
 

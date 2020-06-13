@@ -47,4 +47,17 @@ void Tester::agregarPunto(Manto &manto, int cantidad, Segment3 segment3) {
     }
 }
 
+void Tester::testDominatedSpace(Manto &manto, Figure3 *target, int cantidad,
+        float x1, float y1, float z1, float x2, float y2, float z2) {
+    float cantPorEje = pow(cantidad, (double)1/3);
+    for(float x = x1; x < x2; x += (x2-x1) / cantPorEje){
+        for(float y = y1; y < y2; y += (y2-y1) / cantPorEje){
+            for(float z = z1; z < z2; z += (z2-z1) / cantPorEje){
+                manto.addFigureTestDominatedSpace(new Point3(x, y, z), target);
+            }
+        }
+    }
+}
+
+
 

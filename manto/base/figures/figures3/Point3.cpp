@@ -6,6 +6,7 @@
 #include <sstream>
 #include "Point3.h"
 #include "Figure3.h"
+#include <algorithm>
 #include "../../Tester.h"
 
 void Point3::generateProjections() {
@@ -100,4 +101,8 @@ bool Point3::equal(Figure3 *figure3) {
     Point3* p3 = dynamic_cast<Point3*>(figure3);
     return p3->getX() == this->getX() && p3->getY() == this->getY() &&
             p3->getZ() == this->getZ();
+}
+
+const Vector3 &Point3::getPosition() const {
+    return position;
 }

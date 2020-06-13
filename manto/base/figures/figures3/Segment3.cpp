@@ -6,6 +6,7 @@
 #include <Tester.h>
 #include <iostream>
 #include <map>
+#include <algorithm>
 #include "Segment3.h"
 
 Segment3::Segment3(Vector3 p1, Vector3 p2){
@@ -163,5 +164,15 @@ bool Segment3::equal(Figure3 *figure3) {
     bool maxEqual = pp2.getX() == pp4.getX() && pp2.getY() == pp4.getY()
                     && pp2.getZ() == pp4.getZ();
     return minEqual && maxEqual;
+}
+
+bool Segment3::domina(Point3 *point3) {
+    Point2* pxy = point3->getProjection(Figure3::PROJECTION_XY);
+    Point2* pxz = point3->getProjection(Figure3::PROJECTION_XZ);
+    Point2* pyz = point3->getProjection(Figure3::PROJECTION_YZ);
+    bool xy = projections[PROJECTION_XY].domina(*pxy);
+    bool xz = projections[PROJECTION_XZ].domina(*pxz);
+    bool yz = projections[PROJECTION_YZ].domina(*pyz);
+    return xy && xz && yz;
 }
 

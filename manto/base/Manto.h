@@ -114,6 +114,19 @@ public:
     void addFigure(Figure3* figure);
 
     /**
+     * Agrega una figura al manto. Procesa la figura agregada al manto con
+     * respecto a la objetivo (target). Importante señalar que la figura
+     * target debe estar agregada en el manto.
+     * Esta funcion solo procesa la dominación/fragmentación de la figura
+     * "figure" con respecto a la figura "target".
+     * @param figure    - Figura que se va a agregar al manto y va a servir
+     *                    para probar el espacio dominado por la figura target.
+     * @param target    - Figura objetivo que se quiere probar el espacio
+     *                    dominado.
+     */
+    void addFigureTestDominatedSpace(Figure3* figure, Figure3* target);
+
+    /**
      * Imprime todas las figuras de tres dimensiones
      */
     void printAllFigures3();

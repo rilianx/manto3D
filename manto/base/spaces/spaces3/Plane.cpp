@@ -3,6 +3,7 @@
 //
 
 #include "Plane.h"
+#include "Line3.h"
 
 Plane::Plane(const Vector3& p1, const Vector3& p2, const Vector3& p3) {
     // Calculando vectores directores
@@ -57,4 +58,9 @@ float Plane::getC() const {
 
 float Plane::getD() const {
     return d;
+}
+
+Vector3 Plane::getClosestPointTo(Vector3 point) {
+    Line3 line = Line3(getNormal(), point);
+    return line.intersect(*this);
 }

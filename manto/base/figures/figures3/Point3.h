@@ -31,6 +31,8 @@ public:
     float getY() const;
     float getZ() const;
 
+    const Vector3 &getPosition() const;
+
     /**
      * Comprueba si el punto ingresado como parametro es equivalente al
      * actual (this).

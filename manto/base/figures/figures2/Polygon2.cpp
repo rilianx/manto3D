@@ -5,6 +5,7 @@
 #include "Polygon2.h"
 #include "Polygon3.h"
 #include "Segment2.h"
+#include "./spaces/spaces3/Line3.h"
 #include <utility>
 #include <sstream>
 #include <iostream>
@@ -13,19 +14,26 @@
 using namespace ClipperLib;
 using namespace std;
 
-Polygon2::Polygon2(const int *vectores, int nVectores) {
+Polygon2::Polygon2(const int *vectores, int nVectores, int PROJECTION_PLANE) {
+    this->PROJECTION_PLANE = PROJECTION_PLANE;
+    this->vectores = new Vector2[nVectores];
     this->path.resize(nVectores);
     for (int i = 0; i < nVectores; i++) {
         this->path[i].X = vectores[i * 2] * precision;
         this->path[i].Y = vectores[i * 2 + 1] * precision;
+        this->vectores[i] = {(float)vectores[i * 2],
+                             (float) vectores[i * 2 + 1]};
     }
 }
 
-Polygon2::Polygon2(const float *vectores, int nVectores) {
+Polygon2::Polygon2(const float *vectores, int nVectores, int PROJECTION_PLANE) {
+    this->PROJECTION_PLANE = PROJECTION_PLANE;
     this->path.resize(nVectores);
+    this->vectores = new Vector2[nVectores];
     for (int i = 0; i < nVectores; i++) {
         this->path[i].X = vectores[i * 2] * precision;
         this->path[i].Y = vectores[i * 2 + 1] * precision;
+        this->vectores[i] = {vectores[i * 2], vectores[i * 2 + 1]};
     }
 }
 
@@ -111,7 +119,7 @@ void Polygon2::fragmentedBy(Point2 *p, std::list<Figure2 *> &fragments) {
             MAX_VALUE, MAX_VALUE,
             MAX_VALUE, p->getOrdinate()
     };
-    Polygon2* polygon2 = new Polygon2(vectores, 4);
+    Polygon2* polygon2 = new Polygon2(vectores, 4, PROJECTION_PLANE);
 
     // Fragmentando y llenando la lista de fragmentos
     for (auto &fragment : this->difference(*polygon2)) {
@@ -134,7 +142,7 @@ void Polygon2::fragmentedBy(Segment2 *s, std::list<Figure2 *> &fragments) {
     };
 
     // Generando poligono
-    Polygon2* polygon2 = new Polygon2(vectores, 5);
+    Polygon2* polygon2 = new Polygon2(vectores, 5, PROJECTION_PLANE);
 
     // Fragmentando y llenando la lista de fragmentos
     for (auto &fragment : this->difference(*polygon2)) {
@@ -173,7 +181,7 @@ void Polygon2::fragmentedBy(Polygon2 *p, std::list<Figure2 *> &fragments) {
     vectores[i] = MAX_VALUE;
 
     // Generando poligono
-    Polygon2* polygon2 = new Polygon2(vectores, nVectores/2);
+    Polygon2* polygon2 = new Polygon2(vectores, nVectores/2, PROJECTION_PLANE);
 
     // Fragmentando y llenando la lista de fragmentos
     for (auto &fragment : this->difference(*polygon2)) {
@@ -351,8 +359,49 @@ std::list<Vector2> Polygon2::getBottomPath() {
     return result;
 }
 
-bool Polygon2::domina(Point2 point2) {
+bool Polygon2::domina(Point2 point2, Point3 point3, Polygon3 polygon3) {
     std::list<Vector2> bottomPath = getBottomPath();
+
+    //if(polygon3.inBox(point3)){
+    if(onPolygon(point2.getPosition())){
+        // Generar plano con el poligono
+        Plane plane = polygon3.getPlane();
+
+        // El nuevo metodo
+        Vector3 director;
+        switch(PROJECTION_PLANE){
+            case Figure3::PROJECTION_XY:
+                director = {0.1,0.1,1};
+                break;
+            case Figure3::PROJECTION_XZ:
+                director = {0.1,1.0,0.1};
+                break;
+            case Figure3::PROJECTION_YZ:
+                director = {1.0,0.1,0.1};
+                break;
+            default:
+                std::cout << "Error de caso uih123t187" << std::endl;
+                break;
+        }
+        Line3 line = Line3(director, point3.getPosition());
+
+
+        // FIXME: En caso de que esto genere errores, cambiar el
+        //  getClossesPointTo por alguna funcion que busque el punto de
+        //  interseccion de la linea que pasa por el punto con el plano
+        //  (Linea paralela al eje que no está en el plano de proyeccion).
+        // Obtener el punto mas cercano al plano
+        //Vector3 clossestP = plane.getClosestPointTo(point3.getPosition());
+        Vector3 clossestP = line.intersect(plane);
+
+        // Obtener la proyeccion de este punto
+        Vector2 clossestPP = clossestP.getProjection(PROJECTION_PLANE);
+        if(onPolygon(clossestPP))
+            // Ver si este punto domina al punto en cuestion
+            return clossestPP.getAbscissa() < point2.getAbscissa() &&
+                    clossestPP.getOrdinate() < point2.getOrdinate();
+    }
+
     bool first = true;
     Vector2 *fv = nullptr;
     for (auto &vector : bottomPath) {
@@ -378,13 +427,18 @@ bool Polygon2::onPolygon(Vector2 pos) {
 bool Polygon2::onPolygon(float fx, float fy) {
     int j = path.size()-1;
     bool adentro = false;
-    long long x = fx * precision;
-    long long y = fy * precision;
+    float x = fx; // OPTIMIZE: esto no es necesario
+    float y = fy; // OPTIMIZE: esto no es necesario
     for(int i = 0; i < path.size(); i++){
-        if((path[i].Y < y and path[j].Y >= y) or (path[j].Y < y and
-        path[i].Y >= y))
-            if(path[i].X + (y - path[i].Y) / (path[j].Y -
-                path[i].Y) * (path[j].X - path[i].X) < x)
+        if((vectores[i].getOrdinate() < y and vectores[j].getOrdinate() >= y) or (vectores[j].getOrdinate() <
+        y and
+        vectores[i].getOrdinate() >= y))
+            if(vectores[i].getAbscissa() + (y - vectores[i].getOrdinate()) /
+            (vectores[j]
+            .getOrdinate() -
+                vectores[i].getOrdinate()) * (vectores[j].getAbscissa() - vectores[i]
+                .getAbscissa())
+                < x)
                 adentro = !adentro;
         j = i;
     }

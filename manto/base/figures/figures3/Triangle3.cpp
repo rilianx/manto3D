@@ -4,6 +4,7 @@
 
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 #include "Triangle3.h"
 
 Triangle3::Triangle3(float p1x, float p1y, float p1z, float p2x, float p2y,
