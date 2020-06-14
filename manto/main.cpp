@@ -13,8 +13,8 @@
 #include <util/RangeContainer.h>
 #include <set>
 #include <iomanip>
+#include <util/Util.h>
 #include "util/clipper/clipper.hpp"
-#include <unistd.h>
 
 #include "util/IndexIterator.h"
 
@@ -105,7 +105,7 @@ void testInfinito() {
 
     // Guardando instancias generadas
     std::cout << "Guardando instancias" << std::endl;
-    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    manto.saveInstance(Util::getInstancesPath());
     std::cout << "Instancias guardadas" << std::endl;
 
     //manto.validateInstance();
@@ -146,7 +146,7 @@ void testSegmentos() {
 
     manto.printAllFigures3();
 
-    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    manto.saveInstance(Util::getInstancesPath());
 }
 
 void testTriangulos() {
@@ -165,7 +165,7 @@ void testTriangulos() {
     manto.addFigure(new Point3(punto));
 
     std::cout << "Guardando instancias" << std::endl;
-    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    manto.saveInstance(Util::getInstancesPath());
     std::cout << "Listo" << std::endl;
 
 }
@@ -226,7 +226,7 @@ void testPoligonosEnManto(){
 
     // Guardando instancias
     std::cout << "Guardando instancias" << std::endl;
-    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    manto.saveInstance(Util::getInstancesPath());
     std::cout << "Listo" << std::endl;
 }
 
@@ -275,7 +275,7 @@ void testDominacionesPoligonos(){
 
     // Guardando instancias
     std::cout << "Guardando instancias" << std::endl;
-    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    manto.saveInstance(Util::getInstancesPath());
     std::cout << "Listo" << std::endl;
 }
 
@@ -313,7 +313,7 @@ void testDominatedSpace(){
 
     // Guardando instancias
     std::cout << "Guardando instancias" << std::endl;
-    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    manto.saveInstance(Util::getInstancesPath());
     std::cout << "Listo" << std::endl;
 }
 
@@ -409,7 +409,7 @@ void testCriticalSpace(){
     }
 
     std::cout << "Guardando instancias" << std::endl;
-    manto.saveInstance("/Users/brauliolobo/Documents/manto3D/Instance/");
+    manto.saveInstance(Util::getInstancesPath());
     std::cout << "Listo" << std::endl;
 }
 
@@ -456,14 +456,9 @@ int main() {
     // testProyecciones();
     // testDominacionesPoligonos();
 
-    char cwd[1024];
-    getcwd(cwd, sizeof(cwd));
-    printf("Current working dir: %s\n", cwd);
 
     //testDominatedSpace();
     testCriticalSpace();
-
-
 
     // testSimpleTriangulos();
 
