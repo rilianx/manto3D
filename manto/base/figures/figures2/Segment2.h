@@ -11,7 +11,8 @@
 #include "Figure2.h"
 #include "Point2.h"
 #include "Triangle2.h"
-#include "Polygon2.h"
+
+class Polygon2;
 
 class Segment2 : public Figure2 {
 

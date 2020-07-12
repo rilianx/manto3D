@@ -13,6 +13,8 @@
 #include "Point3.h"
 #include "Vector3.h"
 #include <Figure3.h>
+#include <spaces/spaces2/Line2.h>
+#include <vector>
 
 class Polygon3;
 class Segment2;
@@ -23,6 +25,7 @@ class Polygon2 : public Figure2{
     ClipperLib::Path path;          // Vectores del poligono
     ClipperLib::Paths solutions;    // Soluciones de las operaciones
 
+    // Lista de vectores
     Vector2* vectores;
 
     // El valor de precision tiene que ser potencia de 10. Este se utiliza
@@ -212,6 +215,27 @@ public:
      *                    y False en caso contrario
      */
     bool domina(Point2 point2, Point3 point3, Polygon3 polygon3);
+
+    /**
+     * Obtiene la linea limite horizontal del espacio dominado por el poligono
+     * @return  - Retorna un objeto Line correspondiente a la linea horizontal
+     *            minima del area dominada por el poligono.
+     */
+    Line2 getLowerHLine();
+
+    /**
+     * Obtiene la linea limite vertical del espacio dominado por el poligono
+     * @return  - Retorna un objeto Line correspondiente a la linea vertical
+     *            minima del area dominada por el poligono.
+     */
+    Line2 getLowerVLine();
+
+    /**
+     * Obtiene un vector con todos los segmentos que componen al poligono.
+     * @return  - Retorna un vector con todos los segmentos que componen al
+     *            poligono.
+     */
+    std::vector<Segment2*> getSegments();
 };
 
 

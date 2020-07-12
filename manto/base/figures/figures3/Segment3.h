@@ -10,6 +10,10 @@
 #include <figures/figures2/Segment2.h>
 #include "Figure3.h"
 
+class Point3;
+class Polygon3;
+class Line3;
+
 class Segment3 : public Figure3{
 
     Vector3 p1 = Vector3(0,0,0);
@@ -83,12 +87,35 @@ public:
     bool domina(Point3* point3);
 
     /**
+     * Fragmenta el segmento en los puntos criticos marcados por el poligono
+     * ingresado como parametro
+     * @param polygon3  - Poligono
+     * @return          - Returna una lista de segmentos correspondientes a
+     *                  la fragmentación de este
+     */
+    std::list<Segment3*> fragment(Polygon3* polygon3);
+
+    /**
      * Intersecta este segmento con el pasado como paremtro. Retorna el
      * resultado de la interseccion.
      * @param segment   - Segmento que se
      * @return
      */
     Segment3* overlap(Segment3* segment);
+
+    /**
+     * Genera una linea que contenga al segmento
+     * @return  - Retorna una linea que contiene al segmento
+     */
+    Line3 getLine();
+
+    /**
+     * Calcula el parametro delta que debería tener el vector p1-p2 para llegar
+     * a p. Esto es desde el punto p1, es decir p1+delta(p1-p2)=p.
+     * @param p - Punto hasta donde se quiere calcular del parametro delta
+     * @return  - Retorna el parametro delta calculado.
+     */
+    float getDelta(Vector3 p);
 };
 
 #endif //MANTO_SEGMENT3_H

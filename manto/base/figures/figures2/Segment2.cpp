@@ -7,6 +7,7 @@
 #include <sstream>
 #include <figures/figures3/Figure3.h>
 #include "Segment2.h"
+#include "Polygon2.h"
 
 std::string Segment2::toGraphString(int PROJECTION_PLANE) {
     std::ostringstream ss;

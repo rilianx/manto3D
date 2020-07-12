@@ -317,24 +317,7 @@ void testDominatedSpace(){
     std::cout << "Listo" << std::endl;
 }
 
-// Busca el espacio critico. Coloca puntos en los espacios donde se se genera
-// un cambio entre espacio dominado y espacio no dominado.
-void testCriticalSpace(){
-    Manto manto;
-
-    // Configuraciones
-    const float margen = 0;       // Margen del cubo que encierra al poligono
-    const int cPuntos = 3000;   // Cantidad de puntos contenidos en el cubo
-
-    // Creando poligono
-    Vector3 p1 = {3, 1, 2};
-    Vector3 p2 = {0.5, 6, 2};
-    Vector3 p3 = {2, 2, 4};
-    Vector3 vectors[3] = {p1, p2, p3};
-    Polygon3* polygon3 = new Polygon3(vectors, 3);
-
-    manto.addFigure(polygon3);
-
+void testCriticalSpace(Manto& manto, Polygon3* polygon3){
     // Configuraciones
     float min = 0;
     float max = 7;
@@ -354,10 +337,10 @@ void testCriticalSpace(){
                 p = {x, y, z};
                 if(polygon3->domina(&p)){
                     if(preP.getX() != 0 && preP.getY() != 0 &&
-                        preP.getZ() != 0) {
+                       preP.getZ() != 0) {
                         manto.addFigureTestDominatedSpace(
                                 new Point3(preP.getX(), preP.getY(),
-                                        preP.getZ()), polygon3);
+                                           preP.getZ()), polygon3);
                     }
                     break;
                 }
@@ -407,10 +390,61 @@ void testCriticalSpace(){
             }
         }
     }
+}
+
+// Busca el espacio critico. Coloca puntos en los espacios donde se se genera
+// un cambio entre espacio dominado y espacio no dominado.
+void testPolygonCriticalSpace(){
+    Manto manto;
+
+    // Configuraciones
+    const float margen = 0;       // Margen del cubo que encierra al poligono
+    const int cPuntos = 3000;   // Cantidad de puntos contenidos en el cubo
+
+    // Creando poligono
+    Vector3 p1 = {3, 1, 2};
+    Vector3 p2 = {0.5, 6, 2};
+    Vector3 p3 = {2, 2, 4};
+    Vector3 vectors[3] = {p1, p2, p3};
+    Polygon3* polygon3 = new Polygon3(vectors, 3);
+
+    manto.addFigure(polygon3);
+
+    testCriticalSpace(manto, polygon3);
 
     std::cout << "Guardando instancias" << std::endl;
     manto.saveInstance(Util::getInstancesPath());
     std::cout << "Listo" << std::endl;
+}
+
+void testDominationPolygonSegment(bool showDominatedSpace){
+    Manto manto;
+
+    // Creando poligono
+    Vector3 p1 = {3, 1, 2};
+    Vector3 p2 = {0.5, 6, 2};
+    Vector3 p3 = {2, 2, 4};
+    Vector3 vectors[3] = {p1, p2, p3};
+    Polygon3* polygon3 = new Polygon3(vectors, 3);
+    manto.addFigure(polygon3);
+
+    // Agregando segmento
+    Vector3 ps1 = {5,0,4};
+    Vector3 ps2 = {0,5,1};
+    Segment3* segment3 = new Segment3(ps1, ps2);
+    manto.addFigureTestDominatedSpace(segment3, polygon3);
+
+    // Agregando segmento 2
+    Vector3 ps3 = {5,0,7};
+    Vector3 ps4 = {0,5,4};
+    Segment3* segment32 = new Segment3(ps3, ps4);
+    manto.addFigureTestDominatedSpace(segment32, polygon3);
+
+    if(showDominatedSpace){
+        testCriticalSpace(manto, polygon3);
+    }
+
+    manto.saveInstance(Util::getInstancesPath());
 }
 
 void testProyecciones(){
@@ -458,7 +492,8 @@ int main() {
 
 
     //testDominatedSpace();
-    testCriticalSpace();
+    //testCriticalSpace();
+    testDominationPolygonSegment(true);
 
     // testSimpleTriangulos();
 

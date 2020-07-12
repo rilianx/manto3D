@@ -259,7 +259,24 @@ Manto::nonDominatedFragments(Figure3 *figure1, Figure3 *figure2) {
         }
     }
 
-    // Calculando interseccionde proyecciones
+    else if (instFigure1 == Figure3::SEGMENT_INSTANCE &&
+        instFigure2 == Figure3::POLYGON_INSTANCE){
+        Segment3 * segment = dynamic_cast<Segment3 *>(figure1);
+        Polygon3 * polygon = dynamic_cast<Polygon3 *>(figure2);
+        auto posiblesFragments = segment->fragment(polygon);
+
+        for (const auto &fragment : posiblesFragments) {
+            // TODO: Comprobar si no estan dominados los posibles fragmentos y
+            //  meterlos a la lista de fragments
+            Point3 midPoint = fragment->getP(0.5);
+            if(!polygon->domina(&midPoint)){
+                fragments.push_back(fragment);
+            }
+        }
+        return fragments;
+    }
+
+    // Calculando interseccion de proyecciones
     else {
         list<Figure2 *> intXY;
         list<Figure2 *> intXZ;

@@ -5,9 +5,12 @@
 #include <sstream>
 #include <Tester.h>
 #include <iostream>
-#include <map>
 #include <algorithm>
+#include <spaces/spaces2/Line2.h>
 #include "Segment3.h"
+#include "Point3.h"
+#include "Polygon3.h"
+#include "spaces/spaces3/Line3.h"
 
 Segment3::Segment3(Vector3 p1, Vector3 p2){
     this->p1 = p1;
@@ -174,5 +177,101 @@ bool Segment3::domina(Point3 *point3) {
     bool xz = projections[PROJECTION_XZ].domina(*pxz);
     bool yz = projections[PROJECTION_YZ].domina(*pyz);
     return xy && xz && yz;
+}
+
+Line3 Segment3::getLine(){
+    Vector3 director = {p1.getX() - p2.getX(),
+                        p1.getY() - p2.getY(),
+                        p1.getZ() - p2.getZ()};
+    return {director, p1};
+}
+
+std::list<Segment3 *> Segment3::fragment(Polygon3 *polygon3) {
+    std::list<Segment3 *> fragments;
+    set<float> lambdas;            // Vector de lambdas del segmento
+
+    /*
+     * PROCEDIMIENTO:
+     * Las fragmentaciones en primera instancia se guardan como lambdas y
+     * luego se realiza la fragmentacion real.
+     * - En primera instancia es fragmenta el segmento considerando las
+     * proyecciones del segmento y la del poligono.
+     * - En segunda instancia se fragmenta el segmetno considerando el plano
+     * que contiene el poligono con el segmento.
+     */
+
+    // Fragmentación con las proyecciones
+    for (const auto &projection : Figure3::PROJECTIONS) {
+        // Obteniendo proyecciones
+        Polygon2* pp = polygon3->getProjection(projection);
+        Segment2* sp = this->getProjection(projection);
+
+        // Obteniendo limites de las areas dominadas
+        Line2 lh = pp->getLowerHLine();
+        Line2 lv = pp->getLowerVLine();
+
+        float lambda;
+
+        // Obteniendo intersecciones de las lineas con el segmento
+        Vector2* intersection1 = lh.intersect(*sp);
+        Vector2* intersection2 = lv.intersect(*sp);
+
+        if(intersection1 != nullptr){
+            lambda = sp->getDelta(*intersection1);
+            lambdas.insert(lambda);
+        }
+
+        if(intersection2 != nullptr){
+            lambda = sp->getDelta(*intersection2);
+            lambdas.insert(lambda);
+        }
+
+        // Fragmentando por interseccion con bordes del poligono
+        // OPTIMIZE: Los segmento creados por getSegments() podrian no estar
+        //  siendo limpiados de la memoria
+        for(auto &segmentOnPolygon : pp->getSegments()){
+            Vector2* intersection = sp->intersect(*segmentOnPolygon);
+            if(intersection != nullptr){
+                lambda = sp->getDelta(*intersection);
+                lambdas.insert(lambda);
+            }
+        }
+
+    }
+
+    // Fragmentación con el plano
+    Plane plane = polygon3->getPlane();
+    Line3 line3 = this->getLine();
+    Vector3 intersection3 = line3.intersect(plane);
+    float newLambda = this->getDelta(intersection3);
+    if(newLambda < 1 && newLambda > 0)
+        lambdas.insert(newLambda);
+
+    // Transormando lambdas en lista de segmentos
+    float l1 = 0;
+    float l2;
+    for (auto &lambda : lambdas) {
+        std::cout << "Lambda: " << lambda << std::endl;
+        l2 = lambda;
+
+        // Creando segmentos
+        Segment3* ns = new Segment3(this->getP(l1), this->getP(l2));
+        fragments.push_back(ns);
+
+        // Actualizando pre lambda
+        l1 = l2;
+    }
+
+    // Ultimo segmento
+    Segment3* ns = new Segment3(this->getP(l1), this->getP(1));
+    fragments.push_back(ns);
+
+    return fragments;
+}
+
+float Segment3::getDelta(Vector3 p) {
+    float delta = (p.getX() - p1.getX()) /
+                  (p2.getX() - p1.getX());
+    return delta;
 }
 

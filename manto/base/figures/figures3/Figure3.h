@@ -7,6 +7,7 @@
 
 
 #include <string>
+#include <vector>
 #include "Figure2.h"
 
 class Figure3 {
@@ -23,6 +24,8 @@ public:
     static const int SEGMENT_INSTANCE = 1;
     static const int TRIANGLE_INSTANCE = 2;
     static const int POLYGON_INSTANCE = 3;
+
+    static const std::vector<int> PROJECTIONS;
 
     /**
      * Obtiene las proyecciones de la figura.

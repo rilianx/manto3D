@@ -444,3 +444,28 @@ bool Polygon2::onPolygon(float fx, float fy) {
     }
     return adentro;
 }
+
+
+Line2 Polygon2::getLowerVLine() {
+    float ma = getAbscissa(getMenorAbscissa());
+    return {{ma, 0}, {ma, 100}};
+}
+
+Line2 Polygon2::getLowerHLine() {
+    float mo = getOrdinate(getMenorOrdinate());
+    return {{0, mo}, {100, mo}};
+}
+
+std::vector<Segment2*> Polygon2::getSegments() {
+    std::vector<Segment2*> segments;
+
+    for(int i = 0; i < path.size()-1; i++){
+        Segment2* segment = new Segment2(vectores[i], vectores[i+1]);
+        segments.push_back(segment);
+    }
+
+    Segment2* segment = new Segment2(vectores[path.size()-1], vectores[0]);
+    segments.push_back(segment);
+
+    return segments;
+}
