@@ -32,7 +32,7 @@ class Polygon2 : public Figure2{
     // como multiplicador y divisor, con el fin de obtener mayor o menor
     // precision en los calculos de las operaciones realizadas a los
     // poligonos (Como unionWith, intersect, difference, etc)
-    float precision = 10000;
+    float precision = 10000; // FIXME: cambiar esto a double y a 1024
 
     float MAX_VALUE = 99999;
 

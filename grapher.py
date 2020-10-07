@@ -4,6 +4,7 @@ import numpy as np
 import csv
 import tripy
 import os
+from random import random
 
 # FIXME: si esto no es necesario hay que borrarlo
 import plotly.figure_factory as ff
@@ -255,7 +256,7 @@ def graficar(sub_path="", show=True ,save_image=False, image_name="image"):
                             y=y2,
                             z=z2,
                             opacity=1,
-                            color='rgb(255,100,100)')
+                            color=f'rgb({int(150 * random()) + 100},{int(150 * random()) + 100},100)')
             data.append(tracel)
 
     numero_poligonos = len(lista)

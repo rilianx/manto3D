@@ -12,11 +12,8 @@
 #include <sys/time.h>
 #include <util/RangeContainer.h>
 #include <set>
-#include <iomanip>
 #include <util/Util.h>
 #include "util/clipper/clipper.hpp"
-
-#include "util/IndexIterator.h"
 
 using namespace std;
 using namespace ClipperLib;
@@ -447,6 +444,39 @@ void testDominationPolygonSegment(bool showDominatedSpace){
     manto.saveInstance(Util::getInstancesPath());
 }
 
+void testDominationPolygonPolygon(bool showDominatedSpace){
+    Manto manto;
+
+    // Creando primer poligono
+    Vector3 p1 = {5, 1, 2};
+    Vector3 p2 = {0.5, 6, 2};
+    Vector3 p3 = {2, 2, 6};
+    Vector3 vectors[3] = {p1, p2, p3};
+    Polygon3* polygon3 = new Polygon3(vectors, 3);
+
+
+    // Creando primer poligono
+    Vector3 p4 = {3, 0.5, 2};
+    Vector3 p5 = {2, 5, 5};
+    Vector3 p6 = {1.5, 6, 4};
+    Vector3 vectors2[3] = {p4, p5, p6};
+    Polygon3* polygon32 = new Polygon3(vectors2, 3);
+
+    // Test de dominacion bueno
+    // manto.addFigure(polygon32);
+    // manto.addFigureTestDominatedSpace(polygon3, polygon32);
+
+    // Test de dominacion con proboemas
+    manto.addFigure(polygon3);
+    manto.addFigureTestDominatedSpace(polygon32, polygon3);
+
+    // Guardando instancias
+    manto.saveInstance(Util::getInstancesPath());
+
+    // Llamando al graficador
+    system("cd /Users/brauliolobo/Documents/manto3D/; python3 grapher.py");
+}
+
 void testProyecciones(){
     // Creando vectores
     Vector3 p1 = {1, 1, 2};
@@ -491,9 +521,10 @@ int main() {
     // testDominacionesPoligonos();
 
 
-    //testDominatedSpace();
-    //testCriticalSpace();
-    testDominationPolygonSegment(true);
+    // testDominatedSpace();
+    // testCriticalSpace();
+    // testDominationPolygonSegment(false);
+    testDominationPolygonPolygon(false);
 
     // testSimpleTriangulos();
 
