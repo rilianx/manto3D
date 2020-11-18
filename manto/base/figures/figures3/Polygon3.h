@@ -54,6 +54,29 @@ public:
      */
     bool domina(Point3* figure);
 
+    /**
+     * Fragmenta este poligono en relación a el área dominada por el poligono
+     * ingresado como prametro.
+     * Notar que esta funcion no domina las partes del poligono, simplemente
+     * se encarga de hacer la fragmentación
+     * @param polygon3  - Poligono que va a fragmentar a este
+     * @return          - Retorna una lista de fragmentos
+     */
+    std::list<Polygon3*> fragment(Polygon3* polygon3);
+
+    /**
+     * Corta el poligono en tres dimension
+     * @param plane
+     * @return
+     */
+    std::list<Polygon3*> split(Plane plane);
+
+    /**
+     * Obtiene un punto contenido dentro de este poligono
+     * @return  - Retorna un punto obtenido en este poligono
+     */
+    Point3 getAPoint();
+
     Vector3 *getVectors() const;
 
     /**

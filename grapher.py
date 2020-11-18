@@ -247,6 +247,7 @@ def graficar(sub_path="", show=True ,save_image=False, image_name="image"):
     # Cargando triangulos no dominados
     lista = read_file_polygons(path + "poligonos.txt")
     for x, y, z in lista:
+        color = f'rgb({int(150 * random()) + 100},{int(150 * random()) + 100},100)'
         for triangle in triangule(x, y, z):
             # print(triangle)
             x2 = triangle[0]
@@ -256,7 +257,7 @@ def graficar(sub_path="", show=True ,save_image=False, image_name="image"):
                             y=y2,
                             z=z2,
                             opacity=1,
-                            color=f'rgb({int(150 * random()) + 100},{int(150 * random()) + 100},100)')
+                            color=color)
             data.append(tracel)
 
     numero_poligonos = len(lista)

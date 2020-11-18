@@ -6,14 +6,24 @@
 #define MANTO_LINE3_H
 
 
+#include <spaces/spaces2/Line2.h>
 #include "Vector3.h"
-#include "Plane.h"
+
+class Plane;
 
 class Line3 {
+
+    Line2 projections[3];
 
 private:
     Vector3 director;   // Vector director
     Vector3 point;      // Vector por donde pasa la recta
+
+    /**
+     * Genera las proyecciones de la linea y las guarda en el arreglo de
+     * proyecciones
+     */
+    void generateProjections();
 
 public:
 
@@ -27,6 +37,7 @@ public:
      */
     Vector3 intersect(const Plane& plane);
 
+    Line2 *getProjection(const int i);
 };
 
 

@@ -44,6 +44,11 @@ void Manto::addFigure(Figure3 *figure) {
 }
 
 void Manto::addFigureTestDominatedSpace(Figure3 *figure, Figure3 *target) {
+    if(target == nullptr){
+        lFigure3.insert(figure);
+        return;
+    }
+
     list<Figure3 *> nDomFrag = nonDominatedFragments(figure, target);
     for (auto &frag : nDomFrag) {
         lFigure3.insert(frag);
@@ -259,12 +264,14 @@ Manto::nonDominatedFragments(Figure3 *figure1, Figure3 *figure2) {
         }
     }
 
+    // Casos Segmento - Poligono
     else if (instFigure1 == Figure3::SEGMENT_INSTANCE &&
         instFigure2 == Figure3::POLYGON_INSTANCE){
         Segment3 * segment = dynamic_cast<Segment3 *>(figure1);
         Polygon3 * polygon = dynamic_cast<Polygon3 *>(figure2);
         auto posiblesFragments = segment->fragment(polygon);
 
+        // Agregando partes no dominadas del segmento a fragments
         for (const auto &fragment : posiblesFragments) {
             // TODO: Comprobar si no estan dominados los posibles fragmentos y
             //  meterlos a la lista de fragments
@@ -274,6 +281,22 @@ Manto::nonDominatedFragments(Figure3 *figure1, Figure3 *figure2) {
             }
         }
         return fragments;
+    }
+
+    // Casos poligonos poligonos
+    else if (instFigure1 == Figure3::POLYGON_INSTANCE &&
+        instFigure2 == Figure3::POLYGON_INSTANCE){
+        Polygon3 * polygon1 = dynamic_cast<Polygon3 *>(figure1);
+        Polygon3 * polygon2 = dynamic_cast<Polygon3 *>(figure2);
+        std::list<Polygon3*> posiblesFragmentos = polygon1->fragment(polygon2);
+
+        // Agregando partes no dominadas del poligono a fragments
+        for (const auto &fragment : posiblesFragmentos){
+            Point3 aPoint = fragment->getAPoint();
+            if(!polygon2->domina(&aPoint)){
+                fragments.push_back(fragment);
+            }
+        }
     }
 
     // Calculando interseccion de proyecciones
@@ -372,8 +395,10 @@ list<Figure3 *> Manto::spaceIntersect(list<Figure3 *> l1, list<Figure3 *> l2) {
         clpr.Execute(ctIntersection, resultado, pftEvenOdd, pftEvenOdd);
 
         for (auto &pathInPaths : resultado) {
-            intersected.push_back(Polygon2(pathInPaths).toPolygon3(pl1,
-                    Figure3::PROJECTION_XY));
+            intersected.push_back(Polygon2(pathInPaths,
+                                           Figure3::PROJECTION_XY)
+                                           .toPolygon3(pl1,
+                                                       Figure3::PROJECTION_XY));
         }
 
     }

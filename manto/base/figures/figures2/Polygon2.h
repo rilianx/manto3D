@@ -36,14 +36,15 @@ class Polygon2 : public Figure2{
 
     float MAX_VALUE = 99999;
 
-    // Plano en que está proyectada esta proyeccion.
-    int PROJECTION_PLANE = -1;
-
 private:
 
-    static std::list<Polygon2*> pathsToPolygons(const ClipperLib::Paths& paths);
+    static std::list<Polygon2*> pathsToPolygons(const ClipperLib::Paths&paths,
+                                                int PROJECTION_PLANE);
 
 public:
+
+    // Plano en que está proyectada esta proyeccion.
+    int PROJECTION_PLANE = -1;
 
     /**
      * Cosntructor simple y por defecto
@@ -71,7 +72,7 @@ public:
     /**
      * Constructor de poligonos con path
      */
-    explicit Polygon2(ClipperLib::Path path);
+    explicit Polygon2(ClipperLib::Path path, int PROJECTION_PLANE);
 
     /**
      * Genera una interseccion entre el poligono (this) y el ingresado como
@@ -229,6 +230,27 @@ public:
      *            minima del area dominada por el poligono.
      */
     Line2 getLowerVLine();
+
+    /**
+     * Fragmenta el poligono en dos o mas partes si es que la linea pasa por
+     * el interior de él.
+     * @param line  - Linea que va a dividir el poligono
+     * @return      - Retorna una lista con poligonos resultantes de la
+     *                división.
+     * TODO: Programa la esta función de dividir un poligono
+     */
+    std::list<Polygon2*> split(Line2* line);
+
+    /**
+     * Genera todas las lineas que componen a este poligono. Estas lineas son
+     * genradas por los vertices del poligono.
+     * @return  - Retorna una lista de lineas que componen al poligono
+     *
+     * TODO: Programar esta funcion para obtener una lista de lineas que
+     *  ponen al poligono
+     */
+    std::list<Line2 *> getLines();
+
 
     /**
      * Obtiene un vector con todos los segmentos que componen al poligono.

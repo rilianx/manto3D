@@ -44,7 +44,7 @@ std::list<Figure3 *> Glue::getResult() {
 
     list<Figure3*> polygons;
     for (auto &pathInPaths : resultado) {
-        polygons.push_back(Polygon2(pathInPaths).toPolygon3(polygon3,
+        polygons.push_back(Polygon2(pathInPaths, unionPlane).toPolygon3(polygon3,
                 unionPlane));
     }
 

@@ -2,11 +2,14 @@
 // Created by Braulio Lobo on 29-05-20.
 //
 
+#include <figures/figures3/Figure3.h>
 #include "Line3.h"
+#include "Plane.h"
 
 Line3::Line3(Vector3 director, Vector3 point) {
     this->director = director;
     this->point = point;
+    generateProjections();
 }
 
 Vector3 Line3::intersect(const Plane& plane) {
@@ -30,4 +33,20 @@ Vector3 Line3::intersect(const Plane& plane) {
     };
 
     return interseccion;
+}
+
+Line2 *Line3::getProjection(const int i) {
+    return &projections[i];
+}
+
+void Line3::generateProjections() {
+    const int pxy = Figure3::PROJECTION_XY;
+    const int pxz = Figure3::PROJECTION_XZ;
+    const int pyz = Figure3::PROJECTION_YZ;
+    projections[pxy] = Line2({director.getX(), director.getY()},
+                             {point.getX(), point.getY()}, true);
+    projections[pxz] = Line2({director.getX(), director.getZ()},
+                             {point.getX(), point.getZ()}, true);
+    projections[pyz] = Line2({director.getY(), director.getZ()},
+                             {point.getY(), point.getZ()}, true);
 }

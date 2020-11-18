@@ -49,3 +49,23 @@ Vector2 *Line2::intersect(Vector2 p1, Vector2 p2) {
     }
     return nullptr;
 }
+
+float Line2::evalue(float x) {
+
+    // Calculando el lambda
+    float lambda = (x - this->p.getAbscissa()) / this->d.getAbscissa();
+
+    // Obteniendo el resultado
+    float y = this->p.getOrdinate() + lambda * this->d.getOrdinate();
+
+    return y;
+}
+
+Line2::Line2(Vector2 director, Vector2 point, bool) {
+    this->d = director;
+    this->p = point;
+}
+
+Line2::Line2() {
+
+}

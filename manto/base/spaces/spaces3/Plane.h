@@ -7,6 +7,7 @@
 
 
 #include "Vector3.h"
+#include "Line3.h"
 
 class Plane {
 
@@ -40,6 +41,13 @@ public:
      */
     Vector3 getClosestPointTo(Vector3 point);
 
+    /**
+     * Interceptar ambos planos. El resultado de este es una linea
+     * @param plane     - Plano que se quiere interceptar con este
+     * @return          - Retorna una linea resultante
+     */
+    Line3* intersect(Plane plane);
+
     const Vector3 &getVd1() const;
 
     const Vector3 &getVd2() const;
@@ -55,7 +63,6 @@ public:
     float getC() const;
 
     float getD() const;
-
 };
 
 

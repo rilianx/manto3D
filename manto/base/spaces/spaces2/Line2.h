@@ -16,7 +16,9 @@ private:
     Vector2 p;  // Punto que pasa por la recta
 
 public:
+    Line2();
     Line2(Vector2 p1, Vector2 p2);
+    Line2(Vector2 director, Vector2 point, bool def);
 
     /**
      * Entrega el punto de interseccion entre el segmento y la linea
@@ -35,6 +37,13 @@ public:
      *                    interseccion
      */
     Vector2* intersect(Vector2 p1, Vector2 p2);
+
+    /**
+     * Evalua la funcion de la linea (recta) en el valor x entregado como
+     * parametro
+     * @param x     - Valor que se va evaluar
+     */
+     float evalue(float x);
 };
 
 

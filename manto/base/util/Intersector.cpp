@@ -12,8 +12,8 @@ std::list<Figure3 *> Intersector::getResult() {
 
     list<Figure3*> polygons;
     for (auto &pathInPaths : resultado) {
-        polygons.push_back(Polygon2(pathInPaths).toPolygon3(polygon3,
-                                                            Figure3::PROJECTION_XY));
+        polygons.push_back(Polygon2(pathInPaths, Figure3::PROJECTION_XY)
+                            .toPolygon3(polygon3, Figure3::PROJECTION_XY));
     }
 
     return polygons;

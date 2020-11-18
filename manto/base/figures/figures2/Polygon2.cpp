@@ -28,8 +28,8 @@ Polygon2::Polygon2(const int *vectores, int nVectores, int PROJECTION_PLANE) {
 
 Polygon2::Polygon2(const float *vectores, int nVectores, int PROJECTION_PLANE) {
     this->PROJECTION_PLANE = PROJECTION_PLANE;
-    this->path.resize(nVectores);
     this->vectores = new Vector2[nVectores];
+    this->path.resize(nVectores);
     for (int i = 0; i < nVectores; i++) {
         this->path[i].X = vectores[i * 2] * precision;
         this->path[i].Y = vectores[i * 2 + 1] * precision;
@@ -37,8 +37,9 @@ Polygon2::Polygon2(const float *vectores, int nVectores, int PROJECTION_PLANE) {
     }
 }
 
-Polygon2::Polygon2(Path path) {
+Polygon2::Polygon2(Path path, int PROJECTION_PLANE) {
     this->path = std::move(path);
+    this->PROJECTION_PLANE = PROJECTION_PLANE;
 }
 
 const Path &Polygon2::getPath() const {
@@ -53,7 +54,7 @@ list<Polygon2*> Polygon2::intersect(const Polygon2& polygon) {
     clpr.AddPath(polygon.getPath(), ptClip, true);
     clpr.Execute(ctIntersection, solutions, pftEvenOdd, pftEvenOdd);
 
-    return pathsToPolygons(solutions);
+    return pathsToPolygons(solutions, this->PROJECTION_PLANE);
 }
 
 list<Polygon2*> Polygon2::unionWith(const Polygon2& polygon) {
@@ -65,7 +66,7 @@ list<Polygon2*> Polygon2::unionWith(const Polygon2& polygon) {
     clpr.AddPath(polygon.getPath(), ptClip, true);
     clpr.Execute(ctUnion, solutions, pftEvenOdd, pftEvenOdd);
 
-    return pathsToPolygons(solutions);
+    return pathsToPolygons(solutions, this->PROJECTION_PLANE);
 }
 
 list<Polygon2*> Polygon2::difference(const Polygon2& polygon) {
@@ -77,13 +78,14 @@ list<Polygon2*> Polygon2::difference(const Polygon2& polygon) {
     clpr.AddPath(polygon.getPath(), ptClip, true);
     clpr.Execute(ctDifference, solutions, pftEvenOdd, pftEvenOdd);
 
-    return pathsToPolygons(solutions);
+    return pathsToPolygons(solutions, this->PROJECTION_PLANE);
 }
 
-list<Polygon2*> Polygon2::pathsToPolygons(const Paths& paths) {
+list<Polygon2*> Polygon2::pathsToPolygons(const Paths& paths,
+                                          int PROJECTION_PLANE) {
     list<Polygon2*> polygons;
     for (auto &pathInPaths : paths) {
-        polygons.push_back(new Polygon2(pathInPaths));
+        polygons.push_back(new Polygon2(pathInPaths, PROJECTION_PLANE));
     }
     return polygons;
 }
@@ -430,15 +432,11 @@ bool Polygon2::onPolygon(float fx, float fy) {
     float x = fx; // OPTIMIZE: esto no es necesario
     float y = fy; // OPTIMIZE: esto no es necesario
     for(int i = 0; i < path.size(); i++){
-        if((vectores[i].getOrdinate() < y and vectores[j].getOrdinate() >= y) or (vectores[j].getOrdinate() <
-        y and
-        vectores[i].getOrdinate() >= y))
+        if((vectores[i].getOrdinate() < y and vectores[j].getOrdinate() >= y)
+        or (vectores[j].getOrdinate() < y and vectores[i].getOrdinate() >= y))
             if(vectores[i].getAbscissa() + (y - vectores[i].getOrdinate()) /
-            (vectores[j]
-            .getOrdinate() -
-                vectores[i].getOrdinate()) * (vectores[j].getAbscissa() - vectores[i]
-                .getAbscissa())
-                < x)
+            (vectores[j].getOrdinate() - vectores[i].getOrdinate()) *
+            (vectores[j].getAbscissa() - vectores[i].getAbscissa())< x)
                 adentro = !adentro;
         j = i;
     }
@@ -468,4 +466,37 @@ std::vector<Segment2*> Polygon2::getSegments() {
     segments.push_back(segment);
 
     return segments;
+}
+
+
+std::list<Polygon2*> Polygon2::split(Line2* line){
+    std::list<Polygon2*> result;
+    const int MAX = 99999;
+
+    // Creando vertices de los poligonos de division
+    float px1 = 0;
+    float py1 = line->evalue(px1);
+    float px2 = MAX;
+    float py2 = line->evalue(MAX);
+    float vDivPol1[8] = {px1, 0,   px1, py1, px2, py2, px2, 0};
+    float vDivPol2[8] = {px1, MAX, px1, py1, px2, py2, px2, MAX};
+
+    // Creando poligonos de division
+    Polygon2 divPol1 = Polygon2(vDivPol1, 4, this->PROJECTION_PLANE);
+    Polygon2 divPol2 = Polygon2(vDivPol2, 4, this->PROJECTION_PLANE);
+
+    // Dividiendo poligono
+    auto sol1 = this->difference(divPol1);
+    auto sol2 = this->difference(divPol2);
+
+    // OPTIMIZE: Buscar la forma de evitar crear estas dos listas adicionales
+    // Juntando ambas soluciones
+    for (auto &polygon : sol1) result.push_back(polygon);
+    for (auto &polygon : sol2) result.push_back(polygon);
+
+    return result;
+}
+
+std::list<Line2 *> Polygon2::getLines(){
+
 }

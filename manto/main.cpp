@@ -507,6 +507,106 @@ void testProyecciones(){
     std::cout << "Poligono generado: " << polGenYZ->toString() << std::endl;
 }
 
+void testDivision3D(){
+    Manto manto;
+
+    // Creando primer poligono
+    Vector3 p1 = {5, 1, 2};
+    Vector3 p2 = {0.5, 6, 2};
+    Vector3 p3 = {2, 2, 6};
+    Vector3 vectors[3] = {p1, p2, p3};
+    Polygon3* polygon3 = new Polygon3(vectors, 3);
+
+
+    // Creando primer poligono
+    Vector3 p4 = {3, 0.5, 2};
+    Vector3 p5 = {2, 5, 5};
+    Vector3 p6 = {1.5, 6, 4};
+    Vector3 vectors2[3] = {p4, p5, p6};
+    Polygon3* polygon32 = new Polygon3(vectors2, 3);
+
+    //
+
+    // Test de dominacion con proboemas
+    manto.addFigure(polygon3);
+
+    auto fragments = polygon32->split(polygon3->getPlane());
+    for (auto &fragment : fragments) {
+        manto.addFigureTestDominatedSpace(fragment, nullptr);
+    }
+
+    // Guardando instancias
+    manto.saveInstance(Util::getInstancesPath());
+
+    // Llamando al graficador
+    system("cd /Users/brauliolobo/Documents/manto3D/; python3 grapher.py");
+}
+
+void testDivision(){
+    int v1[6] = {1,1,2,3,1,5};
+    Polygon2 polygon = Polygon2(v1, 3, Figure3::PROJECTION_XY);
+    int MAX = 99999;
+
+    int px1 = 0;
+    int py1 = 0;
+    int px2 = 3;
+    int py2 = 8;
+    int v2[8] = {px1,0, px1, py1, px2, py2, px2, 0};
+    Polygon2 p2 = Polygon2(v2, 4, Figure3::PROJECTION_XY);
+
+    auto solution = polygon.difference(p2);
+
+    std::cout << "Primer conjunto de soluciones" << std::endl;
+    for (auto &p : solution) {
+        std::cout << p->toString() << std::endl;
+    }
+
+    int v3[8] = {px1,MAX,px1, py1, px2,py2, px2,MAX};
+    Polygon2 p3 = Polygon2(v3, 4, Figure3::PROJECTION_XY);
+
+    auto solution2 = polygon.difference(p3);
+
+    std::cout << "Segundo conjunto de soluciones" << std::endl;
+    for (auto &p : solution2) {
+        std::cout << p->toString() << std::endl;
+    }
+}
+
+void testDivision2(){
+    // Creando poligono
+    int v1[6] = {1,1,2,3,1,5};
+    Polygon2 polygon = Polygon2(v1, 3, Figure3::PROJECTION_XY);
+
+    // Creando linea
+    Line2 *line = new Line2({0, 0}, {3, 8});
+
+    // Dividiendo poligono
+    auto result = polygon.split(line);
+
+    for (auto &p : result) {
+        std::cout << p->toString() << std::endl;
+    }
+
+}
+
+void testDivision3(){
+    // Creando poligono
+    int v1[12] = {2,2, 3,6, 6,5, 6,3, 4,5, 4,2};
+    Polygon2 polygon = Polygon2(v1, 6, Figure3::PROJECTION_XY);
+
+    // Creando linea
+    Line2 *line = new Line2({0, 2}, {9, 6});
+
+    // Dividiendo poligono
+    auto result = polygon.split(line);
+
+    // Imprimiendo resultado
+    for (auto &p : result) {
+        std::cout << p->toString() << std::endl;
+    }
+
+}
+
 int main() {
     // ---------------------- EL TO.DO PARA EL NUEVO DIA ----------------------
     // done: Implementar SPLIT POLYGON en los triangulos
@@ -524,7 +624,14 @@ int main() {
     // testDominatedSpace();
     // testCriticalSpace();
     // testDominationPolygonSegment(false);
-    testDominationPolygonPolygon(false);
+    //testDominationPolygonPolygon(false);
+    testDivision3D();
+
+    // testPolygonCriticalSpace();
+
+    // testDivision();
+    // testDivision2();
+    // testDivision3();
 
     // testSimpleTriangulos();
 

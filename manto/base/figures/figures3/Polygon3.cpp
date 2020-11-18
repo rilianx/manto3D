@@ -7,6 +7,7 @@
 #include <cfloat>
 #include <sstream>
 #include <iostream>
+#include <spaces/spaces3/Line3.h>
 
 void Polygon3::generateProjections() {
     const int pxy = Figure3::PROJECTION_XY;
@@ -144,6 +145,95 @@ bool Polygon3::inBox(Point3 point3) {
     return point3.getX() > x1 && point3.getX() < x2 &&
             point3.getZ() > z1 && point3.getZ() < z2 &&
             point3.getY() > y1 && point3.getY() < y2;
+}
+
+std::list<Polygon3 *> Polygon3::fragment(Polygon3 *polygon3) {
+    std::list<Polygon3 *> fragments;
+
+    for (const auto &projection : Figure3::PROJECTIONS) {
+        // Obteniendo proyecciones
+        Polygon2* projPolygon = polygon3->getProjection(projection);
+        Polygon2* projSelf = this->getProjection(projection);
+
+        // Creando lista de fragmentos en esta proyeccion
+        std::list<Polygon2 *> proyFragments;
+        std::list<Polygon2 *> temporalList;
+
+        // Agregando valor inicial a la lista de fragmentos para esta proyeccion
+        proyFragments.push_back(projSelf);
+
+        // Obteniendo limites de la zona dominada por el poligono ingresado
+        Line2 line_lv = projPolygon->getLowerVLine();
+        Line2 line_lh = projPolygon->getLowerHLine();
+
+        // Fragmentando poligono con la linea vertical
+        temporalList.clear();
+        for (const auto &fragment : proyFragments) {
+            for (const auto &newFragment : fragment->split(&line_lv)) {
+                temporalList.push_back(newFragment);
+            }
+        }
+        proyFragments = temporalList;
+
+        // Fragmentando poligono con la linea horaizontal
+        temporalList.clear();
+        for (const auto &fragment : proyFragments) {
+            for (const auto &newFragment : fragment->split(&line_lh)) {
+                temporalList.push_back(newFragment);
+            }
+        }
+        proyFragments = temporalList;
+
+        // Fragmentando poligono con las lineas del otro poligono
+        for (const auto &line : projPolygon->getLines()) {
+            temporalList.clear();
+            for (const auto &fragment : proyFragments) {
+                for (const auto &newFragment : fragment->split(line)) {
+                    temporalList.push_back(newFragment);
+                }
+            }
+            proyFragments = temporalList;
+        }
+    }
+
+    // TODO: colocar aquí una forma de pasar de poligonos 2d a poligonos 3d
+    // TODO: Colocar aqui una fragmentación del poligono por el plano
+    //  generado por el otro poligono
+
+    return fragments;
+}
+
+Point3 Polygon3::getAPoint() {
+
+    // TODO: Programar esta función que retorna un punto contenido en el
+    //  poligono
+
+    return Point3(0, 0, 0);
+}
+
+std::list<Polygon3 *> Polygon3::split(Plane plane) {
+    std::list<Polygon3 *> result;
+
+    Line3* line3 = this->getPlane().intersect(plane);
+
+    // Si no hay interseccion de los planos
+    if(line3 == nullptr)
+        return result;
+
+    // Obteniendo proyecciones
+    Polygon2* proj = this->getProjection(Figure3::PROJECTION_XY);
+    Line2* line = line3->getProjection(Figure3::PROJECTION_XY);
+
+    // Dividinedo proyecciones
+    std::list<Polygon2 *> result2 = proj->split(line);
+
+    // Obteniendo resultado en tres dimensiones
+    for (auto &poly2 : result2) {
+        Polygon3* poly3 = poly2->toPolygon3(this, poly2->PROJECTION_PLANE);
+        result.push_back(poly3);
+    }
+
+    return result;
 }
 
 
