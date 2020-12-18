@@ -62,6 +62,12 @@ public:
     Vector3 getP(float delta);
 
     /**
+     * Obtiene el punto medio del segmento
+     * @return  Retorna un vector que corresponde al punto medio del segmento.
+     */
+    Vector3 getMidlePoint();
+
+    /**
      * Obtiene las proyecciones de la figura
      * @param PROJECTION_PLANE  - Indice constante del plano donde se quiere
      *                            obtener la proyeccion (Por ejemplo:

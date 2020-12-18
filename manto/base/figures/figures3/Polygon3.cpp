@@ -3,6 +3,7 @@
 //
 
 #include "Polygon3.h"
+#include "Segment3.h"
 #include <algorithm>
 #include <cfloat>
 #include <sstream>
@@ -204,11 +205,22 @@ std::list<Polygon3 *> Polygon3::fragment(Polygon3 *polygon3) {
 }
 
 Point3 Polygon3::getAPoint() {
+    Segment3 s1 = Segment3(this->vectors[0], this->vectors[1]);
+    Vector3 m1 = s1.getMidlePoint();
 
-    // TODO: Programar esta función que retorna un punto contenido en el
-    //  poligono
+    Segment3 s2 = Segment3(this->vectors[1], this->vectors[2]);
+    Vector3 m2 = s2.getMidlePoint();
 
-    return Point3(0, 0, 0);
+    Segment3 s3 = Segment3(m1, m2);
+    Vector3 m3 = s3.getMidlePoint();
+
+    // FIXME: iterar generando segmentos s2 con otras coordenadas para poder
+    //  generar otro vector interior.
+    if(!this->onPolygon(m3)){
+        std::cout << "ERROR: VECTOR GENERADO FUERA DEL POLIGONO" << std::endl;
+    }
+
+    return Point3(m3);
 }
 
 std::list<Polygon3 *> Polygon3::split(Plane plane) {
@@ -234,6 +246,20 @@ std::list<Polygon3 *> Polygon3::split(Plane plane) {
     }
 
     return result;
+}
+
+bool Polygon3::onPolygon(Vector3 v3) {
+    Vector2 v2;
+    Polygon2* p2;
+
+    // Iterando todas las proyecciones
+    for (auto &projection_id : Figure3::PROJECTIONS) {
+        v2 = v3.getProjection(projection_id);
+        p2 = this->getProjection(projection_id);
+
+        if(!p2->onPolygon(v2)) return false;
+    }
+    return true;
 }
 
 

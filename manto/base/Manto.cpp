@@ -55,6 +55,11 @@ void Manto::addFigureTestDominatedSpace(Figure3 *figure, Figure3 *target) {
     }
 }
 
+bool Manto::isCompleteDominated(Figure3 *figure, Figure3 *target){
+    list<Figure3 *> nDomFrag = nonDominatedFragments(figure, target);
+    return nDomFrag.size() == 0;
+}
+
 void Manto::printAllFigures3() {
     lFigure3.begin();
 

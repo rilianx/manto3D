@@ -80,6 +80,15 @@ public:
     Vector3 *getVectors() const;
 
     /**
+     * Comprueba si el vector ingresado como parametro está contenido dentro del
+     * poligono
+     * @param v3    - Vector que se quiere comprobar si esta dentro del poligono
+     * @return      - retorna true si el poligono está dentro del poligono y
+     *                false en caso contrario.
+     */
+    bool onPolygon(Vector3 v3);
+
+    /**
      * Obtiene el plano que contiene al poligono
      * @return  - Retorna el
      */

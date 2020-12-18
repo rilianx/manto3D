@@ -518,21 +518,23 @@ void testDivision3D(){
     Polygon3* polygon3 = new Polygon3(vectors, 3);
 
 
-    // Creando primer poligono
-    Vector3 p4 = {3, 0.5, 2};
-    Vector3 p5 = {2, 5, 5};
-    Vector3 p6 = {1.5, 6, 4};
+    // Creando segundo poligono
+    Vector3 p4 = {3, 0.5, 2};   // {3, 0.5, 2};
+    Vector3 p5 = {2, 5, 5};     // {0, 2, 9.5};
+    Vector3 p6 = {1.5, 6, 4};   // {0.2, 6, 8};
     Vector3 vectors2[3] = {p4, p5, p6};
     Polygon3* polygon32 = new Polygon3(vectors2, 3);
-
-    //
 
     // Test de dominacion con proboemas
     manto.addFigure(polygon3);
 
     auto fragments = polygon32->split(polygon3->getPlane());
     for (auto &fragment : fragments) {
-        manto.addFigureTestDominatedSpace(fragment, nullptr);
+
+        // Comprobando dominancia del fragmento
+        Point3 p3 = fragment->getAPoint();
+        if(!manto.isCompleteDominated(&p3, polygon3))
+            manto.addFigureTestDominatedSpace(fragment, nullptr);
     }
 
     // Guardando instancias

@@ -237,7 +237,6 @@ public:
      * @param line  - Linea que va a dividir el poligono
      * @return      - Retorna una lista con poligonos resultantes de la
      *                división.
-     * TODO: Programa la esta función de dividir un poligono
      */
     std::list<Polygon2*> split(Line2* line);
 

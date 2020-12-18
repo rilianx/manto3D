@@ -275,3 +275,10 @@ float Segment3::getDelta(Vector3 p) {
     return delta;
 }
 
+Vector3 Segment3::getMidlePoint() {
+    float x = this->getMinX() + (this->getMaxX() - this->getMinX()) / 2;
+    float y = this->getMinY() + (this->getMaxY() - this->getMinY()) / 2;
+    float z = this->getMinZ() + (this->getMaxZ() - this->getMinZ()) / 2;
+    return Vector3(x, y, z);
+}
+

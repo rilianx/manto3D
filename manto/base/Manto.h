@@ -164,6 +164,15 @@ public:
      * insertas en el manto no estén dominadas por ninguna otra.
      */
     void validateInstance();
+
+    /**
+     * Comprueba si la figura ingresada como parametro es dominada
+     * completamente por la figura target ingresada, igualmente, por parametro.
+     * @param figure    - Figura que se quiere comprobar si es domianda
+     * @param target    - Figura que podria dominar, o no, a la ingrasada.
+     * @return          - Retorna true si la figura es dominada completamente
+     */
+    bool isCompleteDominated(Figure3 *figure, Figure3 *target);
 };
 
 

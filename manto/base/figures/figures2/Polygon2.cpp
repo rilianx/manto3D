@@ -498,5 +498,6 @@ std::list<Polygon2*> Polygon2::split(Line2* line){
 }
 
 std::list<Line2 *> Polygon2::getLines(){
-
+    // TODO: programar funcion para obtener lineas que forman un poligono
+    return std::list<Line2 *>();
 }
