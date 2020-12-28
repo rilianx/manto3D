@@ -69,3 +69,11 @@ Line2::Line2(Vector2 director, Vector2 point, bool) {
 Line2::Line2() {
 
 }
+
+const Vector2 &Line2::getD() const {
+    return d;
+}
+
+const Vector2 &Line2::getP() const {
+    return p;
+}

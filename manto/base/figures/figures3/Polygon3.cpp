@@ -186,7 +186,13 @@ std::list<Polygon3 *> Polygon3::fragment(Polygon3 *polygon3) {
         proyFragments = temporalList;
 
         // Fragmentando poligono con las lineas del otro poligono
+        std::cout << "Obteniendo lineas de la proyeccion" << std::endl;
         for (const auto &line : projPolygon->getLines()) {
+            std::cout << "Procesando linea: P = "
+            << line->getP().getAbscissa() << ", " << line->getP().getOrdinate()
+            << "\tD = "
+            << line->getD().getAbscissa() << ", " << line->getD().getOrdinate()
+            << std::endl;
             temporalList.clear();
             for (const auto &fragment : proyFragments) {
                 for (const auto &newFragment : fragment->split(line)) {
@@ -195,6 +201,12 @@ std::list<Polygon3 *> Polygon3::fragment(Polygon3 *polygon3) {
             }
             proyFragments = temporalList;
         }
+
+        // FIXME: esto es temporal (Borrar hasta el break)
+        for (auto &proyFragment : proyFragments) {
+            fragments.push_back(proyFragment->toPolygon3(this, projection));
+        }
+        break;
     }
 
     // TODO: colocar aquí una forma de pasar de poligonos 2d a poligonos 3d

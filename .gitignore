@@ -35,6 +35,7 @@
 .idea/
 manto/.idea/
 manto/cmake-build-debug/
+manto/cmake-build-debug-coverage/
 .gitignore.swp
 .DS_Store
 Instance/

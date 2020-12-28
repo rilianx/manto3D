@@ -44,6 +44,10 @@ public:
      * @param x     - Valor que se va evaluar
      */
      float evalue(float x);
+
+    const Vector2 &getD() const;
+
+    const Vector2 &getP() const;
 };
 
 

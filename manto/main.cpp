@@ -515,26 +515,32 @@ void testDivision3D(){
     Vector3 p2 = {0.5, 6, 2};
     Vector3 p3 = {2, 2, 6};
     Vector3 vectors[3] = {p1, p2, p3};
-    Polygon3* polygon3 = new Polygon3(vectors, 3);
+    Polygon3* pDominador = new Polygon3(vectors, 3);
 
 
     // Creando segundo poligono
-    Vector3 p4 = {3, 0.5, 2};   // {3, 0.5, 2};
-    Vector3 p5 = {2, 5, 5};     // {0, 2, 9.5};
-    Vector3 p6 = {1.5, 6, 4};   // {0.2, 6, 8};
+    //Vector3 p4 = {3, 0.5, 2};
+    //Vector3 p5 = {2, 5, 5};
+    //Vector3 p6 = {1.5, 6, 4};
+    Vector3 p4 = {3, 0.5, 2};
+    Vector3 p5 = {0, 2, 9.5};
+    Vector3 p6 = {1, 6, 8};
     Vector3 vectors2[3] = {p4, p5, p6};
     Polygon3* polygon32 = new Polygon3(vectors2, 3);
 
     // Test de dominacion con proboemas
-    manto.addFigure(polygon3);
+    manto.addFigure(pDominador);
 
-    auto fragments = polygon32->split(polygon3->getPlane());
+    auto fragments = polygon32->split(pDominador->getPlane());
     for (auto &fragment : fragments) {
+        auto news_fragments = fragment->fragment(pDominador);
 
-        // Comprobando dominancia del fragmento
-        Point3 p3 = fragment->getAPoint();
-        if(!manto.isCompleteDominated(&p3, polygon3))
-            manto.addFigureTestDominatedSpace(fragment, nullptr);
+        for (auto &new_fragment : news_fragments) {
+            // Comprobando dominancia del fragmento
+            auto p3 = new_fragment->getAPoint();
+            if (!manto.isCompleteDominated(&p3, pDominador))
+                manto.addFigureTestDominatedSpace(new_fragment, nullptr);
+        }
     }
 
     // Guardando instancias
@@ -553,7 +559,7 @@ void testDivision(){
     int py1 = 0;
     int px2 = 3;
     int py2 = 8;
-    int v2[8] = {px1,0, px1, py1, px2, py2, px2, 0};
+    int v2[8] = {px1, 0, px1, py1, px2, py2, px2, 0};
     Polygon2 p2 = Polygon2(v2, 4, Figure3::PROJECTION_XY);
 
     auto solution = polygon.difference(p2);
@@ -563,7 +569,7 @@ void testDivision(){
         std::cout << p->toString() << std::endl;
     }
 
-    int v3[8] = {px1,MAX,px1, py1, px2,py2, px2,MAX};
+    int v3[8] = {px1, MAX, px1, py1, px2, py2, px2, MAX};
     Polygon2 p3 = Polygon2(v3, 4, Figure3::PROJECTION_XY);
 
     auto solution2 = polygon.difference(p3);
