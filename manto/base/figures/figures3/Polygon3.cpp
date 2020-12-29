@@ -210,8 +210,17 @@ std::list<Polygon3 *> Polygon3::fragment(Polygon3 *polygon3) {
     }
 
     // TODO: colocar aquí una forma de pasar de poligonos 2d a poligonos 3d
-    // TODO: Colocar aqui una fragmentación del poligono por el plano
-    //  generado por el otro poligono
+
+    // Fragmentando fragmentos resultantes por el plano generado por el
+    // poligono fragmentador
+    std::list<Polygon3 *> temporalFragments = fragments;
+    Plane plane = polygon3->getPlane();
+    fragments.clear();
+    for(auto fragment : temporalFragments){
+        for(auto subFragment : fragment->split(plane)){
+            fragments.push_back(subFragment);
+        }
+    }
 
     return fragments;
 }

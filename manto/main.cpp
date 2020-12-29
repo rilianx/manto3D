@@ -530,8 +530,9 @@ void testDivision3D(){
 
     // Test de dominacion con proboemas
     manto.addFigure(pDominador);
-
-    auto fragments = polygon32->split(pDominador->getPlane());
+    //manto.addFigureTestDominatedSpace(polygon32, pDominador);
+    manto.addFigure(polygon32);
+    /*auto fragments = polygon32->split(pDominador->getPlane());
     for (auto &fragment : fragments) {
         auto news_fragments = fragment->fragment(pDominador);
 
@@ -541,7 +542,7 @@ void testDivision3D(){
             if (!manto.isCompleteDominated(&p3, pDominador))
                 manto.addFigureTestDominatedSpace(new_fragment, nullptr);
         }
-    }
+    }*/
 
     // Guardando instancias
     manto.saveInstance(Util::getInstancesPath());
