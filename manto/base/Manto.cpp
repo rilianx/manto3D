@@ -305,6 +305,7 @@ Manto::nonDominatedFragments(Figure3 *figure1, Figure3 *figure2) {
     }
 
     // Calculando interseccion de proyecciones
+    // FIXME: Existe un error en los casos poligono punto
     else {
         list<Figure2 *> intXY;
         list<Figure2 *> intXZ;

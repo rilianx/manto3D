@@ -361,8 +361,9 @@ std::list<Vector2> Polygon2::getBottomPath() {
     return result;
 }
 
+// FIXME: Por aquí debe estar el error de dominnacia de puntos a partir de
+//  poligonos
 bool Polygon2::domina(Point2 point2, Point3 point3, Polygon3 polygon3) {
-    std::list<Vector2> bottomPath = getBottomPath();
 
     //if(polygon3.inBox(point3)){
     if(onPolygon(point2.getPosition())){
@@ -404,6 +405,17 @@ bool Polygon2::domina(Point2 point2, Point3 point3, Polygon3 polygon3) {
                     clossestPP.getOrdinate() < point2.getOrdinate();
     }
 
+    // OPTIMIZE: Mejorar el conjunto de segmentos a utilizar en esta
+    //  doimanción. Se puede usar solo el path no dominado del poligono.
+    auto segments = this->getSegments();
+    for(auto segment : segments){
+        if(segment->domina(point2))
+            return true;
+    }
+    return false;
+
+    /*
+    std::list<Vector2> bottomPath = getBottomPath();
     bool first = true;
     Vector2 *fv = nullptr;
     for (auto &vector : bottomPath) {
@@ -419,7 +431,7 @@ bool Polygon2::domina(Point2 point2, Point3 point3, Polygon3 polygon3) {
 
         fv = &vector;
     }
-    return false;
+    return false;*/
 }
 
 bool Polygon2::onPolygon(Vector2 pos) {

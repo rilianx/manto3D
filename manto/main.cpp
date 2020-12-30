@@ -523,15 +523,17 @@ void testDivision3D(){
     //Vector3 p5 = {2, 5, 5};
     //Vector3 p6 = {1.5, 6, 4};
     Vector3 p4 = {3, 0.5, 2};
-    Vector3 p5 = {0, 2, 9.5};
-    Vector3 p6 = {1, 6, 8};
+    Vector3 p5 = {1, 2, 9.5};
+    Vector3 p6 = {0, 6, 8};
     Vector3 vectors2[3] = {p4, p5, p6};
     Polygon3* polygon32 = new Polygon3(vectors2, 3);
 
     // Test de dominacion con proboemas
-    manto.addFigure(pDominador);
+    //manto.addFigure(pDominador);
     //manto.addFigureTestDominatedSpace(polygon32, pDominador);
     manto.addFigure(polygon32);
+    manto.addFigureTestDominatedSpace(pDominador, polygon32);
+    testCriticalSpace(manto, polygon32);
     /*auto fragments = polygon32->split(pDominador->getPlane());
     for (auto &fragment : fragments) {
         auto news_fragments = fragment->fragment(pDominador);

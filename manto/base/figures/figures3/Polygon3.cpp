@@ -150,18 +150,24 @@ bool Polygon3::inBox(Point3 point3) {
 
 std::list<Polygon3 *> Polygon3::fragment(Polygon3 *polygon3) {
     std::list<Polygon3 *> fragments;
+    std::list<Polygon3 *> toFragment; // Lista de poligonos a fragmentar
+
+    // Agregando este poligono para ser fragmentado
+    toFragment.push_back(this);
 
     for (const auto &projection : Figure3::PROJECTIONS) {
         // Obteniendo proyecciones
         Polygon2* projPolygon = polygon3->getProjection(projection);
-        Polygon2* projSelf = this->getProjection(projection);
 
         // Creando lista de fragmentos en esta proyeccion
         std::list<Polygon2 *> proyFragments;
         std::list<Polygon2 *> temporalList;
 
         // Agregando valor inicial a la lista de fragmentos para esta proyeccion
-        proyFragments.push_back(projSelf);
+        for(auto polygon : toFragment) {
+            Polygon2 *projSelf = this->getProjection(projection);
+            proyFragments.push_back(projSelf);
+        }
 
         // Obteniendo limites de la zona dominada por el poligono ingresado
         Line2 line_lv = projPolygon->getLowerVLine();
@@ -186,13 +192,7 @@ std::list<Polygon3 *> Polygon3::fragment(Polygon3 *polygon3) {
         proyFragments = temporalList;
 
         // Fragmentando poligono con las lineas del otro poligono
-        std::cout << "Obteniendo lineas de la proyeccion" << std::endl;
         for (const auto &line : projPolygon->getLines()) {
-            std::cout << "Procesando linea: P = "
-            << line->getP().getAbscissa() << ", " << line->getP().getOrdinate()
-            << "\tD = "
-            << line->getD().getAbscissa() << ", " << line->getD().getOrdinate()
-            << std::endl;
             temporalList.clear();
             for (const auto &fragment : proyFragments) {
                 for (const auto &newFragment : fragment->split(line)) {
@@ -203,20 +203,20 @@ std::list<Polygon3 *> Polygon3::fragment(Polygon3 *polygon3) {
         }
 
         // FIXME: esto es temporal (Borrar hasta el break)
+        toFragment.clear();
         for (auto &proyFragment : proyFragments) {
-            fragments.push_back(proyFragment->toPolygon3(this, projection));
+            toFragment.push_back(proyFragment->toPolygon3(this, projection));
         }
-        break;
+        //break; // FIXME: borrar esto
     }
 
     // TODO: colocar aquí una forma de pasar de poligonos 2d a poligonos 3d
 
     // Fragmentando fragmentos resultantes por el plano generado por el
     // poligono fragmentador
-    std::list<Polygon3 *> temporalFragments = fragments;
     Plane plane = polygon3->getPlane();
     fragments.clear();
-    for(auto fragment : temporalFragments){
+    for(auto fragment : toFragment){
         for(auto subFragment : fragment->split(plane)){
             fragments.push_back(subFragment);
         }
