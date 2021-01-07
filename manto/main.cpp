@@ -513,8 +513,8 @@ void testDivision3D(){
     // Creando primer poligono
     Vector3 p1 = {5, 1, 2};
     Vector3 p2 = {0.5, 6, 2};
-    Vector3 p3 = {2, 2, 6};
-    Vector3 vectors[3] = {p1, p2, p3};
+    Vector3 p3 = {1.5, 1.5, 6};
+    Vector3 vectors[3] = {p3, p2, p1};
     Polygon3* pDominador = new Polygon3(vectors, 3);
 
 
@@ -525,15 +525,15 @@ void testDivision3D(){
     Vector3 p4 = {3, 0.5, 2};
     Vector3 p5 = {1, 2, 9.5};
     Vector3 p6 = {0, 6, 8};
-    Vector3 vectors2[3] = {p4, p5, p6};
+    Vector3 vectors2[3] = {p6, p5, p4};
     Polygon3* polygon32 = new Polygon3(vectors2, 3);
 
     // Test de dominacion con proboemas
     //manto.addFigure(pDominador);
-    //manto.addFigureTestDominatedSpace(polygon32, pDominador);
     manto.addFigure(polygon32);
-    manto.addFigureTestDominatedSpace(pDominador, polygon32);
-    testCriticalSpace(manto, polygon32);
+    //manto.addFigureTestDominatedSpace(polygon32, pDominador);
+    manto.addFigureTestDominatedSpace(pDominador, nullptr);
+    testCriticalSpace(manto, pDominador);
     /*auto fragments = polygon32->split(pDominador->getPlane());
     for (auto &fragment : fragments) {
         auto news_fragments = fragment->fragment(pDominador);

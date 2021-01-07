@@ -165,7 +165,7 @@ std::list<Polygon3 *> Polygon3::fragment(Polygon3 *polygon3) {
 
         // Agregando valor inicial a la lista de fragmentos para esta proyeccion
         for(auto polygon : toFragment) {
-            Polygon2 *projSelf = this->getProjection(projection);
+            Polygon2 *projSelf = polygon->getProjection(projection);
             proyFragments.push_back(projSelf);
         }
 
@@ -207,7 +207,7 @@ std::list<Polygon3 *> Polygon3::fragment(Polygon3 *polygon3) {
         for (auto &proyFragment : proyFragments) {
             toFragment.push_back(proyFragment->toPolygon3(this, projection));
         }
-        //break; // FIXME: borrar esto
+        // break; // FIXME: borrar esto
     }
 
     // TODO: colocar aquí una forma de pasar de poligonos 2d a poligonos 3d
