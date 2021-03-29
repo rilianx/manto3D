@@ -9,8 +9,7 @@ Si utiliza VS Code puede instalar los plugins *C/C++* y *CMake Tools*. Teniendo 
 ## Pruebas
 Para hacer pruebas sobre un manto, primero es necesario crear un objeto Manto. Luego, sobre este se pueden agregar objetos Figure3 como Point3 o Segment3:
 ```cpp
-	...
-	// Instancienado manto
+    // Instancienado manto
     Manto manto;
 
     // Creanod nuevo punto
@@ -26,7 +25,6 @@ Para hacer pruebas sobre un manto, primero es necesario crear un objeto Manto. L
 
     // Agregando segmento al manto
     manto.addFigure(segment);
-	...
 ```
 
 ## Grapher
@@ -34,25 +32,21 @@ Para utilizar el graficador de instancias es necesario tener instalado plotly.
 
 - Instalacion de plotly utilizando pip: 
 ```batch
-	pip install plotly
+    pip install plotly
 ```
 
 Luego, para guardar las instancias de un manto se utiliza el metodo *saveInstance* de la clase Manto.
 ```cpp
-	...	
+    // Direccion donde se guardaran los archivos a graficar
+    const char* path = "/User/Documents/manto3D/Instance/";
 
-	// Direccion donde se guardaran los archivos a graficar
-	const char* path = "/User/Documents/manto3D/Instance/";
-
-	// Guardando instancia del manto
+    // Guardando instancia del manto
     manto.saveInstance(path);
-
-    ...
 ```
 
 Finalmente para graficar la instancia se utiliza *grapher.py*. Este busca en su posicion relativa la carpeta *Instance* y grafica el contenido perteneciente a una instancia del manto.
 ```batch
-	python grahper.py
+    python grahper.py
 ```
 El ejemplo anterior, tiene como resultado el siguiente gráfico.
 
