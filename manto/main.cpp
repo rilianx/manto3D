@@ -530,10 +530,11 @@ void testDivision3D(){
 
     // Test de dominacion con proboemas
     //manto.addFigure(pDominador);
+    manto.addFigure(pDominador);
     manto.addFigure(polygon32);
     //manto.addFigureTestDominatedSpace(polygon32, pDominador);
-    manto.addFigureTestDominatedSpace(pDominador, nullptr);
-    testCriticalSpace(manto, pDominador);
+    //manto.addFigureTestDominatedSpace(pDominador, nullptr);
+    // testCriticalSpace(manto, pDominador);
     /*auto fragments = polygon32->split(pDominador->getPlane());
     for (auto &fragment : fragments) {
         auto news_fragments = fragment->fragment(pDominador);
@@ -550,7 +551,7 @@ void testDivision3D(){
     manto.saveInstance(Util::getInstancesPath());
 
     // Llamando al graficador
-    system("cd /Users/brauliolobo/Documents/manto3D/; python3 grapher.py");
+    system("cd /Users/brauliolobo/Documents/Proyectos/manto3D; python3 grapher.py");
 }
 
 void testDivision(){

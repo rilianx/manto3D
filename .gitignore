@@ -40,3 +40,4 @@ manto/cmake-build-debug-coverage/
 .DS_Store
 Instance/
 images/
+.vscode/

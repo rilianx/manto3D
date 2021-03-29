@@ -1,8 +1,14 @@
 # manto3D
 
+## Configuracion del proyecto
+Para configurar el proyecto es recomendado utilizar el compilador *clang*, esto
+es porque el proyecto se ha desarrollado y probado utilizando dicho compilador.
+
+Si utiliza VS Code puede instalar los plugins *C/C++* y *CMake Tools*. Teniendo estos dos plugins instalados, abra la carpeta del proyecto y *CMake Tools* lo guiará en configuración del proyecto. Además esta misma herramienta lo ayudará a compilarlo utilizando el mismo archivo *Make* ubicado en el proyecto.
+
 ## Pruebas
 Para hacer pruebas sobre un manto, primero es necesario crear un objeto Manto. Luego, sobre este se pueden agregar objetos Figure3 como Point3 o Segment3:
-```c
+```cpp
 	...
 	// Instancienado manto
     Manto manto;
@@ -32,7 +38,7 @@ Para utilizar el graficador de instancias es necesario tener instalado plotly.
 ```
 
 Luego, para guardar las instancias de un manto se utiliza el metodo *saveInstance* de la clase Manto.
-```c
+```cpp
 	...	
 
 	// Direccion donde se guardaran los archivos a graficar
